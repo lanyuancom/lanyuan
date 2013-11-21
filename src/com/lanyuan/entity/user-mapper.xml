@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+	<!-- 以下与实体类的中字段一致 -->
+	<sql id="selectId">
+		userId,
+		userName,
+		(select r.name from role r where id in (SELECT ur.role_id FROM user_role ur
+		WHERE ur.user_id=userId)) roleName,
+		userPassword,
+		userNickname,
+		userRealname,
+		userAge,
+		userSex,
+		userAddress,
+		userPhone,
+		userMail,
+		userQQ,
+		regTime,
+		(select ul.loginTime from userloginlist ul where ul.userId=userId order By ul.loginTime desc limit 1,1) lastLogintime,
+		level,
+		province,
+		city,
+		bankName,
+		branchBank,
+		subbranchBank,
+		openBankName,
+		bankAccountName,
+		bankAccount,
+		accountType,
+		pay,
+		mark,
+		status,
+		parentNumber
+	</sql>
+	<!--resultType="User" 每返回一条结果封装到User里 -->
+	<select id="query" resultType="User" parameterType="java.util.HashMap">
+		select
+		<include refid="selectId" />
+		from user
+		<where>
+			<if test="t.userName != null and t.userName != ''">
+				userName like '%${t.userName}%'
+				</if>
+			<if test="t.userNickname != null and t.userNickname != ''">
+				and userNickname like '%${t.userNickname}%'
+				</if>
+		</where>
+	</select>
+	<!-- 总记录数 -->
+	<select id="count" parameterType="User" resultType="int">
+		select count(0) from user
+		<where>
+			<if test="userName != null and userName != ''">
+				userName like '%${userName}%'
+				</if>
+			<if test="userNickname != null and userNickname != ''">
+				and userNickname like '%${userNickname}%'
+				</if>
+		</where>
+	</select>
+	<!-- 增加用户 -->
+	<insert id="add" parameterType="User">
+		insert into user( userName,
+		userPassword,
+		userNickname, userRealname,
+		userAge, userSex, userAddress,
+		userPhone,
+		userMail, userQQ, level,
+		province,
+		city,
+		bankName,
+		branchBank,
+		subbranchBank,
+		openBankName,
+		bankAccountName,
+		bankAccount,
+		accountType,
+		pay,
+		mark,
+		status,
+		parentNumber )
+		values (#{userName},
+		#{userPassword},
+		#{userNickname}, #{userRealname},
+		#{userAge},
+		#{userSex},
+		#{userAddress}, #{userPhone}, #{userMail},
+		#{userQQ},
+		#{level},
+		#{province},
+		#{city},
+		#{bankName}, #{branchBank},
+		#{subbranchBank},
+		#{openBankName},
+		#{bankAccountName}, #{bankAccount}, #{accountType},
+		#{pay},
+		#{mark},#{status},
+		#{parentNumber})
+	</insert>
+
+	<delete id="deleteById" parameterType="String">
+		delete from user where
+		userId=#{userId}
+	</delete>
+	<select id="getById" parameterType="String" resultType="User">
+		select
+		<include refid="selectId" />
+		from user where userId=#{userId}
+	</select>
+	<update id="update" parameterType="User">
+		update user
+		<set>
+			<if test="userName != null and userName != ''">
+				userName=#{userName},
+			</if>
+			<if test="userPassword != null and userPassword != ''">
+				userPassword=#{userPassword},
+			</if>
+			<if test="userNickname != null and userNickname != ''">
+				userNickname=#{userNickname},
+			</if>
+			<if test="userRealname != null and userRealname != ''">
+				userRealname=#{userRealname},
+			</if>
+			<if test="userAge != null and userAge != ''">
+				userAge=#{userAge},
+			</if>
+			<if test="userSex != null and userSex != ''">
+				userSex=#{userSex},
+			</if>
+			<if test="userAddress != null and userAddress != ''">
+				userAddress=#{userAddress},
+			</if>
+			<if test="userPhone != null and userPhone != ''">
+				userPhone=#{userPhone},
+			</if>
+			<if test="userMail != null and userMail != ''">
+				userMail=#{userMail},
+			</if>
+			<if test="userQQ != null and userQQ != ''">
+				userQQ=#{userQQ},
+			</if>
+			<if test="level != null and level != ''">
+				level=#{level},
+			</if>
+			province=#{province},
+		city=#{city},
+		bankName=#{bankName},
+		branchBank=#{branchBank},
+		subbranchBank=#{subbranchBank},
+		openBankName=#{openBankName},
+		bankAccountName=#{bankAccountName}, 
+		bankAccount=#{bankAccount},
+		accountType=#{accountType},
+		pay=#{pay},
+		mark=#{mark},
+		status=#{status},
+		parentNumber =#{parentNumber}
+		</set>
+		where userId=#{userId}
+	</update>
+	
+	<!-- 验证用户登陆 -->
+	<select id="countUser" parameterType="User" resultType="int">
+	    select count(*) from user where 
+	    userName=#{userName} and userPassword=#{userPassword}
+	</select>
+	
+	<!-- 根据用户名查出userId -->
+	<select id="queryUserName" parameterType="String" resultType="User">
+	  select
+	  <include refid="selectId"/>
+	  from user where userName=#{userName}
+	</select>
+</mapper>

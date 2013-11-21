@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userloginlist">
+   <!-- 以下与实体类的中字段一致 -->
+   <sql id="selectId">
+       loginId,
+       userId,
+       loginTime,
+       loginIp
+   </sql>
+   <!-- 查询 -->
+   <select id="query" resultType="UserLoginList" parameterType="UserLoginList">
+   	   select u.userName,l.* from userloginlist l,user u
+   	   <where>
+   	       u.userId = l.userId
+   	       <!-- and u.userId=#{userId}  -->
+   	   </where>
+   </select>
+   
+   <!-- 总页数 -->
+   <select id="count" resultType="int" parameterType="UserLoginList">
+   	   select count(0) from userloginlist
+   </select>
+   
+   <!-- 新增用户登陆记录 -->
+   <insert id="add" parameterType="UserLoginList">
+     insert into userloginlist(userId,loginIp)
+     values(#{userId},#{loginIp})
+   </insert>
+</mapper>
