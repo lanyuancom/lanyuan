@@ -24,7 +24,7 @@ lanyuan
 其他功能有：
 
 　服务器监控配置
-   fusioncharts报表插件显示
+　fusioncharts报表插件显示
 　EMALL发送(支持html语言)　
 　springQuartz　定时任务
 　springAOP日志拦截处理　
