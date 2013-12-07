@@ -36,4 +36,16 @@ lanyuan
 　springAOP日志拦截处理
 
 　Mybaits分页插件封装统一处理
+　
+时间：2013-12-08
+
+解决问题：
+
+　1：解决项目在tomcat7下运行异常问题
+
+新增／修改：
+
+　1：把spring的依赖包由3.0.6改为3.1.2
+
+　2：不再使用spring security默认的登录验证，即不使用j_spring_security_check这个地址，自定义一个登录验证处理．
 
