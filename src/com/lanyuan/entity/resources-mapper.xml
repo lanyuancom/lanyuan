@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resources">
+	<!-- 以下与实体类的中字段一致 -->
+	<sql id="selectId">
+	id,
+	name,
+	parentId,
+	(select r.name from resources r where r.id = resources.parentId ) parentName,
+	resKey,
+	type,
+	resUrl,
+	level,
+	description
+	</sql>
+	
+	<select id="findAll" resultType="Resources">
+		select
+		<include refid="selectId" />
+		from resources order By level asc
+	</select>
+	<!--resultType="Resources" 每返回一条结果封装到Resources里 -->
+	<select id="query" resultType="Resources" parameterType="java.util.HashMap">
+		select
+		<include refid="selectId" />
+		from resources
+		<where>
+			<if test="t.name != null and t.name != ''">
+				name like '%${t.name}%'
+				</if>
+		</where>
+		order By level asc
+	</select>
+	<!-- 总记录数 -->
+	<select id="count" parameterType="Resources" resultType="int">
+		select count(0) from resources
+		<where>
+			<if test="name != null and name != ''">
+				name like '%${name}%'
+				</if>
+		</where>
+	</select>
+	<!-- 根据用户Id获取该用户的权限-->
+	<select id="getUserResources" parameterType="String" resultType="Resources">
+		SELECT 
+		<include refid="selectId" />
+		FROM resources WHERE id in(
+		SELECT resc_id FROM
+		resources_role WHERE role_id in(
+		SELECT role_id FROM user_role
+		WHERE user_id=#{id}))
+	</select>
+	<!-- 根据角色Id获取该角色的权限-->
+	<select id="getResourcesByUserName" parameterType="String" resultType="Resources">
+		SELECT 
+		<include refid="selectId" />
+		FROM resources WHERE id in(
+		SELECT resc_id FROM
+		resources_role WHERE role_id in(
+		SELECT role_id FROM user_role,user
+		WHERE user_id=userId and username=#{username}))
+	</select>
+	<!-- 新增 -->
+	<insert id="add" parameterType="Resources">
+		insert into resources(
+					name,
+					parentId,
+					resKey,
+					type,
+					resUrl,
+					level,
+					description
+								) 
+		values(
+				#{name},
+				#{parentId},
+				#{resKey},
+				#{type},
+				#{resUrl},
+				#{level},
+				#{description}
+				)
+	</insert>
+	
+	<!-- 删 -->
+	<delete id="deleteById" parameterType="String">
+		delete from resources
+		where id=#{id}
+	</delete>
+	
+	<select id="getById" parameterType="String" resultType="Resources">
+		select * from resources where id=#{id}
+	</select>
+	
+	<!-- 更新 -->
+	<update id="update" parameterType="Resources">
+	    update resources
+	    set
+	    	name = #{name},
+	    	parentId = #{parentId},
+			resKey = #{resKey},
+			type = #{type},
+			resUrl = #{resUrl},
+			level = #{level},
+			description = #{description}
+	   where id = #{id}
+	</update>
+	
+	<!-- 增加角色和权限 -->
+	<insert id="saveRoleRescours" parameterType="ResourceRoles">
+	insert into resources_role(role_id,resc_id) values (#{roleId},#{rescId})
+	</insert>
+	<delete id="deleteRoleRescours" parameterType="String">
+		delete from resources_role where role_id=#{roleId}
+	</delete>
+</mapper>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="roles">
+	<!-- 以下与实体类的中字段一致 -->
+	<sql id="selectId">
+	id,
+	enable,
+	name,
+	roleKey,
+	description
+	</sql>
+	<!--resultType="Roles" 每返回一条结果封装到Roles里 -->
+	<select id="query" resultType="Roles" parameterType="java.util.HashMap">
+		select
+		<include refid="selectId" />
+		from role
+		<where>
+			<if test="t.name != null and t.name != ''">
+				name like '%${t.name}%'
+				</if>
+		</where>
+	</select>
+	<select id="findAll" resultType="Roles">
+		select
+		<include refid="selectId" />
+		from role
+	</select>
+	<!-- 总记录数 -->
+	<select id="count" parameterType="Roles" resultType="int">
+		select count(0) from role
+		<where>
+			<if test="name != null and name != ''">
+				name like '%${name}%'
+				</if>
+		</where>
+	</select>
+	<!-- 增加用户 -->
+	<insert id="add" parameterType="Roles">
+		insert into role( 
+		name,
+		enable,
+		roleKey,
+		description
+		)
+		values (#{name},
+		#{enable},#{roleKey},
+		#{description}
+		)
+	</insert>
+
+	<delete id="deleteById" parameterType="String">
+		delete from role where
+		id=#{id}
+	</delete>
+	<select id="getById" parameterType="String" resultType="Roles">
+		select
+		<include refid="selectId" />
+		from role where id=#{id}
+	</select>
+	<update id="update" parameterType="Roles">
+		update role
+		<set>
+				name=#{name},
+				enable=#{enable},
+				roleKey=#{roleKey},
+				description=#{description}
+		</set>
+		where id=#{id}
+	</update>
+	<select id="findbyUserRole" parameterType="String" resultType="Roles">
+		select
+		<include refid="selectId" />
+		from role where id in (SELECT role_id FROM user_role
+		WHERE user_id=#{id})
+	</select>
+	
+	<!-- 增加角色和用户 -->
+	<insert id="saveUserRole" parameterType="UserRoles">
+	insert into user_role(user_id,role_id) values (#{userId},#{roleId})
+	</insert>
+	
+	<delete id="deleteUserRole" parameterType="String">
+	delete from user_role where user_id=#{userId}
+	</delete>
+	
+	<update id="updateUserRole" parameterType="String">
+	update user_role set user_id=#{userId}
+	</update>
+</mapper>

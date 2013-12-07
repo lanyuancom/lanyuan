@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="log">
+	<!-- 以下与实体类的中字段一致 -->
+	<sql id="selectId">
+		id,
+		username,
+		module,
+		action,
+		actionTime,
+		userIP,
+		operTime
+	</sql>
+	<!--resultType="Log" 每返回一条结果封装到Log里 -->
+	<select id="query" resultType="Log" parameterType="Log">
+		select
+		<include refid="selectId" />
+		from log
+		<where>
+		<if test="t.username != null and t.username != ''">
+				username like '%${t.username}%'
+			</if>
+			<if test="t.module != null and t.module != ''">
+				module like '%${t.module}%'
+			</if>
+		</where>
+	</select>
+	<select id="findAll" resultType="Log">
+		select
+		<include refid="selectId" />
+		from log
+	</select>
+	<!-- 增加用户 -->
+	<insert id="add" parameterType="Log">
+		insert into log(
+		username,
+		module,
+		action,
+		actionTime,
+		userIP
+		)
+		values (#{username},
+		#{module},#{action},#{actionTime},
+		#{userIP}
+		)
+	</insert>
+
+	<delete id="deleteById" parameterType="String">
+		delete from log where
+		id=#{id}
+	</delete>
+	<select id="getById" parameterType="String" resultType="Log">
+		select
+		<include refid="selectId" />
+		from log where id=#{id}
+	</select>
+	<update id="update" parameterType="Log">
+		update log
+		<set>
+		username=#{username},
+		module#{module},
+		action#{action},
+		userIP#{userIP},
+		</set>
+		where id=#{id}
+	</update>
+</mapper>

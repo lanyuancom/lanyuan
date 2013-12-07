@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	http://www.springframework.org/schema/security 
+	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+
+    <!-- 开发环境可以放置 <debug /> 配置，会输出详细Security处理日志，正式环境建议屏蔽 <debug /> 配置 
+    <debug />-->
+    <http pattern="/login.jsp" security="none" />
+    <http pattern="/denied.jsp" security="none" />
+    <http pattern="/background/login.html" security="none" />
+   <!--  <http pattern="/background/j_security_check" security="none"/> -->
+    <http pattern="/background/loginCheck.html" security="none"/>
+    
+	<!--/
+	开启支持方法注解的权限控制：
+	@PreAuthorize：该注解用来确定一个方法是否应该被执行。该注解后面跟着的是一个表达式，如果表达式的值为真，则该方法会被执行。如 @PreAuthorize("hasRole('ROLE_USER')")就说明只有当前用户具有角色 ROLE_USER的时候才会执行。
+	@PostAuthorize：该注解用来在方法执行完之后进行访问控制检查。
+	@PostFilter：该注解用来对方法的返回结果进行过滤。从返回的集合中过滤掉表达式值为假的元素。如@PostFilter("hasPermission(filterObject, 'read')")说明返回的结果中只保留当前用户有读权限的元素。
+	@PreFilter：该注解用来对方法调用时的参数进行过滤。	
+	<global-method-security pre-post-annotations="enabled" />
+	-->
+    
+	<!--
+		use-expressions="true" 的意思是开启表达式
+		access-denied-page的意思是，当验证权限失败后会跳转到的页面
+	-->
+	<http use-expressions="true" auto-config="false" entry-point-ref="myAuthenticationEntryPoint" access-denied-page="/denied.jsp">
+
+	
+        <!-- 关联代码：com.huaxin.security.MySecurityMetadataSource#loadResourceDefine
+-->
+        <!-- 关联代码：com.huaxin.security.MyUserDetailServiceImpl#obtionGrantedAuthorities
+-->
+        <!-- "ROLE_"固定，AAA为权限：注意对于我的例子其实是RESOURCES表的NAME字段的值 -->
+        <!-- ↓↓↓SPRING默认的访问权限控制↓↓↓ -->
+        
+        <!-- 以上未列出的，也都必须验证才能访问 -->
+        <intercept-url pattern="/background/**" access="isAuthenticated()" />
+        <!-- 以上未列出的，也都必须验证才能访问 -->
+        <!-- 注意： com.huaxin.security.MyAccessDecisionManager是自已实现的权限控制-->
+        <!-- 注意： 不但要满足自己实现的权限控制还要满足SPRING默认的访问权限控制才可以访问特定资源-->
+
+        <!-- 所有地址全开，无需验证，测试用 -->
+        <!-- <intercept-url pattern="/**" access="permitAll" /> -->
+		
+        <!-- 
+                     登出管理
+        logout-url 属性:这个指定的URL会触发注销操作，默认是 /j_spring_security_logout
+        invalidate-session 属性：如果为true，在注销的时候会销毁会话
+        delete-cookies 属性：以逗号分隔的cookies名称，在用户注销时删除指定的cookies
+        -->
+        <logout logout-success-url="/j_spring_security_logout" logout-url="/background/login.html" invalidate-session="true" delete-cookies="JSESSIONID"/>
+        
+        <!-- 实现免登陆验证 
+        <remember-me  />
+        -->
+        <!--
+        session超时跳转页面 以及每用户可拥有的session最大个数 
+        	如果每次退出后，必须要求用户必须重开浏览器才能登录，可以将 invalid-session-url="/logout.jsp"，
+        	防止有些 Web 应用把用户的会话标识符直接通过 URL 的参数来传递        
+        -->
+        <!-- 会话管理 -->
+		<session-management invalid-session-url="/background/login.html" session-fixation-protection="none">
+			<concurrency-control max-sessions="1"
+				error-if-maximum-exceeded="true" />
+		</session-management>
+		<!--  认证和授权 -->
+		<!-- 项目使用了自定义登录处理，如果使用security的登录处理，请去掉以下注释 -->
+      <!--   <custom-filter ref="myLoginFilter" position="FORM_LOGIN_FILTER"  /> -->
+     
+     <!--  
+     Spring Sercurity要从数据库中获取用户、权限、资源来实现权限管理，需要自定义过滤器，
+	     　并且该过滤器必须在spring Security执行FILTER_SECURITY_INTERCEPTOR过滤器之前执行，
+	    　 因为该框架实现权限管理实质就是在执行action之前先执行它框架中的为权限管理制定的一系列Fliter。
+	　　我们自定的这个SercurityFilter类要继承AbstractSecurityInterceptor 接口和Filter类（负责传递一系列的Filter）,
+	　　因为我们是从数据库中获取权限验证的数据，所以还要重写FilterInvocationSecurityMetadataSource 接口，
+		AccessDecisionManager 接口，UserDetailsService 接口，只要重写了这3个接口，
+		然后再spring配置文件中做相应的配置，项目启动启动后，我们进行资源请求，就自动会去执行我们重定义的类进行权限判断。
+
+       -->
+        <custom-filter ref="mySecurityFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
+	</http>
+	
+	<!--
+		<custom-filter ref="myFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
+		在http标签下配置一个我们自定义的继承了org.springframework.security.access.intercept.AbstractSecurityInterceptor的Filter，并注入其
+		必须的3个组件authenticationManager、accessDecisionManager和securityMetadataSource。其作用上面已经注释了。
+		这里的FILTER_SECURITY_INTERCEPTOR是Spring Security默认的Filter，
+		我们自定义的Filter必须在它之前，过滤请求
+	-->
+ <!-- 未登录的切入点 -->
+    <beans:bean id="myAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+        <beans:property name="loginFormUrl" value="/background/login.html"></beans:property>
+    </beans:bean>
+    <!-- 登录验证器：用户有没有登录的资格 
+    	init-method="init" 初始化方法
+    	项目使用了自定义登录处理，如果使用security的登录处理，请去掉以下注释
+    -->
+    
+	<!-- <beans:bean id="myLoginFilter" init-method="init" class="com.lanyuan.security.MyAuthenticationFilter">
+		<beans:property name="authenticationManager" ref="myAuthenticationManager" />
+		<beans:property name="filterProcessesUrl" value="/background/j_security_check" />
+		验证成功后要跳转的URL
+		<beans:property name="successUrl" value="/background/index.html" />
+		验证失败后要跳转的URL
+		<beans:property name="errorUrl" value="/background/login.html" />
+	</beans:bean> -->
+	
+    <!-- 实现了UserDetailsService的Bean 用户拥有的权限：登录后取得用户所保有的权限信息
+    	//认证管理器   
+    -->
+	<authentication-manager alias="myAuthenticationManager">
+		<authentication-provider user-service-ref="myUserDetailServiceImpl" />
+	</authentication-manager>
+	
+</beans:beans>
