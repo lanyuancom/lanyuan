@@ -1,0 +1,667 @@
+BODY {
+	MARGIN: 0px
+}
+.f {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #a10000
+}
+.iframe_top {
+	FONT-SIZE: 12px; COLOR: #ffffff; TEXT-DECORATION: none
+}
+.td1 {
+	FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 19px
+}
+.td2 {
+	FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 22px
+}
+.td3 {
+	FONT-SIZE: 12px; COLOR: #ffffff; LINE-HEIGHT: 14px
+}
+.td4 {
+	FONT-SIZE: 12px; COLOR: #00328e; LINE-HEIGHT: 18px
+}
+.end {
+	FONT-SIZE: 12px; COLOR: #ffffff; LINE-HEIGHT: 20px
+}
+.title {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #990100; LINE-HEIGHT: 18px; TEXT-DECORATION: none
+}
+.title1 {
+	FONT-SIZE: 12px; COLOR: #424242; LINE-HEIGHT: 14px
+}
+.title2 {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #a10000; LINE-HEIGHT: 14px
+}
+.title3 {
+	FONT-SIZE: 14px; COLOR: #000000; LINE-HEIGHT: 22px
+}
+.dot {
+	FONT-SIZE: 6px
+}
+.shich_cont {
+	FONT-SIZE: 12px; COLOR: #000000; TEXT-DECORATION: line-through
+}
+.zhekou_cont {
+	FONT-SIZE: 12px; COLOR: #ff0000; FONT-FAMILY: "宋体"
+}
+.bottom {
+	FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 25px
+}
+.img-border {
+	BORDER-RIGHT: #c2c2c2 1px solid; BORDER-TOP: #c2c2c2 1px solid; BORDER-LEFT: #c2c2c2 1px solid; BORDER-BOTTOM: #c2c2c2 1px solid
+}
+.img-border2 {
+	BORDER-RIGHT: #7ac4f7 2px solid; BORDER-TOP: #7ac4f7 2px solid; BORDER-LEFT: #7ac4f7 2px solid; BORDER-BOTTOM: #7ac4f7 2px solid
+}
+.img-border3 {
+	BORDER-RIGHT: #c2c2c2 1px solid; BORDER-TOP: #c2c2c2 1px solid; BORDER-LEFT: #c2c2c2 1px solid; BORDER-BOTTOM: #c2c2c2 1px solid
+}
+.img-border4 {
+	BORDER-RIGHT: #c2c2c2 1px solid; BORDER-TOP: #c2c2c2 1px solid; BORDER-LEFT: #c2c2c2 1px solid; BORDER-BOTTOM: #c2c2c2 1px solid
+}
+.f1_font {
+	FONT-SIZE: 12px; COLOR: #e0539c; LINE-HEIGHT: 15px
+}
+.f2_font {
+	FONT-SIZE: 12px; COLOR: #ce2b2b; LINE-HEIGHT: 15px
+}
+.f3_font {
+	FONT-SIZE: 12px; COLOR: #0137b8; LINE-HEIGHT: 15px
+}
+.f4_font {
+	FONT-SIZE: 12px; COLOR: #ed5e02; LINE-HEIGHT: 15px
+}
+.f5_font {
+	FONT-SIZE: 12px; COLOR: #009986; LINE-HEIGHT: 15px
+}
+.f6_font {
+	FONT-SIZE: 12px; COLOR: #505050; LINE-HEIGHT: 15px
+}
+.hand {
+	FONT-SIZE: 12px; CURSOR: hand; COLOR: #000000
+}
+.top1 {
+	FONT-SIZE: 12px; COLOR: #e0539c
+}
+.800_bottom1 {
+	FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 25px
+}
+.800_pssm {
+	FONT-SIZE: 12px; COLOR: #005aff; LINE-HEIGHT: 18px; TEXT-DECORATION: underline
+}
+.top_title {
+	FONT-SIZE: 12px; COLOR: #000000
+}
+.table {
+	BORDER-RIGHT: #e789da 1px solid; BORDER-TOP: #e789da 1px solid; BORDER-LEFT: #e789da 1px solid; BORDER-BOTTOM: #e789da 1px solid
+}
+.green {
+	FONT-SIZE: 12px; COLOR: #435f08; LINE-HEIGHT: 18px
+}
+.bold {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 14px
+}
+TD {
+	FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 14px
+}
+
+A.redlink:link {
+	FONT-SIZE: 12px; COLOR: #515151; TEXT-DECORATION: none
+}
+A.redlink:visited {
+	FONT-SIZE: 12px; COLOR: #515151; TEXT-DECORATION: none
+}
+A.redlink:active {
+	FONT-SIZE: 12px; COLOR: #515151; TEXT-DECORATION: none
+}
+A.redlink:hover {
+	FONT-SIZE: 12px; COLOR: #f55a4f; TEXT-DECORATION: none
+}
+.800buy_bottom {
+	FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 25px
+}
+.bottom_td {
+	FONT-SIZE: 12px; COLOR: #404040
+}
+.end:link {
+	FONT-SIZE: 12px; WORD-SPACING: 5pt; COLOR: #404040; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.end:visited {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.end:active {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.end:hover {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.mop_bottom_withe {
+	FONT-SIZE: 13px; COLOR: #ffffff; LINE-HEIGHT: 18px; LETTER-SPACING: 4px
+}
+.bottom_withe {
+	FONT-SIZE: 13px; COLOR: #ffffff; LINE-HEIGHT: 18px; FONT-STYLE: italic; LETTER-SPACING: 10px
+}
+.line {
+	LINE-HEIGHT: 22px; TEXT-DECORATION: none
+}
+.mop_bottom {
+	FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 20px; LETTER-SPACING: 2px
+}
+.800_table {
+	BORDER-RIGHT: #c655ef 1px solid; BORDER-TOP: #c655ef 1px solid; BORDER-LEFT: #c655ef 1px solid; BORDER-BOTTOM: #c655ef 1px solid
+}
+.800_table01 {
+	BORDER-RIGHT: #b5c308 1px solid; BORDER-TOP: #b5c308 1px solid; BORDER-LEFT: #b5c308 1px solid; BORDER-BOTTOM: #b5c308 1px solid
+}
+.800_table02 {
+	BORDER-RIGHT: #5d86cc 1px solid; BORDER-TOP: #5d86cc 1px solid; BORDER-LEFT: #5d86cc 1px solid; BORDER-BOTTOM: #5d86cc 1px solid
+}
+.800_table03 {
+	BORDER-RIGHT: #ebebeb 1px solid; BORDER-TOP: #ebebeb 1px solid; BORDER-LEFT: #ebebeb 1px solid; BORDER-BOTTOM: #ebebeb 1px solid
+}
+.800buy_color1 {
+	FONT-SIZE: 12px; COLOR: #c655ef; LINE-HEIGHT: 18px; TEXT-DECORATION: underline
+}
+.800buy_hand {
+	FONT-SIZE: 12px; CURSOR: hand; COLOR: #000000
+}
+.800buy_time {
+	FONT-WEIGHT: bold; FONT-SIZE: 16px; COLOR: #ffffff
+}
+.800_td2 {
+	FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 21px
+}
+.800_title {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #990100; LINE-HEIGHT: 18px; TEXT-DECORATION: none
+}
+.800_more:link {
+	COLOR: #ff0000; FONT-FAMILY: "宋体"; TEXT-DECORATION: underline
+}
+.800_more:visited {
+	FONT-SIZE: 12px; COLOR: #ff0000; FONT-FAMILY: "宋体"; TEXT-DECORATION: underline
+}
+.800_more:active {
+	FONT-SIZE: 12px; COLOR: #ff0000; FONT-FAMILY: "宋体"; TEXT-DECORATION: underline
+}
+.800_more:hover {
+	FONT-SIZE: 12px; COLOR: #ff0000; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.800_pro:link {
+	COLOR: #000000; FONT-FAMILY: "宋体"; TEXT-DECORATION: underline
+}
+.800_pro:visited {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: "宋体"; TEXT-DECORATION: underline
+}
+.800_pro:active {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: "宋体"; TEXT-DECORATION: underline
+}
+.800_pro:hover {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.800_left_title {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 20px
+}
+.800_left_red {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #ff0000; LINE-HEIGHT: 18px
+}
+.800_hzp_red {
+	FONT-SIZE: 12px; COLOR: #ff0000; LINE-HEIGHT: 16px
+}
+.800_hzp_black {
+	FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 18px
+}
+.800_hzp_other {
+	FONT-SIZE: 12px; COLOR: #003e8a; LINE-HEIGHT: 18px
+}
+.800_hzp_height {
+	FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 18px
+}
+.800_hzp_font {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #ff0000
+}
+.800_color_01 {
+	FONT-SIZE: 12px; COLOR: #003e8a; LINE-HEIGHT: 19px
+}
+.800_color_02 {
+	FONT-SIZE: 12px; COLOR: #ff0000; LINE-HEIGHT: 19px
+}
+.800_inputcolor {
+	FONT-SIZE: 12px; BACKGROUND-COLOR: #e7e7e7
+}
+.800buy_color2 {
+	FONT-SIZE: 12px; COLOR: #c655ef; LINE-HEIGHT: 18px; TEXT-DECORATION: underline
+}
+.800buy_green {
+	FONT-SIZE: 12px; COLOR: #767f07; LINE-HEIGHT: 18px; LETTER-SPACING: 2px; TEXT-DECORATION: none
+}
+.800buy_title {
+	FONT-SIZE: 12px; COLOR: #ffffff; LINE-HEIGHT: 18px; TEXT-DECORATION: none
+}
+.800buy_bottom {
+	FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 20px; TEXT-DECORATION: none
+}
+.800buy_bottom_bar {
+	FONT-SIZE: 12px; COLOR: #ffffff; LINE-HEIGHT: 20px; TEXT-DECORATION: none
+}
+.800buy_white {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #ffffff; TEXT-DECORATION: none
+}
+.800buy_christ_white {
+	FONT-SIZE: 12px; COLOR: #ffffff; TEXT-DECORATION: none
+}
+.800buy_christ_green {
+	FONT-SIZE: 12px; COLOR: #b4ffae; TEXT-DECORATION: none
+}
+.800buy_yellow {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #ffcfe1; TEXT-DECORATION: none
+}
+.800buy_head_green {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #ffffff
+}
+.movie_red {
+	FONT-SIZE: 12px; COLOR: #ff0000; LINE-HEIGHT: 18px
+}
+.movie_red1 {
+	FONT-SIZE: 12px; COLOR: #df2929; LINE-HEIGHT: 18px
+}
+.movie_red_blod {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #ff0000; LINE-HEIGHT: 16px
+}
+.movie_td1 {
+	FONT-SIZE: 12px; COLOR: #173656; LINE-HEIGHT: 16px
+}
+.movie_td1:link {
+	FONT-SIZE: 12px; COLOR: #173656; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.movie_td1:visited {
+	FONT-SIZE: 12px; COLOR: #173656; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.movie_td1:active {
+	FONT-SIZE: 12px; COLOR: #173656; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.movie_td1:hover {
+	FONT-SIZE: 12px; COLOR: #173656; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.movie_table {
+	BORDER-RIGHT: #f9615e 1px solid; BORDER-TOP: #f9615e 1px solid; BORDER-LEFT: #f9615e 1px solid; BORDER-BOTTOM: #f9615e 1px solid
+}
+.800_table_movie_line {
+	BORDER-RIGHT: #f9615e 1px solid; BORDER-TOP: #f9615e 1px solid; BORDER-LEFT: #f9615e 1px solid; BORDER-BOTTOM: #f9615e 1px solid
+}
+.800_table_movie_line1 {
+	BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #000000 1px solid
+}
+.800_table_movie_line2 {
+	BORDER-RIGHT: #d7e0da 1px solid; BORDER-TOP: #d7e0da 1px solid; BORDER-LEFT: #d7e0da 1px solid; BORDER-BOTTOM: #d7e0da 1px solid
+}
+.user_price {
+	FONT-WEIGHT: bold; COLOR: #ff4b47
+}
+.movie_zongji_td1 {
+	FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 20px
+}
+.movie_white {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #ffffff; LINE-HEIGHT: 19px; TEXT-DECORATION: none
+}
+.jiesuan {
+	BORDER-RIGHT: #d1d2d3 6px solid; BORDER-TOP: #d1d2d3 6px solid; BORDER-LEFT: #d1d2d3 6px solid; BORDER-BOTTOM: #d1d2d3 6px solid
+}
+.800_hzp {
+	BORDER-RIGHT: #ff80ad 1px solid; BORDER-TOP: #ff80ad 1px solid; BORDER-LEFT-COLOR: #ff80ad; BORDER-BOTTOM: #ff80ad 1px solid; BORDER-LEFT-STYLE: none
+}
+.800_zbsy {
+	BORDER-RIGHT: #67b7f4 1px solid; BORDER-TOP: #67b7f4 1px solid; BORDER-LEFT-COLOR: #67b7f4; BORDER-BOTTOM: #67b7f4 1px solid; BORDER-LEFT-STYLE: none
+}
+.800_fzfs {
+	BORDER-RIGHT: #c67929 1px solid; BORDER-TOP: #c67929 1px solid; BORDER-LEFT-COLOR: #c67929; BORDER-BOTTOM: #c67929 1px solid; BORDER-LEFT-STYLE: none
+}
+.800_salala {
+	BORDER-RIGHT: #7dd400 1px solid; BORDER-TOP: #7dd400 1px solid; BORDER-LEFT-COLOR: #7dd400; BORDER-BOTTOM: #7dd400 1px solid; BORDER-LEFT-STYLE: none
+}
+.800_jjsh {
+	BORDER-RIGHT: #faac03 1px solid; BORDER-TOP: #faac03 1px solid; BORDER-LEFT-COLOR: #faac03; BORDER-BOTTOM: #faac03 1px solid; BORDER-LEFT-STYLE: none
+}
+.800_tysc {
+	BORDER-RIGHT: #e45252 1px solid; BORDER-TOP: #e45252 1px solid; BORDER-LEFT-COLOR: #e45252; BORDER-BOTTOM: #e45252 1px solid; BORDER-LEFT-STYLE: none
+}
+.800_qcyp {
+	BORDER-RIGHT: #00a2c6 1px solid; BORDER-TOP: #00a2c6 1px solid; BORDER-LEFT-COLOR: #00a2c6; BORDER-BOTTOM: #00a2c6 1px solid; BORDER-LEFT-STYLE: none
+}
+.800_swjp {
+	BORDER-RIGHT: #a5a5a5 1px solid; BORDER-TOP: #a5a5a5 1px solid; BORDER-LEFT-COLOR: #a5a5a5; BORDER-BOTTOM: #a5a5a5 1px solid; BORDER-LEFT-STYLE: none
+}
+.800_smsj {
+	BORDER-RIGHT: #1f6eff 1px solid; BORDER-TOP: #1f6eff 1px solid; BORDER-LEFT-COLOR: #1f6eff; BORDER-BOTTOM: #1f6eff 1px solid; BORDER-LEFT-STYLE: none
+}
+.800_zippo {
+	BORDER-RIGHT: #b5c308 1px solid; BORDER-TOP: #b5c308 1px solid; BORDER-LEFT-COLOR: #b5c308; BORDER-BOTTOM: #b5c308 1px solid; BORDER-LEFT-STYLE: none
+}
+.800buy_button {
+	BORDER-RIGHT: #999999 1px outset; PADDING-RIGHT: 1px; BORDER-TOP: #999999 1px outset; PADDING-LEFT: 1px; FONT-SIZE: 12px; PADDING-BOTTOM: 1px; MARGIN: 1px; BORDER-LEFT: #999999 1px outset; COLOR: #333333; LINE-HEIGHT: 16px; PADDING-TOP: 1px; BORDER-BOTTOM: #999999 1px outset; HEIGHT: 18px
+}
+.800buy_movie_line {
+	BORDER-RIGHT: #f9615e 1px solid; BORDER-TOP: #f9615e 1px solid; BORDER-LEFT: #f9615e 1px solid; BORDER-BOTTOM: #f9615e 1px solid
+}
+.sm_paihang {
+	FONT-SIZE: 12px; LINE-HEIGHT: 17px
+}
+.sm_red {
+	FONT-SIZE: 12px; COLOR: #ff0000
+}
+.sm_price_font {
+	FONT-SIZE: 12px; COLOR: #636563; LINE-HEIGHT: 20px
+}
+.sm_img-border1 {
+	BORDER-RIGHT: #b6b6b6 1px solid; BORDER-TOP: #b6b6b6 1px solid; BORDER-LEFT: #b6b6b6 1px solid; BORDER-BOTTOM: #b6b6b6 1px solid
+}
+.sm_img-border {
+	BORDER-RIGHT: #e7e3e7 1px solid; BORDER-TOP: #e7e3e7 1px solid; BORDER-LEFT: #e7e3e7 1px solid; BORDER-BOTTOM: #e7e3e7 1px solid
+}
+.sm_head_title {
+	FONT-SIZE: 12px; COLOR: #ffffff
+}
+.baoshi_title {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 14px
+}
+.baoshi_pic {
+	BORDER-RIGHT: #d1d1d1 1px solid; BORDER-TOP: #d1d1d1 1px solid; BORDER-LEFT: #d1d1d1 1px solid; BORDER-BOTTOM: #d1d1d1 1px solid
+}
+.800buy_2005_zhongji_table {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; BORDER-BOTTOM: #cccccc 1px solid
+}
+.800buy_2005_table {
+	BORDER-RIGHT: #ff7800 1px solid; BORDER-TOP: #ff7800 1px solid; BORDER-LEFT: #ff7800 1px solid; BORDER-BOTTOM: #ff7800 1px solid
+}
+.800buy_2005_table01 {
+	BORDER-RIGHT: #b5c308 1px solid; BORDER-TOP: #b5c308 1px solid; BORDER-LEFT: #b5c308 1px solid; BORDER-BOTTOM: #b5c308 1px solid
+}
+.800buy_2005_table02 {
+	BORDER-RIGHT: #5d86cc 1px solid; BORDER-TOP: #5d86cc 1px solid; BORDER-LEFT: #5d86cc 1px solid; BORDER-BOTTOM: #5d86cc 1px solid
+}
+.800buy_2005_table03 {
+	BORDER-RIGHT: #ebebeb 1px solid; BORDER-TOP: #ebebeb 1px solid; BORDER-LEFT: #ebebeb 1px solid; BORDER-BOTTOM: #ebebeb 1px solid
+}
+.800buy_2005_left_table {
+	BORDER-RIGHT: #cecece 1px solid; BORDER-TOP: #cecece 1px solid; BORDER-LEFT: #cecece 1px solid; BORDER-BOTTOM: #cecece 1px solid
+}
+.800buy_2005_zbhz_table {
+	BORDER-RIGHT: #bbcb80 1px solid; BORDER-TOP: #bbcb80 1px solid; BORDER-LEFT: #bbcb80 1px solid; BORDER-BOTTOM: #bbcb80 1px solid
+}
+.800buy_2005_movie_table {
+	BORDER-RIGHT: #bbcb80 1px solid; BORDER-TOP: #bbcb80 1px solid; BORDER-LEFT: #bbcb80 1px solid; BORDER-BOTTOM: #bbcb80 1px solid
+}
+.800buy_2005_fsps_table {
+	BORDER-RIGHT: #fa99a8 1px solid; BORDER-TOP: #fa99a8 1px solid; BORDER-LEFT: #fa99a8 1px solid; BORDER-BOTTOM: #fa99a8 1px solid
+}
+.800buy_2005_jjsh_table {
+	BORDER-RIGHT: #ffb96e 1px solid; BORDER-TOP: #ffb96e 1px solid; BORDER-LEFT: #ffb96e 1px solid; BORDER-BOTTOM: #ffb96e 1px solid
+}
+.800buy_2005_car_table {
+	BORDER-RIGHT: #cecece 1px solid; BORDER-TOP: #cecece 1px solid; BORDER-LEFT: #cecece 1px solid; BORDER-BOTTOM: #cecece 1px solid
+}
+.800buy_2005_smsj_table {
+	BORDER-RIGHT: #7dc2d5 1px solid; BORDER-TOP: #7dc2d5 1px solid; BORDER-LEFT: #7dc2d5 1px solid; BORDER-BOTTOM: #7dc2d5 1px solid
+}
+.800buy_2005_pb_table {
+	BORDER-RIGHT: #7fc680 1px solid; BORDER-TOP: #7fc680 1px solid; BORDER-LEFT: #7fc680 1px solid; BORDER-BOTTOM: #7fc680 1px solid
+}
+.800buy_2005_pb_table1 {
+	BORDER-RIGHT: #ffb400 1px solid; BORDER-TOP: #ffb400 1px solid; BORDER-LEFT: #ffb400 1px solid; BORDER-BOTTOM: #ffb400 1px solid
+}
+.800buy_2005_lp_table {
+	BORDER-RIGHT: #9eade9 1px solid; BORDER-TOP: #9eade9 1px solid; BORDER-LEFT: #9eade9 1px solid; BORDER-BOTTOM: #9eade9 1px solid
+}
+.800buy_2005_lp_table1 {
+	BORDER-RIGHT: #ffb400 1px solid; BORDER-TOP: #ffb400 1px solid; BORDER-LEFT: #ffb400 1px solid; BORDER-BOTTOM: #ffb400 1px solid
+}
+.800buy_2005_dc_table {
+	BORDER-RIGHT: #7abcd6 1px solid; BORDER-TOP: #7abcd6 1px solid; BORDER-LEFT: #7abcd6 1px solid; BORDER-BOTTOM: #7abcd6 1px solid
+}
+.800buy_2005_search_table {
+	BORDER-RIGHT: #94a7d1 1px solid; BORDER-TOP: #94a7d1 1px solid; BORDER-LEFT: #94a7d1 1px solid; BORDER-BOTTOM: #94a7d1 1px solid
+}
+.800buy_2005_zbss_table {
+	BORDER-RIGHT: #92c7f6 1px solid; BORDER-TOP: #92c7f6 1px solid; BORDER-LEFT: #92c7f6 1px solid; BORDER-BOTTOM: #92c7f6 1px solid
+}
+.800buy_2005_yishi_table {
+	BORDER-RIGHT: #92c7f6 1px solid; BORDER-TOP: #92c7f6 1px solid; BORDER-LEFT: #92c7f6 1px solid; BORDER-BOTTOM: #92c7f6 1px solid
+}
+.800buy_2005_underline {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 15px; TEXT-DECORATION: underline
+}
+.800buy_2005_white {
+	FONT-SIZE: 12px; COLOR: #ffffff; LINE-HEIGHT: 15px; TEXT-DECORATION: none
+}
+.800buy_2005_zeng {
+	FONT-SIZE: 12px; COLOR: #fcfc71; LINE-HEIGHT: 15px; TEXT-DECORATION: none
+}
+.800buy_2005_14_white {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #ffffff; LINE-HEIGHT: 16px
+}
+.800buy_2005_hzp {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #000000; LINE-HEIGHT: 18px
+}
+.800buy_2005_hzp_mop {
+	FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 19px
+}
+.800buy_2005_zbss {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #000000; LINE-HEIGHT: 16px
+}
+.800buy_2005_pptj {
+	FONT-SIZE: 12px; COLOR: #454545; LINE-HEIGHT: 16px
+}
+.800buy_2005_grey {
+	FONT-SIZE: 12px; COLOR: #656565; LINE-HEIGHT: 16px
+}
+.800buy_2005_more:link {
+	COLOR: #ff0000; FONT-FAMILY: "宋体"; TEXT-DECORATION: underline
+}
+.800buy_2005_more:visited {
+	FONT-SIZE: 12px; COLOR: #ff0000; FONT-FAMILY: "宋体"; TEXT-DECORATION: underline
+}
+.800buy_2005_more:active {
+	FONT-SIZE: 12px; COLOR: #ff0000; FONT-FAMILY: "宋体"; TEXT-DECORATION: underline
+}
+.800buy_2005_more:hover {
+	FONT-SIZE: 12px; COLOR: #ff0000; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.800buy_2005_pro:link {
+	COLOR: #000000; FONT-FAMILY: "宋体"; TEXT-DECORATION: underline
+}
+.800buy_2005_pro:visited {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: "宋体"; TEXT-DECORATION: underline
+}
+.800buy_2005_pro:active {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: "宋体"; TEXT-DECORATION: underline
+}
+.800buy_2005_pro:hover {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.shopping_car {
+	FONT-SIZE: 12px; COLOR: #db3578; LINE-HEIGHT: 20px
+}
+.title_font {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #e082a8; LINE-HEIGHT: 16px
+}
+.title_font1 {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #4b7a8f; LINE-HEIGHT: 16px
+}
+.title_font2 {
+	FONT-SIZE: 12px; COLOR: #727272
+}
+.title_font3 {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #198794; LINE-HEIGHT: 18px
+}
+.title_font4 {
+	FONT-SIZE: 12px; COLOR: #198794; LINE-HEIGHT: 20px
+}
+.title_font5 {
+	FONT-SIZE: 12px; COLOR: #ff0000
+}
+.font_desc {
+	FONT-SIZE: 12px; COLOR: #078f20; LINE-HEIGHT: 22px
+}
+.font_desc2 {
+	FONT-SIZE: 12px; COLOR: #696969; LINE-HEIGHT: 22px
+}
+.font_peisong {
+	FONT-SIZE: 12px; COLOR: #0051a4; LINE-HEIGHT: 22px
+}
+.pic_border {
+	BORDER-RIGHT: #b8b8b8 1px solid; BORDER-TOP: #b8b8b8 1px solid; BORDER-LEFT: #b8b8b8 1px solid; BORDER-BOTTOM: #b8b8b8 1px solid
+}
+.800buy_gg {
+	FONT-SIZE: 12px; COLOR: #eb0000
+}
+.800buy_gray {
+	FONT-SIZE: 12px; COLOR: #727272
+}
+.800buy_gray1 {
+	FONT-SIZE: 12px; COLOR: #ff7da9
+}
+.800buy_gg {
+	FONT-SIZE: 12px; COLOR: #eb0000; LETTER-SPACING: 2px
+}
+.800buy_gg_border {
+	BORDER-RIGHT: #b3b3b3 1px solid; BORDER-TOP: #b3b3b3 1px solid; BORDER-LEFT: #b3b3b3 1px solid; BORDER-BOTTOM: #b3b3b3 1px solid
+}
+.800buy_gg_border1 {
+	BORDER-RIGHT: #ffe3ec 1px solid; BORDER-TOP: #ffe3ec 1px solid; BORDER-LEFT: #ffe3ec 1px solid; BORDER-BOTTOM: #ffe3ec 1px solid
+}
+.marquee1 {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: "宋体"
+}
+.guanggao_table {
+	BORDER-RIGHT: #ff5b02 1px solid; BORDER-TOP: #ff5b02 1px solid; BORDER-LEFT: #c8c6c6 1px solid; BORDER-BOTTOM: #ff5b02 1px solid
+}
+.800buy_2005_table {
+	BORDER-RIGHT: #ff7800 1px solid; BORDER-TOP: #ff7800 1px solid; BORDER-LEFT: #ff7800 1px solid; BORDER-BOTTOM: #ff7800 1px solid
+}
+.bottom_td {
+	FONT-SIZE: 12px; COLOR: #404040
+}
+.end:link {
+	FONT-SIZE: 12px; WORD-SPACING: 5pt; COLOR: #404040; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.end:visited {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.end:active {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.end:hover {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.bottom {
+	FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 20px; LETTER-SPACING: 2px
+}
+.800buy_2005_bottom {
+	FONT-WEIGHT: bold; FONT-SIZE: 13px; COLOR: #fb5d94; LINE-HEIGHT: 18px; FONT-STYLE: italic; LETTER-SPACING: 10px
+}
+.800buy_2005_bottom_new {
+	FONT-WEIGHT: bold; FONT-SIZE: 13px; COLOR: #ffffff; LINE-HEIGHT: 18px; FONT-STYLE: italic; LETTER-SPACING: 10px
+}
+.com_head_table {
+	BORDER-RIGHT: #d8d8d8 1px solid; BORDER-TOP: #d8d8d8 1px solid; BORDER-LEFT: #d8d8d8 1px solid; BORDER-BOTTOM: #d8d8d8 1px solid
+}
+.cn_hover:link {
+	FONT-SIZE: 12px; COLOR: #cf1c5a; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_hover:visited {
+	FONT-SIZE: 12px; COLOR: #cf1c5a; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_hover:active {
+	FONT-SIZE: 12px; COLOR: #cf1c5a; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_hover:hover {
+	FONT-SIZE: 12px; COLOR: #cf1c5a; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_salala:link {
+	FONT-SIZE: 12px; COLOR: #318a00; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_salala:visited {
+	FONT-SIZE: 12px; COLOR: #318a00; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_salala:active {
+	FONT-SIZE: 12px; COLOR: #318a00; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_salala:hover {
+	FONT-SIZE: 12px; COLOR: #318a00; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_head:link {
+	FONT-SIZE: 12px; COLOR: #565656; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_head:visited {
+	FONT-SIZE: 12px; COLOR: #565656; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_head:active {
+	FONT-SIZE: 12px; COLOR: #565656; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_head:hover {
+	FONT-SIZE: 12px; COLOR: #565656; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_hover_01 {
+	FONT-SIZE: 12px; COLOR: #ffffff
+}
+.cn_hover_01:link {
+	FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_hover_01:visited {
+	FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_hover_01:active {
+	FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_hover_01:hover {
+	FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_hover_02_border1 {
+	BORDER-RIGHT: #cdcdcd 1px solid; BORDER-TOP: #cdcdcd 1px solid; BORDER-LEFT: #cdcdcd 1px solid; BORDER-BOTTOM: #cdcdcd 1px solid
+}
+.cn_salala_01:link {
+	FONT-SIZE: 12px; COLOR: #67dd55; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_salala_01:visited {
+	FONT-SIZE: 12px; COLOR: #67dd55; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_salala_01:active {
+	FONT-SIZE: 12px; COLOR: #67dd55; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_salala_01:hover {
+	FONT-SIZE: 12px; COLOR: #67dd55; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_hover_nav {
+	FONT-SIZE: 12px; COLOR: #787878; TEXT-DECORATION: none
+}
+.cn_hover_02 {
+	FONT-SIZE: 12px; COLOR: #ff5b02; TEXT-DECORATION: none
+}
+.cn_hover_02 {
+	FONT-SIZE: 12px; COLOR: #ff5b02; TEXT-DECORATION: none
+}
+.cn_hover_03 {
+	FONT-SIZE: 12px; COLOR: #808284; TEXT-DECORATION: none
+}
+.cn_hover_03:link {
+	FONT-SIZE: 12px; COLOR: #808284; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_hover_03:visited {
+	FONT-SIZE: 12px; COLOR: #808284; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_hover_03:active {
+	FONT-SIZE: 12px; COLOR: #808284; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_hover_03:hover {
+	FONT-SIZE: 12px; COLOR: #808284; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_nav_reg:link {
+	FONT-SIZE: 12px; COLOR: #ff0000; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_nav_reg:visited {
+	FONT-SIZE: 12px; COLOR: #ff0000; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_nav_reg:active {
+	FONT-SIZE: 12px; COLOR: #ff0000; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.cn_nav_reg:hover {
+	FONT-SIZE: 12px; COLOR: #ff0000; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}

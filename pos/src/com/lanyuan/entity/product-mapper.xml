@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product">
+	<!-- 以下与实体类的中字段一致 -->
+	<sql id="selectId">
+	</sql>
+	<!--resultType="product" 每返回一条结果封装到product里 -->
+	<select id="query" resultType="Product" parameterType="java.util.HashMap">
+		SELECT
+		pb.productBrandName,
+		(select productBrandName from productBrand
+		where productBrandId =
+		pb.parentId) as bigBrandName,
+		pb.parentId,
+		pt.productId,
+		pt.productBrandId,
+		pt.productName,
+		pt.productImagesUrl,
+		pt.price,
+		pt.productUnit,
+		pt.productLookNuns,
+		pt.productProfile,
+		pt.productProduce
+
+		FROM
+		product pt,productBrand pb
+		WHERE pt.productBrandId = pb.productBrandId
+
+		<if test="t.productName != null and t.productName != ''">
+			and pt.productName LIKE '%${t.productName}%'
+		</if>
+		<if test="t.productBrandId != null and t.productBrandId != ''">
+			and pt.productBrandId=#{t.productBrandId}
+		</if>
+		<if test="t.productBrandName != null and t.productBrandName != ''">
+			and pb.productBrandName=#{t.productBrandName}
+		</if>
+		order by pt.productId desc
+
+	</select>
+	<!-- 更新次数 -->
+	<update id="updateLookNuns" parameterType="Product">
+		UPDATE product set
+		productLookNuns= #{productLookNuns}
+		WHERE
+		productId = #{productId}
+  </update>
+	<!-- 增加用户 -->
+	<insert id="add" parameterType="Product">
+		insert into product
+		(
+		productBrandId,
+		productName,
+		productImagesUrl,
+		price,
+		productUnit,
+		productProfile,
+		productProduce
+		)
+
+		values (
+		#{productBrandId}
+		,#{productName}
+		,#{productImagesUrl}
+		,#{price}
+		,#{productUnit}
+		,#{productProfile}
+		,#{productProduce}
+
+
+		)
+	</insert>
+
+	<delete id="deleteById" parameterType="String">
+		delete from product
+		where
+		productId=#{productId}
+	</delete>
+	
+	<select id="queryAll" parameterType="String" resultType="Product">
+		SELECT
+		pb.productBrandName,
+		(select productBrandName from productBrand
+		where productBrandId =
+		pb.parentId) as bigBrandName,
+		pb.parentId,
+		pt.productId,
+		pt.productBrandId,
+		pt.productName,
+		pt.productImagesUrl,
+		pt.price,
+		pt.productUnit,
+		pt.productLookNuns,
+		pt.productProfile,
+		pt.productProduce
+
+		FROM
+		product pt,productBrand pb
+		WHERE pt.productBrandId = pb.productBrandId
+	</select>
+	<select id="getById" parameterType="String" resultType="Product">
+		select productId,
+		productBrandId,
+		productName,
+		productImagesUrl,
+		price,
+		productUnit,
+		productLookNuns,
+		productProfile,
+		productProduce
+		from product where productId = #{productId}
+	</select>
+	<update id="update" parameterType="Product">
+		UPDATE product set
+		productBrandId= #{productBrandId},
+		productName=#{productName},
+		price= #{price},
+		productUnit= #{productUnit},
+		productProfile= #{productProfile},
+		productProduce= #{productProduce}
+		WHERE
+		productId = #{productId}
+	</update>
+	<update id="updateImages" parameterType="Product">
+		UPDATE product set
+		productImagesUrl= #{productImagesUrl}
+		WHERE
+		productId = #{productId}
+  </update>
+</mapper>

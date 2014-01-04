@@ -1,0 +1,35 @@
+/* 
+
+	TableCloth	
+	by Alen Grakalic, brought to you by cssglobe.com
+	
+*/
+
+/* general styles */
+/*
+table, td{
+	font:100% Arial, Helvetica, sans-serif; 
+}
+*/
+
+/* tablecloth styles */
+
+tr.even td{background:#e5f1f4;}
+tr.odd td{background:#f8fbfc;}
+
+th.over, tr.even th.over, tr.odd th.over{background:#4a98af;}
+th.down, tr.even th.down, tr.odd th.down{background:#bce774;}
+th.selected, tr.even th.selected, tr.odd th.selected{}
+
+td.over, tr.even td.over, tr.odd td.over{background:#ecfbd4;}
+td.down, tr.even td.down, tr.odd td.down{background:#bce774;color:#fff;}
+td.selected, tr.even td.selected, tr.odd td.selected{background:#bce774;color:#555;}
+
+/* use this if you want to apply different styleing to empty table cells*/
+td.empty, tr.odd td.empty, tr.even td.empty{background:#fff;}
+
+/*投诉信息*/
+	.extrtable{background:none;margin:0;width:591px}
+	.extrtable td{background:none;padding:0.5em 0;}
+	.extrtable .tblr{text-align:left;color:#666}
+    .replaycon{border:1px solid #ccc;padding:5px;background:#F2FAFA;color:#666;margin-top:10px;}

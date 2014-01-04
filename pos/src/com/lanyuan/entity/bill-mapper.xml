@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bill">
+	<!-- 以下与实体类的中字段一致 -->
+	<sql id="selectId">
+		id,
+		channelname,
+		tradeType,
+		tradeMoney,
+		transaction,
+		conveyancing,
+		tradeTime,
+		accountBalance
+	</sql>
+	<!--resultType="bill" 每返回一条结果封装到bill里 -->
+	<select id="query" resultType="Bill" parameterType="java.util.HashMap">
+		select
+		<include refid="selectId" />
+		from bill
+		<where>
+			<if test="t.channelname != null and t.channelname != ''">
+				channelname like '%${t.channelname}%'
+				</if>
+			<if test="t.accountBalance != null and t.accountBalance != ''">
+				and accountBalance like '%${t.accountBalance}%'
+				</if>
+		</where>
+	</select>
+	<!-- 总记录数 -->
+	<select id="count" parameterType="Bill" resultType="int">
+		select count(0) from bill
+		<where>
+			<if test="channelname != null and channelname != ''">
+				channelname like '%${channelname}%'
+				</if>
+			<if test="t.accountBalance != null and t.accountBalance != ''">
+				and accountBalance like '%${t.accountBalance}%'
+				</if>
+		</where>
+	</select>
+	<!-- 增加用户 -->
+	<insert id="add" parameterType="Bill">
+		insert into bill ( channelname,
+		tradeType,
+		tradeMoney, transaction,
+		conveyancing, accountBalance)
+		values (#{channelname},
+		#{tradeType},
+		#{tradeMoney}, #{transaction},
+		#{conveyancing},
+		#{accountBalance})
+	</insert>
+
+	<delete id="deleteById" parameterType="String">
+		delete from bill where
+		id=#{id}
+	</delete>
+	<select id="getById" parameterType="String" resultType="Bill">
+		select
+		<include refid="selectId" />
+		from bill where id=#{id}
+	</select>
+	<update id="update" parameterType="Bill">
+		update bill
+		<set>
+			<if test="channelname != null and channelname != ''">
+				channelname=#{channelname},
+			</if>
+			<if test="tradeType != null and tradeType != ''">
+				tradeType=#{tradeType},
+			</if>
+			<if test="tradeMoney != null and tradeMoney != ''">
+				tradeMoney=#{tradeMoney},
+			</if>
+			<if test="transaction != null and transaction != ''">
+				transaction=#{transaction},
+			</if>
+			<if test="conveyancing != null and conveyancing != ''">
+				conveyancing=#{conveyancing},
+			</if>
+			<if test="accountBalance != null and accountBalance != ''">
+				accountBalance=#{accountBalance}
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+</mapper>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ordermanager">
+	<!-- 以下与实体类的中字段一致 -->
+	<sql id="selectId">
+	</sql>
+	<!--resultType="orderManager" 每返回一条结果封装到orderManager里 -->
+	<select id="query" resultType="OrderManager" parameterType="java.util.HashMap">
+		select
+		o.orderId,
+		o.userId,
+		o.orderSunPrice,
+		o.orderTime,
+		o.orderState,timeState,u.userName from orderManager o,user u
+		where
+		o.userId = u.userId
+			<if test="t.userName != null and t.userName != ''">
+				and u.userName like '%${t.userName}%'
+			</if>
+			<if test="t.userId != null and t.userId != '' and t.userId !=0">
+				and o.userId = #{t.userId}
+			</if>
+		order by o.orderTime desc
+	</select>
+	<!-- 增加用户 -->
+	<insert id="add" parameterType="OrderManager">
+		insert into orderManager
+		(
+		orderId,
+		userId,
+		orderSunPrice )
+
+		values (
+		#{orderId}
+		,#{userId}
+		,#{orderSunPrice}
+
+
+		)
+	</insert>
+
+	<delete id="deleteById" parameterType="String">
+		delete from orderManager
+		where
+		orderId=#{orderId}
+	</delete>
+	<select id="getById" parameterType="String" resultType="OrderManager">
+		select
+		o.orderId,
+		o.userId,
+		o.orderSunPrice,
+		o.orderTime,
+		timeState,
+		o.orderState
+		,u.userName from orderManager o,user u
+		where
+		o.userId = u.userId
+		and
+		o.orderId= #{orderId}
+	</select>
+	<update id="update" parameterType="OrderManager">
+		UPDATE orderManager set
+				orderState = #{orderState}
+		WHERE
+		orderId = #{orderId}
+	</update>
+</mapper>
