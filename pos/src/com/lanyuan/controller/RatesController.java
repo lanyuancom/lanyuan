@@ -47,7 +47,14 @@ public class RatesController {
 		ratesService.add(rates);
 		return "redirect:query.html";
 	}
-	
+	@RequestMapping(value="money")
+	public String money(){
+		return Common.ROOT_PATH+"/background/rates/money";
+	}
+	@RequestMapping(value="pay")
+	public String pay(){
+		return Common.ROOT_PATH+"/background/rates/pay";
+	}
 	/**
 	 * 分页查询文章
 	 * @param model

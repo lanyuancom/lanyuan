@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pay">
+	<!-- 以下与实体类的中字段一致 -->
+	<sql id="selectId">
+		id,
+		userName,
+		bankName,
+		openBankName,
+		bankAccount,
+		payMoney,
+		payTime
+		
+	</sql>
+	<!--resultType="pay" 每返回一条结果封装到pay里 -->
+	<select id="query" resultType="Pay" parameterType="java.util.HashMap">
+		select
+		<include refid="selectId" />
+		from pay
+		<where>
+			<if test="t.userName != null and t.userName != ''">
+				userName like '%${t.userName}%'
+				</if>
+		</where>
+	</select>
+	<!-- 总记录数 -->
+	<select id="count" parameterType="Pay" resultType="int">
+		select count(0) from pay
+		<where>
+			<if test="userName != null and userName != ''">
+				userName like '%${userName}%'
+				</if>
+		</where>
+	</select>
+	<!-- 增加用户 -->
+	<insert id="add" parameterType="Pay">
+		insert into pay ( userName,
+		bankName, openBankName,payMoney,
+		bankAccount )
+		values (#{userName},
+		#{bankName}, #{openBankName}, #{payMoney},
+		#{bankAccount})
+	</insert>
+
+	<delete id="deleteById" parameterType="String">
+		delete from pay where
+		id=#{id}
+	</delete>
+	<select id="getById" parameterType="String" resultType="Pay">
+		select
+		<include refid="selectId" />
+		from pay where id=#{id}
+	</select>
+	<update id="update" parameterType="Pay">
+		update pay
+		<set>
+			<if test="userName != null and userName != ''">
+				userName=#{userName},
+			</if>
+			<if test="bankName != null and bankName != ''">
+				bankName=#{bankName},
+			</if>
+			<if test="openBankName != null and openBankName != ''">
+				openBankName=#{openBankName},
+			</if>
+			<if test="bankAccount != null and bankAccount != ''">
+				bankAccount=#{bankAccount},
+			</if>
+			<if test="payMoney != null and payMoney != ''">
+				payMoney=#{payMoney},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+</mapper>
