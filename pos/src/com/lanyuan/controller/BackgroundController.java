@@ -110,7 +110,11 @@ public class BackgroundController
 	{
 		return Common.ROOT_PATH+"/background/framework/top";
 	}
-	
+	@RequestMapping ("bottom")
+	public String bottom(Model model)
+	{
+		return Common.ROOT_PATH+"/background/framework/bottom";
+	}
 	@RequestMapping ("left")
 	public String left(Model model,HttpServletRequest request)
 	{
