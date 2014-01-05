@@ -11,9 +11,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>无标题文档</title>
 <style type="text/css">
+body {
+	margin-left: 0px;
+	margin-top: 3px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
 <!--
 body {
-	font-size: 12px;
+	font-size: 13px;
 	color: black;
 }
 -->

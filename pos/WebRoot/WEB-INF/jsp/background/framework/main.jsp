@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <frameset rows="83,*,25" cols="*" framespacing="0" frameborder="no" border="0">
   <frame src="${pageContext.servletContext.contextPath }/background/top.html" name="topFrame" scrolling="no" noresize="noresize" id="topFrame" />
   <frame src="${pageContext.servletContext.contextPath }/background/center.html" name="mainFrame" id="mainFrame" />
-  <frame src="${pageContext.servletContext.contextPath }/background/bottom.html" name="mainFrame" id="mainFrame" />
+  <frame src="${pageContext.servletContext.contextPath }/background/bottom.html" name="bottom" scrolling="no" noresize="noresize" id="bottom"/>
 </frameset>
 <noframes><body>
 </body>
