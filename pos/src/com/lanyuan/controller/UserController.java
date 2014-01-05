@@ -1,6 +1,8 @@
 package com.lanyuan.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -65,11 +67,25 @@ public class UserController {
 	 */
 	@RequestMapping("add")
 	public String add(Model model, User user) {
-		user.setUserPassword(Md5Tool.getMd5(user.getUserPassword()));
+		String card = user.getUserIdCard();
+		int s = card.length()-6;
+		card=card.substring(s, card.length());
+		user.setUserPassword(Md5Tool.getMd5(card));
 		userService.add(user);
 		return "redirect:query.html";
 	}
-
+	@ResponseBody
+	@RequestMapping("checkUserPhone")
+	public Map<String, String> checkUserPhone(String userName){
+		User users = this.userService.querySingleUser(userName);
+		Map<String, String> map = new HashMap<String, String>();
+		if (users == null) {
+			map.put("data", "true");
+		}else{
+			map.put("data", "false");
+		}
+		return map;
+	}
 	/**
 	 * 跑到新增界面
 	 * 
@@ -127,7 +143,17 @@ public class UserController {
 		rolesService.saveUserRole(userRoles);
 		return "redirect:query.html";
 	}
-
+	@ResponseBody
+	@RequestMapping("updatePass")
+	public String updatePass(Model model, User user) {
+		user.setUserPassword(Md5Tool.getMd5(user.getUserPassword()));
+		userService.modify(user);
+		return null;
+	}
+	@RequestMapping("updatePassUI")
+	public String updatePassUI() {
+		return Common.ROOT_PATH+"/background/user/updatePass";
+	}
 	/**
 	 * 删除所选的
 	 * 

@@ -50,6 +50,7 @@
 		resources_role WHERE role_id in(
 		SELECT role_id FROM user_role
 		WHERE user_id=#{id}))
+		order By level asc
 	</select>
 	<!-- 根据角色Id获取该角色的权限-->
 	<select id="getRoleResources" parameterType="String" resultType="Resources">
@@ -58,6 +59,7 @@
 		FROM resources WHERE id in(
 		SELECT resc_id FROM
 		resources_role WHERE role_id = #{id})
+		order By level asc
 	</select>
 	<!-- 根据角色Id获取该角色的权限-->
 	<select id="getResourcesByUserName" parameterType="String" resultType="Resources">
@@ -68,6 +70,7 @@
 		resources_role WHERE role_id in(
 		SELECT role_id FROM user_role,user
 		WHERE user_id=userId and username=#{username}))
+		order By level asc
 	</select>
 	<!-- 新增 -->
 	<insert id="add" parameterType="Resources">

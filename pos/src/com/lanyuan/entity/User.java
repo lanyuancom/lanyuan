@@ -32,6 +32,8 @@ public class User implements java.io.Serializable {
 	private String userMail;
 
 	private String userQQ;
+	
+	private String userIdCard;//身份证
 
 	private Timestamp regTime;
 
@@ -305,5 +307,13 @@ public class User implements java.io.Serializable {
 
 	public void setParentNumber(String parentNumber) {
 		this.parentNumber = parentNumber;
+	}
+
+	public String getUserIdCard() {
+		return userIdCard;
+	}
+
+	public void setUserIdCard(String userIdCard) {
+		this.userIdCard = userIdCard;
 	}
 }

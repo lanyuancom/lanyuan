@@ -8,6 +8,7 @@
 		channelname,
 		tradingRates,
 		settlementCosts,
+		holidayCosts,
 		settlementCaps,
 		updateTime,
 		mark
@@ -44,7 +45,7 @@
 		tradingRates, settlementCosts,
 		settlementCaps, mark)
 		values (#{channelname},
-		#{tradingRates}, #{settlementCosts},
+		#{tradingRates}, #{settlementCosts},#{holidayCosts},
 		#{settlementCaps},
 		#{mark})
 	</insert>
@@ -69,6 +70,9 @@
 			</if>
 			<if test="settlementCosts != null and settlementCosts != ''">
 				settlementCosts=#{settlementCosts},
+			</if>
+			<if test="holidayCosts != null and holidayCosts != ''">
+				holidayCosts=#{holidayCosts},
 			</if>
 			<if test="settlementCaps != null and settlementCaps != ''">
 				settlementCaps=#{settlementCaps},

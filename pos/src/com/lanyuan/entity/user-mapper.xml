@@ -17,6 +17,7 @@
 		userPhone,
 		userMail,
 		userQQ,
+		userIdCard,
 		regTime,
 		(select ul.loginTime from userloginlist ul where ul.userId=userId order By ul.loginTime desc limit 1,1) lastLogintime,
 		level,
@@ -59,6 +60,7 @@
 		r.channelname,
 		r.tradingRates,
 		r.settlementCosts,
+		r.holidayCosts,
 		r.settlementCaps,
 		r.updateTime,
 		r.mark
@@ -113,7 +115,7 @@
 		userNickname, userRealname,
 		userAge, userSex, userAddress,
 		userPhone,
-		userMail, userQQ, level,
+		userMail, userQQ, userIdCard,level,
 		province,
 		city,
 		bankName,
@@ -133,7 +135,7 @@
 		#{userAge},
 		#{userSex},
 		#{userAddress}, #{userPhone}, #{userMail},
-		#{userQQ},
+		#{userQQ},#{userIdCard},
 		#{level},
 		#{province},
 		#{city},
@@ -158,7 +160,7 @@
 	<select id="login" parameterType="User" resultType="User">
 		select
 		<include refid="selectId" />
-		from user where userName=#{userName} and userPassword=#{userPassword}
+		from user where userName=#{userName} or userPhone=#{userName} and userPassword=#{userPassword}
 	</select>
 	<update id="update" parameterType="User">
 		update user
@@ -192,6 +194,9 @@
 			</if>
 			<if test="userQQ != null and userQQ != ''">
 				userQQ=#{userQQ},
+			</if>
+			<if test="userIdCard != null and userIdCard != ''">
+				userIdCard=#{userIdCard},
 			</if>
 			<if test="level != null and level != ''">
 				level=#{level},
@@ -249,6 +254,6 @@
 	<select id="queryUserName" parameterType="String" resultType="User">
 	  select
 	  <include refid="selectId"/>
-	  from user where userName=#{userName}
+	  from user where userName=#{userName} or userPhone=#{userName}
 	</select>
 </mapper>

@@ -25,6 +25,7 @@ public class Rates implements Serializable{
 	private String tradingRates;//交易费率 
 	private String channelname;
 	private String settlementCosts;
+	private String holidayCosts;//节假日结算
 	private String settlementCaps;
 	private String mark;
 	private Date updateTime;
@@ -75,6 +76,12 @@ public class Rates implements Serializable{
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	public String getHolidayCosts() {
+		return holidayCosts;
+	}
+	public void setHolidayCosts(String holidayCosts) {
+		this.holidayCosts = holidayCosts;
 	}
 
 }
