@@ -54,7 +54,7 @@
 				'insertunorderedlist', '|', 'emoticons', 'image', 'link']
 			});
 		</script>
-		<textarea id="content2" name="content" style="width:100%;height:300px;visibility:hidden;"></textarea>
+		<textarea id="content2" name="content" style="width:90%;height:300px;visibility:hidden;"></textarea>
 		</div>
 					</td>
 				</tr>
