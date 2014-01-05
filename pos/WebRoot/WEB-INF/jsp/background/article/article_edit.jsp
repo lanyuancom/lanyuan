@@ -10,17 +10,15 @@
   </head>
   
   <body>
-<br/>
-<br/>  
 <form action="${pageContext.servletContext.contextPath }/background/article/update.html" method="post">
 <input type="hidden" name="articleId" value="${article.articleId}">
-		<table class="ttab" height="100" width="70%" border="0" cellpadding="0" cellspacing="1"
+		<table class="ttab" height="100" width="80%" border="0" cellpadding="0" cellspacing="1"
 			align="center">
 			<tr>
 				<td height="30"
 					 colspan="2">
 					<div align="center">
-					<font color="blue" size="6" >修改信息</font>
+					<font color="blue" size="4" >修改信息</font>
 					</div>
 				</td>
 			</tr>
@@ -44,7 +42,20 @@
 					</td>
 					<td >
 						<div align="left" class="STYLE1"  style="padding-left:10px;">
-							 <textarea name="content" style="font-size: 12px;width: 450px;height: 200px;"><c:out value="${article.content}"/></textarea>
+						<script charset="utf-8" src="${pageContext.servletContext.contextPath }/kindeditor/kindeditor.js"></script>
+		<script>
+			KE.show({
+				id : 'content2',
+				resizeMode : 1,
+				allowPreviewEmoticons : false,
+				allowUpload : false,
+				items : [
+				'fontname', 'fontsize', '|', 'textcolor', 'bgcolor', 'bold', 'italic', 'underline',
+				'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+				'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+			});
+		</script>
+		<textarea id="content2" name="content" style="width:100%;height:300px;visibility:hidden;">${article.content}</textarea>
 						</div>
 					</td>
 				</tr>

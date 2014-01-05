@@ -36,7 +36,7 @@ input {
 																src="${pageContext.servletContext.contextPath }/images/tb.gif"
 																width="16" height="16" />
 														</div></td>
-													<td width="95%" class="STYLE1"><span class="STYLE3">你当前的位置</span>：文章管理-添加文章</td>
+													<td width="95%" class="STYLE1"></td>
 												</tr>
 											</table></td>
 										<td width="54%"><table align="right">

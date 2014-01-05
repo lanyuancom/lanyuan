@@ -1,63 +1,49 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@include file="../../common/taglib.jsp" %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-  <head>
-    <%@include file="../../common/common-css.jsp" %>
-    <style type="text/css">
-      input{font-size: 12px}
-    </style>
-  </head>
-  
-  <body>
-<br/>
-<br/>  
-<form action="${pageContext.servletContext.contextPath }/background/article/update.html" method="post">
-<input type="hidden" name="articleId" value="${article.articleId}">
-		<table class="ttab" height="100" width="70%" border="0" cellpadding="0" cellspacing="1"
-			align="center">
-			<tr>
-				<td height="30"
-					 colspan="2">
-					<div align="center">
-					<font color="blue" size="6" >显示信息</font>
-					</div>
-				</td>
-			</tr>
-			<tr>	
-					<td height="30"width="20%" >
-						<div align="right" class="STYLE1" >
-								公告标题：
-						</div>
-					</td>
-					<td >
-						<div align="left" class="STYLE1"  style="padding-left:10px;">
-						<input style="height: 20px;width: 450px" name="title" value="${article.title}"/>
-						</div>
-					</td>
-				</tr>
-				<tr>	
-					<td height="30"width="20%" valign="top">
-						<div align="right" class="STYLE1">
-								公告内容：
-						</div>
-					</td>
-					<td >
-						<div align="left" class="STYLE1"  style="padding-left:10px;">
-							 <textarea name="content" style="font-size: 12px;width: 450px;height: 200px;" ><c:out value="${article.content}"/></textarea>
-						</div>
-					</td>
-				</tr>
-				
-				<tr>
-					<td colspan="2" style="padding: 10px">
-						<div align="center">
-			 				<input type="submit" value="　保　存　" class="input_btn_style1"/>　　　　
-			 				<input id="backBt" type="button" value="　返　回　" class="input_btn_style1" onclick="javascript:window.location.href='javascript:history.go(-1)'"/>
-		 				</div>
-					</td>
-				</tr>
-		</table>
-		</form>
-  </body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style type="text/css">
+* {
+	font-size:12px;
+	margin:0;
+	padding:0; 
+} 
+fieldset {
+	padding:10px;
+	margin:10px;
+	width:100%;
+	color:#333; 
+	border:#06c dashed 1px;
+} 
+legend {
+	color:#06c;
+	font-weight:800; 
+	background:#fff;
+	border:#b6b6b6 solid 1px;
+	padding:3px 6px;
+} 
+ul {
+	list-style-type: none;
+	margin:8px 0 4px 0;
+} 
+li {
+	margin-top:4px;
+}
+</style>
+</head>
+
+<body>
+<div align="center" style="width: 100%;">
+<table width="80%">
+<tr>
+	<td><fieldset> 
+  <legend>${article.title}</legend> 
+   ${article.content}
+</fieldset></td>
+</tr>
+</table></div>
+</body>
 </html>

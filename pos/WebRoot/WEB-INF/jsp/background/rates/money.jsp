@@ -56,41 +56,8 @@
 		<tr>
 			<td height="30" colspan="2">
 				<div align="center">
-					<font color="blue" size="4"><b>立刻支付</b>
+					<font color="blue" size="4"><b>立即支付</b>
 					</font>
-				</div></td>
-		</tr>
-		<tr>
-			<td height="30" width="20%">
-				<div align="right" class="STYLE1">用户账号：</div></td>
-			<td>
-				<div align="left" class="STYLE1" style="padding-left:10px;">
-					<input style="height: 20px;width: 200px" name="userName" />
-				</div></td>
-		</tr>
-		<tr>
-			<td height="30" width="20%">
-				<div align="right" class="STYLE1">银行名称：</div></td>
-			<td>
-				<div align="left" class="STYLE1" style="padding-left:10px;">
-					<input style="height: 20px;width: 200px" name="bankName" />
-				</div></td>
-		</tr>
-		<tr>
-			<td height="30" width="20%">
-				<div align="right" class="STYLE1">开户行（支行）：</div></td>
-			<td>
-				<div align="left" class="STYLE1" style="padding-left:10px;">
-					<input style="height: 20px;width: 200px" name="openBankName" />
-				</div></td>
-		</tr>
-		<tr>
-			<td height="30" width="20%">
-				<div align="right" class="STYLE1">银行账号：</div></td>
-			<td>
-				<div align="left" class="STYLE1" style="padding-left:10px;">
-					<input style="height: 20px;width: 200px" name="bankAccount"
-						value="" />
 				</div></td>
 		</tr>
 		<tr>

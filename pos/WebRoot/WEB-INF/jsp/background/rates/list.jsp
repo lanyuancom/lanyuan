@@ -23,7 +23,7 @@
             <td width="46%" valign="middle"><table width="100%">
               <tr>
                 <td width="5%"><div align="center"><img src="${pageContext.servletContext.contextPath }/images/tb.gif" width="16" height="16" /></div></td>
-                <td width="95%" class="STYLE1"><span class="STYLE3">你当前的位置</span>：文章管理-添加文章</td>
+                <td width="95%" class="STYLE1"></td>
               </tr>
             </table></td>
           </tr>
@@ -66,7 +66,7 @@
             <td width="10%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">正常结算 </span></td>
             <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">节假日结算 </td>
              <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">结算限额 </td>
-            <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">支付连接</td>
+            <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">支付链接</td>
             <td width="23%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">操作</td>
           </tr>
           
@@ -84,17 +84,18 @@
             <td height="20" ><span class="STYLE1">${rates.settlementCaps} 元/次</span></td>
             <td height="20" ><span class="STYLE1">
      <a href="${pageContext.servletContext.contextPath }/background/rates/money.html">       
-            立刻支付</a>
+            立即支付</a>
             </span></td>
             <td height="20" ><span class="STYLE4">
             <img src="${pageContext.servletContext.contextPath }/images/edt.gif" width="16" height="16" />
              <a href="${pageContext.servletContext.contextPath }/background/pay/payRates.html?ratesId=${rates.id}&type=1">
                                      申请结算
             </a>
+            <sec:authorize ifAnyGranted="ROLE_sys_user_delete">
             &nbsp; &nbsp;
             <a href="${pageContext.servletContext.contextPath }/background/rates/getById.html?ratesId=${rates.id}&type=1">
                                      编辑
-            </a>
+            </a></sec:authorize>
             &nbsp; &nbsp;
             <img src="${pageContext.servletContext.contextPath }/images/del.gif" width="16" height="16" />
             	<a href="javascript:void(0);" onclick="deleteId('${pageContext.servletContext.contextPath }/background/rates/deleteById.html?ratesId=${rates.id}')">

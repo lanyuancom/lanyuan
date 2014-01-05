@@ -34,6 +34,7 @@ body {
 	margin-top: 0px;
 	margin-right: 0px;
 	margin-bottom: 0px;
+	font-size: 16px;
 }
 -->
 </style>
@@ -93,9 +94,9 @@ body {
 																		<c:forEach items="${resources}" var="key" varStatus="stut">
 																			<c:if test="${key.type eq 0}">
 																			<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
-																				<TR height=22>
+																				<TR height=30>
 																					<TD style="PADDING-LEFT: 30px"
-																						background="${pageContext.servletContext.contextPath }/images/main_43.gif">
+																						background="${pageContext.servletContext.contextPath }/images/naim_43_1.png">
 																						<A class=menuParent onclick='expand("${stut.index}")'
 																							href="javascript:void(0);"><font color="white">${key.name}</font>
 																						</A>

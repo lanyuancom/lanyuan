@@ -65,9 +65,11 @@ function MM_swapImage() { //v3.0
           <tr>
             <td height="29"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td width="61" height="29" background="${pageContext.servletContext.contextPath }/images/main_06.gif">&nbsp;</td>
-                <td width="72"><a href="#"><img src="${pageContext.servletContext.contextPath }/images/main_07.gif" name="Image1" width="72" height="29" border="0" id="Image1" onmouseover="MM_swapImage('Image1','','${pageContext.servletContext.contextPath }/images/main_07_1.gif',1)" onmouseout="MM_swapImgRestore()" /></a></td>
-                <td width="72"><a href="#"><img src="${pageContext.servletContext.contextPath }/images/main_08.gif" name="Image2" width="72" height="29" border="0" id="Image2" onmouseover="MM_swapImage('Image2','','${pageContext.servletContext.contextPath }/images/main_08_1.gif',1)" onmouseout="MM_swapImgRestore()" /></a></td>
+                <td width="205" height="29" rowspan="3">
+<marquee direction="right" width="205" scrollamount="6"><font color="white" size="2">
+					介于盗刷卡猖獗，开通快捷支付的客户必须要视频并且不提供测试使用。网银支付可以随时开通使用。</font>
+					</marquee>
+</td>
                 <td width="292" background="${pageContext.servletContext.contextPath }/images/main_09.gif">&nbsp;</td>
                 <td width="40"><a href="${pageContext.servletContext.contextPath }/background/tab.html" target="main"><img src="${pageContext.servletContext.contextPath }/images/main_10.gif" name="Image3" width="40" height="29" border="0" id="Image3" onmouseover="MM_swapImage('Image3','','${pageContext.servletContext.contextPath }/images/main_10_1.gif',1)" onmouseout="MM_swapImgRestore()" /></a></td>
                 <td width="44"><a href="javascript:history.go(-1);"><img src="${pageContext.servletContext.contextPath }/images/main_11.gif" name="Image4" width="44" height="29" border="0" id="Image4" onmouseover="MM_swapImage('Image4','','${pageContext.servletContext.contextPath }/images/main_11_1.gif',1)" onmouseout="MM_swapImgRestore()" /></a></td>

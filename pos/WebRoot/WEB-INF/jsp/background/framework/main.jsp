@@ -10,10 +10,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>天天支付后台管理系统</title>
 </head>
-
-<frameset rows="83,*" cols="*" framespacing="0" frameborder="no" border="0">
+<frameset rows="83,*,25" cols="*" framespacing="0" frameborder="no" border="0">
   <frame src="${pageContext.servletContext.contextPath }/background/top.html" name="topFrame" scrolling="no" noresize="noresize" id="topFrame" />
   <frame src="${pageContext.servletContext.contextPath }/background/center.html" name="mainFrame" id="mainFrame" />
+  <frame src="${pageContext.servletContext.contextPath }/background/bottom.html" name="mainFrame" id="mainFrame" />
 </frameset>
 <noframes><body>
 </body>
