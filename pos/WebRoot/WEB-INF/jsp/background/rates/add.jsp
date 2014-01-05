@@ -62,7 +62,7 @@
 				<tr>	
 					<td height="30"width="20%" >
 						<div align="right" class="STYLE1">
-								结算费用：
+								正常结算：
 						</div>
 					</td>
 					<td>
@@ -74,12 +74,24 @@
 				<tr>	
 					<td height="30"width="20%" >
 						<div align="right" class="STYLE1" >
-								结算上限：
+								节假日结算：
 						</div>
 					</td>
 					<td >
 						<div align="left" class="STYLE1"  style="padding-left:10px;">
-						<input style="height: 20px;width: 200px" name="settlementCaps"/>元/笔
+						<input style="height: 20px;width: 200px" name="holidayCosts"/>元/笔
+						</div>
+					</td>
+				</tr>
+				<tr>	
+					<td height="30"width="20%" >
+						<div align="right" class="STYLE1" >
+								结算限额：
+						</div>
+					</td>
+					<td >
+						<div align="left" class="STYLE1"  style="padding-left:10px;">
+						<input style="height: 20px;width: 200px" name="settlementCaps"/>元/次
 						</div>
 					</td>
 				</tr>

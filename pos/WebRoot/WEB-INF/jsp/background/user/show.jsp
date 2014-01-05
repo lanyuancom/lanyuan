@@ -153,10 +153,10 @@
 				</tr>
 				<tr>
 				<td height="30" width="20%">
-						<div align="right" class="STYLE1">级别：</div></td>
+						<div align="right" class="STYLE1">身份证：</div></td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.level}
+							${userSession.userIdCard}
 						</div></td>
 					<td height="30" width="13%">
 						<div align="right" class="STYLE1">上级代理用户名编号：</div></td>

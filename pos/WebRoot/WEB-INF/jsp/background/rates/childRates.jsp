@@ -23,7 +23,7 @@
             <td width="46%" valign="middle"><table width="100%">
               <tr>
                 <td width="5%"><div align="center"><img src="${pageContext.servletContext.contextPath }/images/tb.gif" width="16" height="16" /></div></td>
-                <td width="95%" class="STYLE1"><span class="STYLE3">你当前的位置</span>：文章管理-添加文章</td>
+                <!-- <td width="95%" class="STYLE1"><span class="STYLE3">你当前的位置</span>：文章管理-添加文章</td> -->
               </tr>
             </table></td>
           </tr>
@@ -57,8 +57,9 @@
  			<td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">支付通道</td>
             <td width="10%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">通道说明</span></td>
             <td width="10%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">交易费率</span></td>
-            <td width="10%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">结算费用 </span></td>
-            <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">结算上限 </td>
+            <td width="10%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">正常结算 </span></td>
+            <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">节假日结算 </td>
+             <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">结算上限 </td>
           </tr>
           
           <c:forEach var="rates" items="${pageView.records}">
@@ -68,7 +69,8 @@
             <td height="20" ><span class="STYLE1">${rates.channelname}</span></td>
             <td height="20" ><span class="STYLE1">${rates.tradingRates}元/笔</span></td>
             <td height="20" ><span class="STYLE1">${rates.settlementCosts}元/笔</span></td>
-            <td height="20" ><span class="STYLE1">${rates.settlementCaps}元/笔</span></td>
+            <td height="20" ><span class="STYLE1">${rates.holidayCosts}元/笔</span></td>
+            <td height="20" ><span class="STYLE1">${rates.settlementCaps}元/次</span></td>
           </tr>
           </c:forEach>
         </table></td>
