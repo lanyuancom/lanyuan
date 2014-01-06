@@ -22,6 +22,9 @@ public class Pay implements java.io.Serializable{
 	private String bankAccount;
 	
 	private String payMoney;
+	
+
+	private String payState;//0 表示未结算 1 表示已经结算
 
 	private Date payTime;
 
@@ -79,6 +82,14 @@ public class Pay implements java.io.Serializable{
 
 	public void setPayMoney(String payMoney) {
 		this.payMoney = payMoney;
+	}
+
+	public String getPayState() {
+		return payState;
+	}
+
+	public void setPayState(String payState) {
+		this.payState = payState;
 	}
 
 }

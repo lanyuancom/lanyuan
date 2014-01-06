@@ -10,6 +10,7 @@
 		openBankName,
 		bankAccount,
 		payMoney,
+		payState,
 		payTime
 		
 	</sql>
@@ -21,7 +22,10 @@
 		<where>
 			<if test="t.userName != null and t.userName != ''">
 				userName like '%${t.userName}%'
-				</if>
+			</if>
+			<if test="t.payState != null and t.payState != ''">
+				and payState = #{t.payState}
+			</if>
 		</where>
 	</select>
 	<!-- 总记录数 -->
@@ -31,6 +35,9 @@
 			<if test="userName != null and userName != ''">
 				userName like '%${userName}%'
 				</if>
+				<if test="t.payState != null and t.payState != ''">
+				and payState = #{t.payState}
+			</if>
 		</where>
 	</select>
 	<!-- 增加用户 -->
@@ -66,6 +73,9 @@
 			</if>
 			<if test="bankAccount != null and bankAccount != ''">
 				bankAccount=#{bankAccount},
+			</if>
+			<if test="payState != null and payState != ''">
+				payState=#{payState},
 			</if>
 			<if test="payMoney != null and payMoney != ''">
 				payMoney=#{payMoney},
