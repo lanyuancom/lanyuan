@@ -26,8 +26,8 @@
 						</div>
 					</td>
 					<td >
-						<div align="left" class="STYLE1"  style="padding-left:10px;">
-						<input style="height: 30px;width: 450px" name="title"/>
+						<div align="left" class="STYLE1"  style="padding-left:10px;vertical-align: middle;">
+						<input style="height: 30px;width: 450px;font-size: 18px;" name="title"/>
 						</div>
 					</td>
 				</tr>

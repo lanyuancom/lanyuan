@@ -29,8 +29,8 @@
 						</div>
 					</td>
 					<td >
-						<div align="left" class="STYLE1"  style="padding-left:10px;">
-						<input style="height: 30px;width: 450px" name="title" value="${article.title}"/>
+						<div align="left" class="STYLE1"  style="padding-left:10px;vertical-align: middle;">
+						<input style="height: 30px;width: 450px;font-size: 18px;" name="title" value="${article.title}"/>
 						</div>
 					</td>
 				</tr>
