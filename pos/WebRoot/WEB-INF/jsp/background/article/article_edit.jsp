@@ -23,19 +23,19 @@
 				</td>
 			</tr>
 			<tr>	
-					<td height="30"width="20%" >
+					<td height="35"width="8%" >
 						<div align="right" class="STYLE1" >
 								公告标题：
 						</div>
 					</td>
 					<td >
 						<div align="left" class="STYLE1"  style="padding-left:10px;">
-						<input style="height: 20px;width: 450px" name="title" value="${article.title}"/>
+						<input style="height: 30px;width: 450px" name="title" value="${article.title}"/>
 						</div>
 					</td>
 				</tr>
 				<tr>	
-					<td height="30"width="20%" valign="top">
+					<td width="8%" valign="top">
 						<div align="right" class="STYLE1" >
 								公告内容：
 						</div>
@@ -55,7 +55,7 @@
 				'insertunorderedlist', '|', 'emoticons', 'image', 'link']
 			});
 		</script>
-		<textarea id="content2" name="content" style="width:90%;height:300px;visibility:hidden;">${article.content}</textarea>
+		<textarea id="content2" name="content" style="width:99%;height:350px;visibility:hidden;">${article.content}</textarea>
 						</div>
 					</td>
 				</tr>

@@ -87,20 +87,26 @@
             立即支付</a>
             </span></td>
             <td height="20" ><span class="STYLE4">
-            <img src="${pageContext.servletContext.contextPath }/images/edt.gif" width="16" height="16" />
+             <a href="${pageContext.servletContext.contextPath }/background/pay/query.html">
+                                     充值记录
+            </a>&nbsp;&nbsp;
              <a href="${pageContext.servletContext.contextPath }/background/pay/payRates.html?ratesId=${rates.id}&type=1">
                                      申请结算
             </a>
-            <sec:authorize ifAnyGranted="ROLE_sys_user_delete">
+            <sec:authorize ifAnyGranted="ROLE_rates_update">
             &nbsp; &nbsp;
+             <img src="${pageContext.servletContext.contextPath }/images/edt.gif" width="16" height="16" />
             <a href="${pageContext.servletContext.contextPath }/background/rates/getById.html?ratesId=${rates.id}&type=1">
                                      编辑
             </a></sec:authorize>
+            <sec:authorize ifAnyGranted="ROLE_rates_delete">
             &nbsp; &nbsp;
             <img src="${pageContext.servletContext.contextPath }/images/del.gif" width="16" height="16" />
             	<a href="javascript:void(0);" onclick="deleteId('${pageContext.servletContext.contextPath }/background/rates/deleteById.html?ratesId=${rates.id}')">
             	删除</a>
-            	</span></td>
+            	</sec:authorize>
+            	</span>
+            	</td>
           </tr>
           </c:forEach>
         </table></td>

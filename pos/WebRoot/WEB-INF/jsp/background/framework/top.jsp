@@ -66,7 +66,7 @@ function MM_swapImage() { //v3.0
             <td height="29"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="205" height="29" rowspan="3">
-<marquee direction="right" width="205" scrollamount="6"><font color="white" size="2">
+<marquee direction="left" width="205" scrollamount="6"><font color="white" size="2">
 					介于盗刷卡猖獗，开通快捷支付的客户必须要视频并且不提供测试使用。网银支付可以随时开通使用。</font>
 					</marquee>
 </td>

@@ -36,14 +36,13 @@ li {
 </head>
 
 <body>
-<div align="center" style="width: 100%;">
-<table width="80%">
+<table width="80%" align="center">
 <tr>
-	<td><fieldset> 
+	<td align="left"><fieldset> 
   <legend>${article.title}</legend> 
    ${article.content}
 </fieldset></td>
 </tr>
-</table></div>
+</table>
 </body>
 </html>
