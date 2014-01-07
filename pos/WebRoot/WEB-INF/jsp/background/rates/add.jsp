@@ -62,7 +62,7 @@
 				<tr>	
 					<td height="30"width="20%" >
 						<div align="right" class="STYLE1">
-								正常结算：
+								上班时间结算：
 						</div>
 					</td>
 					<td>
@@ -74,7 +74,7 @@
 				<tr>	
 					<td height="30"width="20%" >
 						<div align="right" class="STYLE1" >
-								节假日结算：
+								其他时间结算：
 						</div>
 					</td>
 					<td >

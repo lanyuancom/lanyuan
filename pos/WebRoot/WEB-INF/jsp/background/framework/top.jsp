@@ -66,9 +66,27 @@ function MM_swapImage() { //v3.0
             <td height="29"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="205" height="29" rowspan="3">
-<marquee direction="left" width="205" scrollamount="6"><font color="white" size="2">
-					介于盗刷卡猖獗，开通快捷支付的客户必须要视频并且不提供测试使用。网银支付可以随时开通使用。</font>
-					</marquee>
+<div id="demo" style="overflow:hidden;height:24px; line-height:24px;width:203px; border:1px solid #666; white-space:nowrap;">
+<div id="demo1">
+<font color="white" size="2">介于盗刷卡猖獗，开通快捷支付的客户必须要视频并且不提供测试使用。网银支付可以随时开通使用。</font></div>
+<div id="demo2"></div>
+</div>
+<script style="text/javascript">
+var speed=40;//数值越大，速度越慢
+var demo2=document.getElementById("demo2");
+var demo1=document.getElementById("demo1");
+var demo=document.getElementById("demo");
+function MarqueeLeft(){
+if(demo2.offsetWidth-demo.scrollLeft<=0)
+demo.scrollLeft-=demo1.offsetWidth
+else{
+demo.scrollLeft++
+}
+}
+var MyMar=setInterval(MarqueeLeft,speed);
+demo.onmouseover=function() {clearInterval(MyMar);}
+demo.onmouseout=function() {MyMar=setInterval(MarqueeLeft,speed);}
+</script>
 </td>
                 <td width="292" background="${pageContext.servletContext.contextPath }/images/main_09.gif">&nbsp;</td>
                 <td width="40"><a href="${pageContext.servletContext.contextPath }/background/tab.html" target="main"><img src="${pageContext.servletContext.contextPath }/images/main_10.gif" name="Image3" width="40" height="29" border="0" id="Image3" onmouseover="MM_swapImage('Image3','','${pageContext.servletContext.contextPath }/images/main_10_1.gif',1)" onmouseout="MM_swapImgRestore()" /></a></td>
