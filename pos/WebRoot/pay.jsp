@@ -33,6 +33,7 @@
 
 	session.setAttribute("OrderMoney",oMen); //设置提交金额的Session
 	session.setAttribute("Channelname",request.getParameter("Channelname"));
+	session.setAttribute("tradingRates",request.getParameter("tradingRates"));//交易费率
 	User u = (User)session.getAttribute("userSession");
 	session.setAttribute("userName",u.getUserName());
  %>

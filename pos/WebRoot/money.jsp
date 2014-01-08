@@ -102,9 +102,11 @@
 									</div></li>
 								<li>
 									<div for="email">支付通道&nbsp;&nbsp;&nbsp;&nbsp;</div>
-									<div class="inputClass">宝付通道
+									<div class="inputClass">${rates.channelname}
 									<input name="Channelname"
-											id="Channelname" type="hidden" class="text" value="宝付通道">
+											id="Channelname" type="hidden" class="text" value="${rates.channelname}">
+											<input name="tradingRates"
+											id="tradingRates" type="hidden" class="text" value="${rates.tradingRates}">
 									</div></li>
 								<li>
 									<div>

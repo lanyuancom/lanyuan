@@ -42,6 +42,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		//提示：这个int类型的 如果存在小数的话，这个 除法算出的金额可能会不正确，如果存在小数 推荐使用BigDecimal
 		out.println("<script>alert('支付成功');</script>");//全部正确了输出OK
 		
+		String tradingRates=(String)session.getAttribute("tradingRates");
+		Double tr = Double.parseDouble(tradingRates);
+		String realMoney = (a-a*tr)+"";//交易成功金额　－　交易成功金额*费率
 //驱动程序名
 
 String driverName="com.mysql.jdbc.Driver";
@@ -73,7 +76,7 @@ Connection connection=DriverManager.getConnection(url);
 Statement statement = connection.createStatement();
 String username=(String)session.getAttribute("userName");
 String Channelname=(String)session.getAttribute("Channelname");
-String sql="INSERT INTO `payment`(orderId,userName,tradingMoney,realMoney,channelname,payState)  VALUES ('"+TransID+"', '"+username+"', '"+OrderMoney+"', '"+FactMoney+"','"+Channelname+"', '"+Result+"');";
+String sql="INSERT INTO `payment`(orderId,userName,tradingMoney,realMoney,channelname,payState)  VALUES ('"+TransID+"', '"+username+"', '"+OrderMoney+"', '"+realMoney+"','"+Channelname+"', '"+Result+"');";
 statement.executeUpdate(sql);
 
 statement.close();
@@ -102,6 +105,12 @@ connection.close();
 <!-- TemplateEndEditable -->
 <!-- TemplateBeginEditable name="head" -->
 <!-- TemplateEndEditable -->
+<script type="text/javascript">
+function closewin() {
+				window.close();
+		}
+
+</script>
 </head>
 
 <body>
@@ -121,43 +130,46 @@ connection.close();
 			<td class="text_12" bordercolor="#ffffff" align="right" width="150" height="20">
 				订单号：</td>
 			<td class="text_12" bordercolor="#ffffff" align="left">
-			<input  name='TransID' value= "<%=TransID%>" />
+			<%=TransID%>
 				</td>
 		</tr>
 		<tr>
 			<td class="text_12" bordercolor="#ffffff" align="right" width="150" height="20">
 				支付结果描述：</td>
 			<td class="text_12" bordercolor="#ffffff" align="left">
-			<input  name='resultDesc' value= "<%=Result%>"/> 0 表示失败  1表示成功
+			<%=Result%>　　(0 表示失败  1表示成功)
 				</td>
 		</tr>
 		<tr>
 			<td class="text_12" bordercolor="#ffffff" align="right" width="150" height="20">
 				实际成功金额：</td>
 			<td class="text_12" bordercolor="#ffffff" align="left">
-			<input  name='FactMoney'  value= "<%=FactMoney%>"/>
+			<%=FactMoney%>
 				</td>
 		</tr>
 		<tr>
 			<td class="text_12" bordercolor="#ffffff" align="right" width="150" height="20">
 				提交的金额：</td>
 			<td class="text_12" bordercolor="#ffffff" align="left">
-			<input  name='FactMoney'  value= "<%=b%>"/>
+			<%=b%>
 				</td>
 		</tr>		
 			<td class="text_12" bordercolor="#ffffff" align="right" width="150" height="20">
 				订单附加消息：</td>
 			<td class="text_12" bordercolor="#ffffff" align="left">
-			<input  name='additionalInfo' value= "<%=additionalInfo%>"/>
+			<%=additionalInfo%>
 				</td>
 		</tr>
 		<tr>
 			<td class="text_12" bordercolor="#ffffff" align="right" width="150" height="20">
 				交易成功时间：</td>
 			<td class="text_12" bordercolor="#ffffff" align="left">
-			<input  name='SuccTime' value= "<%=SuccTime%>"/>
+			<%=SuccTime%>
 				</td>
-		</tr>		
+		</tr>
+		<tr><td>
+		<input type="button"  value="关闭窗口" onclick="closewin();"/>
+		</td></tr>		
 	</table> 
 </form>
 </body>
