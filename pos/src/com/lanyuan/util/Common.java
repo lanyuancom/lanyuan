@@ -255,26 +255,26 @@ public class Common {
 	private static Map<String, String> diskWritesAndReadsOnInit = new HashMap<String, String>();
 	private static long initTime;
 	static {
-		initTime = System.currentTimeMillis();
-		resetClasspath();
-		Sigar sigar = null;
-		try {
-
-			sigar = new Sigar();
-			FileSystem fslist[] = sigar.getFileSystemList();
-			FileSystemUsage usage = null;
-			for (int i = 0; i < fslist.length; i++) {
-				FileSystem fs = fslist[i];
-				if (fs.getType() != 2)
-					continue;
-				usage = sigar.getFileSystemUsage(fs.getDirName());
-				diskWritesAndReadsOnInit.put(fs.getDevName(), usage.getDiskReadBytes() + "|" + usage.getDiskWriteBytes());
-			}
-		} catch (Exception e) {
-		} finally {
-			if (sigar != null)
-				sigar.close();
-		}
+//		initTime = System.currentTimeMillis();
+//		resetClasspath();
+//		Sigar sigar = null;
+//		try {
+//
+//			sigar = new Sigar();
+//			FileSystem fslist[] = sigar.getFileSystemList();
+//			FileSystemUsage usage = null;
+//			for (int i = 0; i < fslist.length; i++) {
+//				FileSystem fs = fslist[i];
+//				if (fs.getType() != 2)
+//					continue;
+//				usage = sigar.getFileSystemUsage(fs.getDirName());
+//				diskWritesAndReadsOnInit.put(fs.getDevName(), usage.getDiskReadBytes() + "|" + usage.getDiskWriteBytes());
+//			}
+//		} catch (Exception e) {
+//		} finally {
+//			if (sigar != null)
+//				sigar.close();
+//		}
 	}
 
 	/**

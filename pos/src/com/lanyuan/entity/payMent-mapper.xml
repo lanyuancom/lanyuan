@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="payment">
+	<!-- 以下与实体类的中字段一致 -->
+	<sql id="selectId">
+		id,
+		userName,
+		orderId,
+		tradingMoney,
+		realMoney,
+		channelname,
+		payState,
+		payTime
+		
+	</sql>
+	<!--resultType="payment" 每返回一条结果封装到payment里 -->
+	<select id="query" resultType="PayMent" parameterType="java.util.HashMap">
+		select
+		<include refid="selectId" />
+		from payment
+		<where>
+			<if test="t.userName != null and t.userName != ''">
+				userName like '%${t.userName}%'
+			</if>
+			<if test="t.payState != null and t.payState != ''">
+				and payState = #{t.payState}
+			</if>
+		</where>
+	</select>
+	<!-- 总记录数 -->
+	<select id="count" parameterType="PayMent" resultType="int">
+		select count(0) from payment
+		<where>
+			<if test="userName != null and userName != ''">
+				userName like '%${userName}%'
+				</if>
+				<if test="t.payState != null and t.payState != ''">
+				and payState = #{t.payState}
+			</if>
+		</where>
+	</select>
+	<!-- 增加用户 -->
+	<insert id="add" parameterType="PayMent">
+		insert into payment ( userName,
+		orderId, tradingMoney,channelname,
+		realMoney )
+		values (#{userName},
+		#{orderId}, #{tradingMoney}, #{channelname},
+		#{realMoney})
+	</insert>
+	<delete id="deleteById" parameterType="String">
+		delete from payment where
+		id=#{id}
+	</delete>
+	<select id="getById" parameterType="String" resultType="PayMent">
+		select
+		<include refid="selectId" />
+		from payment where id=#{id}
+	</select>
+	<update id="update" parameterType="PayMent">
+		update payment
+		<set>
+			<if test="userName != null and userName != ''">
+				userName=#{userName},
+			</if>
+			<if test="orderId != null and orderId != ''">
+				orderId=#{orderId},
+			</if>
+			<if test="tradingMoney != null and tradingMoney != ''">
+				tradingMoney=#{tradingMoney},
+			</if>
+			<if test="realMoney != null and realMoney != ''">
+				realMoney=#{realMoney},
+			</if>
+			<if test="payState != null and payState != ''">
+				payState=#{payState},
+			</if>
+			<if test="channelname != null and channelname != ''">
+				channelname=#{channelname},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+</mapper>
