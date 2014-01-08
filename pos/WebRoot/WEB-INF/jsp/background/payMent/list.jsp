@@ -7,18 +7,12 @@
 <%@include file="../../common/common-js.jsp" %>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.servletContext.contextPath }/css/fenyecss.css" />
-	<script type="text/javascript">
-	function openWindow(url,windowName){
-		window.open(url,windowName);
-	}
-	
-	</script>
 	<style type="text/css">
 	  input{font-size: 12px}
 	</style>
 </head>
 <body>
-<form id="fenye" name="fenye" action="${pageContext.servletContext.contextPath }/background/rates/query.html" method="post">
+<form id="fenye" name="fenye" action="${pageContext.servletContext.contextPath }/background/payMent/query.html" method="post">
 <table width="100%">
   <tr>
     <td height="30" background="${pageContext.servletContext.contextPath }/images/tab_05.gif"><table width="100%">
@@ -45,7 +39,7 @@
 		<fieldset class="search">
 			<legend><img src="${pageContext.servletContext.contextPath }/images/search_btn.gif" align="middle"/>&nbsp;<span class="STYLE1" style="color: blue;">高级查找</span></legend>
 			<div class="search_content">
-				支付通道：<input type="text" name="channelname" value="${param.channelname}" style="height: 20px"/>　　
+				客户名称：<input type="text" name="userName" value="${param.userName}" style="height: 20px"/>
 				<input type="submit" value="开始查询" class="input_btn_style1"/>&nbsp;&nbsp;
 				<input type="button" value="重置" class="input_btn_style1" onclick="clearText()"/>
 			</div>
@@ -55,9 +49,11 @@
   </tr>
   <tr>
     <td>
-     <div style="padding-left: 10px;padding-bottom: 5px;">
+     <sec:authorize ifAnyGranted="ROLE_payMent_delete">
+    <div style="padding-left: 10px;padding-bottom: 5px;">
          <input type="button" value="批量删除" class="input_btn_style1" onclick="return deleteAll()"/>&nbsp;&nbsp;
      </div>
+     </sec:authorize>
     <table class="listtable" width="100%">
       <tr>
         <td width="8" background="${pageContext.servletContext.contextPath }/images/tab_12.gif">&nbsp;</td>
@@ -66,55 +62,47 @@
             <td width="3%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" >
               <input id="chose" type="checkbox" name="checkbox" onclick="selectAllCheckBox()" />
             </td>
- 			<td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">支付通道</td>
-            <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">通道说明</span></td>
-            <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">交易费率</span></td>
-            <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">上班时间结算 </span></td>
-            <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">其他时间结算 </td>
-             <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">结算限额 </td>
-            <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">支付链接</td>
+ 			<td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">订单号
+</td>
+            <td width="10%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">客户名称 
+ </span></td>
+            <td width="10%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">交易金额</span></td>
+            <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">实得金额</td>
+            <td width="5%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">支付通道 </td>
+            <td width="20%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">时间 </td>
+            <sec:authorize ifAnyGranted="ROLE_payMent_delete">
             <td width="23%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">操作</td>
+         	</sec:authorize>
           </tr>
           
-          <c:forEach var="rates" items="${pageView.records}">
+          <c:forEach var="payMent" items="${pageView.records}">
           <tr>
             <td height="20" >
-              <input type="checkbox" name="check" value="${rates.id}" />
+              <input type="checkbox" name="check" value="${payMent.id}" />
             </td>
             
-            <td height="20" ><span class="STYLE1">${rates.channelname}</span></td>
-            <td height="20" ><span class="STYLE1">${rates.mark}</span></td>
-            <td height="20" ><span class="STYLE1">${rates.tradingRates}</span></td>
-            <td height="20" ><span class="STYLE1">${rates.settlementCosts} 元/笔</span></td>
-            <td height="20" ><span class="STYLE1">${rates.holidayCosts} 元/笔</span></td>
-            <td height="20" ><span class="STYLE1">${rates.settlementCaps} 元/次</span></td>
-            <td height="20" ><span class="STYLE1">
-     <a href="javascript:void(0);" onclick="openWindow('${pageContext.servletContext.contextPath }/money.jsp','支付');">立即支付</a>
-            </span></td>
+            <td height="20" ><span class="STYLE1">${payMent.orderId}</span></td>
+            <td height="20" ><span class="STYLE1">${payMent.userName}</span></td>
+            <td height="20" ><span class="STYLE1">${payMent.tradingMoney}</span></td>
+            <td height="20" ><span class="STYLE1">${payMent.realMoney}</span></td>
+            <td height="20" ><span class="STYLE1">${payMent.channelname}</span></td>
+            <td height="20" ><span class="STYLE1"><fmt:formatDate value="${payMent.payTime}" pattern="yyyy-MM-dd HH:mm:ss" /></span></td>
+             <sec:authorize ifAnyGranted="ROLE_payMent_delete">
             <td height="20" ><span class="STYLE4">
-             <a href="${pageContext.servletContext.contextPath }/background/payMent/query.html">
-                                     充值记录
-            </a>&nbsp;&nbsp;
-             <a href="${pageContext.servletContext.contextPath }/background/pay/payRates.html?ratesId=${rates.id}&type=1">
-                                      申请结算
-            </a>&nbsp; &nbsp;
-            <a href="${pageContext.servletContext.contextPath }/background/pay/query.html">
-           	待结算款项
-           	</a>
-            <sec:authorize ifAnyGranted="ROLE_rates_update">
-            &nbsp; &nbsp;
-             <img src="${pageContext.servletContext.contextPath }/images/edt.gif" width="16" height="16" />
-            <a href="${pageContext.servletContext.contextPath }/background/rates/getById.html?ratesId=${rates.id}&type=1">
+           <%--  <img src="${pageContext.servletContext.contextPath }/images/del.gif" width="16" height="16" />
+            	<a href="${pageContext.servletContext.contextPath }/background/payMent/getById.html?payMentId=${payMent.id}&type=0">
+            	显示详细信息</a>
+            	&nbsp;&nbsp;
+            <img src="${pageContext.servletContext.contextPath }/images/edt.gif" width="16" height="16" />
+            <a href="${pageContext.servletContext.contextPath }/background/payMent/getById.html?payMentId=${payMent.id}&type=1">
                                      编辑
-            </a></sec:authorize>
-            <sec:authorize ifAnyGranted="ROLE_rates_delete">
+            </a> --%>
+          
             &nbsp; &nbsp;
             <img src="${pageContext.servletContext.contextPath }/images/del.gif" width="16" height="16" />
-            	<a href="javascript:void(0);" onclick="deleteId('${pageContext.servletContext.contextPath }/background/rates/deleteById.html?ratesId=${rates.id}')">
+            	<a href="javascript:void(0);" onclick="deleteId('${pageContext.servletContext.contextPath }/background/payMent/deleteById.html?payMentId=${payMent.id}')">
             	删除</a>
-            	</sec:authorize>
-            	</span>
-            	</td>
+            	</span></td></sec:authorize>
           </tr>
           </c:forEach>
         </table></td>
