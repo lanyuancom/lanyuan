@@ -11,6 +11,8 @@
 		bankAccount,
 		payMoney,
 		payState,
+		settlementCosts,
+		costsMoney,
 		payTime
 		
 	</sql>
@@ -43,10 +45,11 @@
 	<!-- 增加用户 -->
 	<insert id="add" parameterType="Pay">
 		insert into pay ( userName,
-		bankName, openBankName,payMoney,
+		bankName, openBankName,payMoney,settlementCosts,
+		costsMoney,
 		bankAccount )
 		values (#{userName},
-		#{bankName}, #{openBankName}, #{payMoney},
+		#{bankName}, #{openBankName}, #{payMoney},#{settlementCosts},#{costsMoney}, 
 		#{bankAccount})
 	</insert>
 

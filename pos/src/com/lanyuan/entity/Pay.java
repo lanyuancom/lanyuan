@@ -21,8 +21,11 @@ public class Pay implements java.io.Serializable{
 
 	private String bankAccount;
 	
-	private String payMoney;
+	private String payMoney;//申请结算的费用－手续费
 	
+	private String settlementCosts;//手续费
+	
+	private String costsMoney;//申请结算的费用
 
 	private String payState;//0 表示未结算 1 表示已经结算
 
@@ -90,6 +93,22 @@ public class Pay implements java.io.Serializable{
 
 	public void setPayState(String payState) {
 		this.payState = payState;
+	}
+
+	public String getSettlementCosts() {
+		return settlementCosts;
+	}
+
+	public void setSettlementCosts(String settlementCosts) {
+		this.settlementCosts = settlementCosts;
+	}
+
+	public String getCostsMoney() {
+		return costsMoney;
+	}
+
+	public void setCostsMoney(String costsMoney) {
+		this.costsMoney = costsMoney;
 	}
 
 }

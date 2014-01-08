@@ -83,5 +83,9 @@ public class Rates implements Serializable{
 	public void setHolidayCosts(String holidayCosts) {
 		this.holidayCosts = holidayCosts;
 	}
+	@Override
+	public String toString() {
+		return "Rates [id=" + id + ", userName=" + userName + ", tradingRates=" + tradingRates + ", channelname=" + channelname + ", settlementCosts=" + settlementCosts + ", holidayCosts=" + holidayCosts + ", settlementCaps=" + settlementCaps + ", mark=" + mark + ", updateTime=" + updateTime + "]";
+	}
 
 }

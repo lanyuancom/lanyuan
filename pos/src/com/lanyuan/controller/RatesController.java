@@ -48,8 +48,10 @@ public class RatesController {
 		return "redirect:query.html";
 	}
 	@RequestMapping(value="money")
-	public String money(){
-		return Common.ROOT_PATH+"/background/rates/money";
+	public String money(Model model,String ratesId){
+		Rates rates = ratesService.getById(ratesId);
+		model.addAttribute("rates", rates);
+		return "money";
 	}
 	@RequestMapping(value="pay")
 	public String pay(){
@@ -78,6 +80,8 @@ public class RatesController {
 	public String queryChildRates(Model model,User user,String pageNow,HttpServletRequest request){
 		User u = (User)request.getSession().getAttribute("userSession");
 		if(!"super".equals(u.getRoleName())){
+			user.setParentNumber(request.getSession().getAttribute("userSessionId").toString());
+		}else if(!"admin".equals(u.getRoleName())){
 			user.setParentNumber(request.getSession().getAttribute("userSessionId").toString());
 		}
 		PageView pageView = null;

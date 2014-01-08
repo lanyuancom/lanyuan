@@ -12,9 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lanyuan.entity.Rates;
 import com.lanyuan.entity.Roles;
 import com.lanyuan.entity.User;
 import com.lanyuan.entity.UserRoles;
+import com.lanyuan.service.RatesService;
 import com.lanyuan.service.RolesService;
 import com.lanyuan.service.UserService;
 import com.lanyuan.util.Common;
@@ -36,6 +38,8 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private RolesService rolesService;
+	@Autowired
+	private RatesService ratesService;
 	/**
 	 * @param model
 	 * 存放返回界面的model
@@ -43,6 +47,40 @@ public class UserController {
 	 */
 	@RequestMapping("query")
 	public String query(Model model, User user, String pageNow,HttpServletRequest request) {
+		User u = (User)request.getSession().getAttribute("userSession");
+		if(!"super".equals(u.getRoleName())||!"admin".equals(u.getRoleName())){
+			PageView pageView = null;
+			if (Common.isEmpty(pageNow)) {
+				pageView = new PageView(1);
+			} else {
+				pageView = new PageView(Integer.parseInt(pageNow));
+			}
+			pageView = userService.query(pageView, user);
+			model.addAttribute("pageView", pageView);
+			return Common.ROOT_PATH+"/background/user/list";
+		}else{
+			//非管理员
+			if(user != null && "0".equals(user.getStatus())){
+				if(!"super".equals(u.getRoleName())&&!"admin".equals(u.getRoleName())){
+					user.setParentNumber(request.getSession().getAttribute("userSessionId").toString());
+					PageView pageView = null;
+					if (Common.isEmpty(pageNow)) {
+						pageView = new PageView(1);
+					} else {
+						pageView = new PageView(Integer.parseInt(pageNow));
+					}
+					user.setStatus(null);
+					pageView = userService.query(pageView, user);
+					model.addAttribute("pageView", pageView);
+					return Common.ROOT_PATH+"/background/user/list";
+				}
+			}
+			return Common.ROOT_PATH+"/background/user/show";
+		}
+	}
+	
+	@RequestMapping("edit")
+	public String edit(Model model, User user, String pageNow,HttpServletRequest request) {
 		User u = (User)request.getSession().getAttribute("userSession");
 		if(!"super".equals(u.getRoleName())){
 			user.setParentNumber(request.getSession().getAttribute("userSessionId").toString());
@@ -55,9 +93,8 @@ public class UserController {
 		}
 		pageView = userService.query(pageView, user);
 		model.addAttribute("pageView", pageView);
-		return Common.ROOT_PATH+"/background/user/list";
+		return Common.ROOT_PATH+"/background/user/edit";
 	}
-
 	/**
 	 * 保存数据
 	 * 
@@ -86,6 +123,20 @@ public class UserController {
 		}
 		return map;
 	}
+	@RequestMapping("checkUserStatus")
+	public String checkUserStatus(Model model,String userId) {
+		User user = userService.getById(userId);
+		model.addAttribute("userInfo", user);
+		return Common.ROOT_PATH+"/background/user/checkUserStatus";
+	}
+	
+	@ResponseBody
+	@RequestMapping("checkStatus")
+	public String checkStatus(User user){
+		userService.modify(user);
+		return null;
+	}
+	
 	/**
 	 * 跑到新增界面
 	 * 
@@ -93,7 +144,9 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("addUI")
-	public String addUI() {
+	public String addUI(Model model) {
+		List<Rates> rates = ratesService.queryAll(new Rates());
+		model.addAttribute("rates", rates);
 		return Common.ROOT_PATH+"/background/user/add";
 	}
 
@@ -121,8 +174,8 @@ public class UserController {
 	public String getById(Model model, String userId) {
 		User user = userService.getById(userId);
 		model.addAttribute("user", user);
-		 List<Roles> roles=rolesService.queryAll(new Roles());
-		 model.addAttribute("roles", roles);
+		List<Rates> rates = ratesService.queryAll(new Rates());
+		model.addAttribute("rates", rates);
 			return Common.ROOT_PATH+"/background/user/edit";
 	}
 	@RequestMapping("show")

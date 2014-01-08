@@ -43,10 +43,10 @@
 	<!-- 增加用户 -->
 	<insert id="add" parameterType="PayMent">
 		insert into payment ( userName,
-		orderId, tradingMoney,channelname,
+		orderId, tradingMoney,channelname,payState
 		realMoney )
 		values (#{userName},
-		#{orderId}, #{tradingMoney}, #{channelname},
+		#{orderId}, #{tradingMoney}, #{channelname}, #{payState}
 		#{realMoney})
 	</insert>
 	<delete id="deleteById" parameterType="String">

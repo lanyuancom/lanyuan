@@ -27,6 +27,17 @@
 				</if>
 		</where>
 	</select>
+	<select id="queryAll" resultType="Rates" parameterType="Rates">
+		select
+		<include refid="selectId" />
+		from rates
+		<where>
+			<if test="channelname != null and channelname != ''">
+				channelname like '%${channelname}%'
+				</if>
+		</where>
+	</select>
+	
 	<!-- 总记录数 -->
 	<select id="count" parameterType="Rates" resultType="int">
 		select count(0) from rates
@@ -45,8 +56,7 @@
 		tradingRates, settlementCosts,
 		settlementCaps, mark)
 		values (#{channelname},
-		#{tradingRates}, #{settlementCosts},#{holidayCosts},
-		#{settlementCaps},
+		#{tradingRates}, #{settlementCosts},#{settlementCaps},
 		#{mark})
 	</insert>
 

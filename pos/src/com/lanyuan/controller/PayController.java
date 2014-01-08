@@ -46,10 +46,18 @@ public class PayController {
 	 */
 	@RequestMapping(value="add")
 	public String add(Model model,Pay pay,HttpServletRequest request){
+		Double co = Double.parseDouble(pay.getCostsMoney());
+		Double paMon = Double.parseDouble(pay.getSettlementCosts());
+		String money = (co-paMon)+"";
+		pay.setPayMoney(money);
 		payService.add(pay);
 		return "redirect:query.html";
 	}
-	
+	public static void main(String[] args) {
+		double d= 0.003;
+		double b = 10000;
+		System.out.println(b-b*d);
+	}
 	/**
 	 * 分页查询文章
 	 * @param model

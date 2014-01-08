@@ -33,6 +33,8 @@
 		pay,
 		mark,
 		status,
+		ratesId,
+		(select channelname from rates where rates.id=ratesId) channelname,
 		parentNumber
 	</sql>
 	<!--resultType="User" 每返回一条结果封装到User里 -->
@@ -49,6 +51,9 @@
 			</if>
 			<if test="t.parentNumber != null and t.parentNumber != ''">
 				and parentNumber = #{t.parentNumber}
+			</if>
+			<if test="t.status != null and t.status != ''">
+				and status = #{t.status}
 			</if>
 		</where>
 	</select>
@@ -128,6 +133,7 @@
 		pay,
 		mark,
 		status,
+		ratesId,
 		parentNumber )
 		values (#{userName},
 		#{userPassword},
@@ -144,7 +150,7 @@
 		#{openBankName},
 		#{bankAccountName}, #{bankAccount}, #{accountType},
 		#{pay},
-		#{mark},#{status},
+		#{mark},#{status},#{ratesId},
 		#{parentNumber})
 	</insert>
 
@@ -238,7 +244,10 @@
 		status=#{status},
 		</if>
 		<if test="parentNumber != null and parentNumber != ''">
-		parentNumber =#{parentNumber}
+		parentNumber =#{parentNumber},
+		</if>
+		<if test="ratesId != null and ratesId != ''">
+		ratesId =#{ratesId},
 		</if>
 		</set>
 		where userId=#{userId}

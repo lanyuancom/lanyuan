@@ -66,6 +66,10 @@ public class User implements java.io.Serializable {
 	private String status;
 
 	private String parentNumber;
+	
+	private String ratesId;
+	
+	private String channelname;
 	// 一个集合roles，初始容量为0
 	private Set<Roles> roles = new HashSet<Roles>(0);
 
@@ -315,5 +319,21 @@ public class User implements java.io.Serializable {
 
 	public void setUserIdCard(String userIdCard) {
 		this.userIdCard = userIdCard;
+	}
+
+	public String getRatesId() {
+		return ratesId;
+	}
+
+	public void setRatesId(String ratesId) {
+		this.ratesId = ratesId;
+	}
+
+	public String getChannelname() {
+		return channelname;
+	}
+
+	public void setChannelname(String channelname) {
+		this.channelname = channelname;
 	}
 }
