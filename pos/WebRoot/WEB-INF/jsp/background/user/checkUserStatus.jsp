@@ -4,6 +4,23 @@
 <html>
   <head>
     <%@include file="../../common/common-css.jsp" %>
+<script type="text/javascript"
+	src="${pageContext.servletContext.contextPath }/js/jquery_1_7_2_min.js"></script>
+    <script type="text/javascript">
+    function checkUser(status){
+    	$.ajax({
+                url: "${pageContext.servletContext.contextPath }/background/user/checkStatus.html",
+                type: "POST",
+                async:false,
+                data: {"status":status,"userId":"${userInfo.userId}"},
+                dataType:'json',
+                success: function(data) {
+               		alert("处理成功！！");
+                }
+
+            });
+    }
+    </script>
   </head>
   
   <body>
@@ -15,7 +32,7 @@
 				<tr>
 					<td height="30" colspan="4">
 						<div align="center">
-							<font color="blue" size="5"><b>结算账号</b> </font>
+							<font color="blue" size="5"><b>审核客户</b> </font>
 						</div>
 					</td>
 				</tr>
@@ -25,7 +42,7 @@
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.userName}
+							${userInfo.userName}
 						</div>
 					</td>
 					<td height="30" width="10%">
@@ -33,7 +50,7 @@
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.bankAccountName}
+							${userInfo.bankAccountName}
 						</div>
 					</td>
 				</tr>
@@ -50,7 +67,7 @@
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.bankAccount}
+							${userInfo.bankAccount}
 						</div>
 					</td>
 				</tr>
@@ -61,7 +78,7 @@
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.userRealname} 
+							${userInfo.userRealname} 
 						</div>
 					</td>
 					<td height="30" width="10%">
@@ -69,7 +86,7 @@
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.bankName} 
+							${userInfo.bankName} 
 						</div>
 					</td>
 				</tr>
@@ -81,7 +98,7 @@
 					<td>
 						<div align="left" class="STYLE1"
 							style="padding-left:10px;color: red;">
-								${userSession.userIdCard} 
+								${userInfo.userIdCard} 
 						</div>
 					</td>
 					
@@ -90,7 +107,7 @@
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.province} 
+							${userInfo.province} 
 						</div>
 					</td>
 				</tr>
@@ -100,7 +117,7 @@
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-						${userSession.channelname} 
+						${userInfo.channelname} 
 						</div>
 					</td>
 					
@@ -109,7 +126,7 @@
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.city} 
+							${userInfo.city} 
 						</div>
 					</td>
 				</tr>
@@ -120,7 +137,7 @@
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.userQQ}
+							${userInfo.userQQ}
 						</div>
 					</td>
 					
@@ -129,7 +146,7 @@
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.subbranchBank}
+							${userInfo.subbranchBank}
 						</div>
 					</td>
 				</tr>
@@ -139,7 +156,7 @@
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.pay}
+							${userInfo.pay}
 						</div>
 					</td>
 					<td height="30" width="10%">
@@ -147,7 +164,26 @@
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-						${userSession.accountType}
+						${userInfo.accountType}
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td height="30" width="10%">
+						<div align="right" class="STYLE1">用户状态：</div>
+					</td>
+					<td>
+						<div align="left" class="STYLE1" style="padding-left:10px;color: red">
+							<input type="hidden" name="status" value="0" />待审核
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" style="padding: 10px">
+						<div align="center">
+							<input type="button" value="　同　意　" class="input_btn_style1"
+								onclick="checkUser('1');" />&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<input type="button" value="　不同意　" class="input_btn_style1"
+								onclick="checkUser('0');" />
 						</div>
 					</td>
 				</tr>

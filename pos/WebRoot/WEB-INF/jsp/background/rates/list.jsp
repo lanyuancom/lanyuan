@@ -69,8 +69,7 @@
  			<td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">支付通道</td>
             <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">通道说明</span></td>
             <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">交易费率</span></td>
-            <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">上班时间结算 </span></td>
-            <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">其他时间结算 </td>
+            <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">结算费用 </span></td>
              <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">结算限额 </td>
             <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">支付链接</td>
             <td width="23%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">操作</td>
@@ -86,10 +85,9 @@
             <td height="20" ><span class="STYLE1">${rates.mark}</span></td>
             <td height="20" ><span class="STYLE1">${rates.tradingRates}</span></td>
             <td height="20" ><span class="STYLE1">${rates.settlementCosts} 元/笔</span></td>
-            <td height="20" ><span class="STYLE1">${rates.holidayCosts} 元/笔</span></td>
             <td height="20" ><span class="STYLE1">${rates.settlementCaps} 元/次</span></td>
             <td height="20" ><span class="STYLE1">
-     <a href="javascript:void(0);" onclick="openWindow('${pageContext.servletContext.contextPath }/money.jsp','支付');">立即支付</a>
+     <a href="javascript:void(0);" onclick="openWindow('${pageContext.servletContext.contextPath }/background/rates/money.html?ratesId=${rates.id}','支付');">立即支付</a>
             </span></td>
             <td height="20" ><span class="STYLE4">
              <a href="${pageContext.servletContext.contextPath }/background/payMent/query.html">

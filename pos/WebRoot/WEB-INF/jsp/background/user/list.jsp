@@ -5,6 +5,9 @@
 <head>
 <%@include file="../../common/common-css.jsp" %>
 <%@include file="../../common/common-js.jsp" %>
+
+<script type="text/javascript"
+	src="${pageContext.servletContext.contextPath }/js/jquery_1_7_2_min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.servletContext.contextPath }/css/fenyecss.css" />
 <script type="text/javascript">
@@ -30,6 +33,38 @@ function userRole(id){
 	 window.showModalDialog(url, window, params);
 	 //location.href=url;
 }
+
+function checkUser(userId){
+	window.location.href="${pageContext.servletContext.contextPath }/background/user/checkUserStatus.html?userId="+userId;   
+}
+function checkRates(){    
+  var obj=document.getElementsByName('check');  //选择所有name="'test'"的对象，返回数组    
+  //取到对象数组后，我们来循环检测它是不是被选中    
+  var s='';    
+  for(var i=0; i<obj.length; i++){    
+    if(obj[i].checked) s+=obj[i].value+',';  //如果选中，将value添加到变量s中    
+  }    
+  //那么现在来检测s的值就知道选中的复选框的值了    
+  var strs=s.split(","); 
+  if(strs != ""){
+  	if(strs.length > 2){
+  		alert("只能选择一个上客户！");
+  		return ;
+  	}else{
+  		var url = "${pageContext.servletContext.contextPath }/background/user/checkRates.html?userId="+strs[0];
+	 var h_sp1 = 420;
+	 var w_sp1 = 600;
+	//兼容IE，firefox,google.模态窗口居中问题
+	 var iTop2 = (window.screen.availHeight - 20 - h_sp1) / 2;
+	 var iLeft2 = (window.screen.availWidth - 10 - w_sp1) / 2;
+	 var params = 'menubar:no;dialogHeight=' + h_sp1 + 'px;dialogWidth=' + w_sp1 + 'px;dialogLeft=' + iLeft2 + 'px;dialogTop=' + iTop2 + 'px;resizable=yes;scrollbars=0;resizeable=0;center=yes;location:no;status:no;scroll:no'
+	 window.showModalDialog(url, window, params);
+  	}
+  }else{
+  	alert("你还没有选择！");   
+  }
+  
+}    
 </script>
 </head>
 <body>
@@ -61,9 +96,9 @@ function userRole(id){
 			<legend><img src="${pageContext.servletContext.contextPath }/images/search_btn.gif" align="middle"/>&nbsp;<span class="STYLE1" style="color: blue;">高级查找</span></legend>
 			<div class="search_content">
 				用户名：<input type="text" name="userName" value="${param.userName}" style="height: 20px"/>　　
-				昵称：<input type="text" name="userNickname" value="${param.userNickname}" style="height: 20px"/>　
 				<input type="submit" value="开始查询" class="input_btn_style1"/>&nbsp;&nbsp;
 				<input type="reset" value="重置" class="input_btn_style1"/>
+				<input type="hidden" value="${param.status}" class="input_btn_style1" name="status"/>
 			</div>
 		</fieldset>
 	</div>
@@ -73,6 +108,9 @@ function userRole(id){
     <td>
     <div style="padding-left: 10px;padding-bottom: 5px;">
          <input type="button" value="批量删除" class="input_btn_style1" onclick="return deleteAll()"/>&nbsp;&nbsp;
+     </div>
+      <div style="padding-left: 10px;padding-bottom: 5px;">
+         <input type="button" value="添加客户费率" class="input_btn_style1" onclick="return checkRates()"/>&nbsp;&nbsp;
      </div>
     <table class="listtable" width="100%">
       <tr>
@@ -85,14 +123,23 @@ function userRole(id){
  
             <td width="12%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">用户名</span></td>
            <%--  <td width="12%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">所属组</span></td> --%>
-            <td width="12%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">昵称</td>
+            <td width="12%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">所属通道</td>
+            
+            <td width="15%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">账号类型</td>
             <td width="15%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">注册时间</td>
-            <td width="15%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">最后一次登录时间</td>
-            <td width="3%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">等级</td>
+            
+            <c:if test="${userSession.roleName eq 'admin' && param.status eq '0'}">
+            <td width="5%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">状态</td>
+            </c:if>
+            <c:if test="${userSession.roleName ne 'admin'}">
+            <td width="5%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">状态</td>
+            </c:if>
             <td width="30%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">基本操作</td>
           </tr>
           
           <c:forEach var="key" items="${pageView.records}">
+          <c:if test="${key.level ne '0'}">
+          
           <tr>
             <td height="20" >
               <input type="checkbox" name="check" value="${key.userId}" />
@@ -100,19 +147,47 @@ function userRole(id){
             
             <td height="20" ><span class="STYLE1"><a href="${pageContext.servletContext.contextPath }/background/user/getById.html?userId=${key.userId}&&type=0">${key.userName}</a></span></td>
             <%-- <td height="20" ><span class="STYLE1" style="color: blue;">${key.roleName}</span></td> --%>
-            <td height="20" ><span class="STYLE1">${key.userNickname}</span></td>
+            <td height="20" ><span class="STYLE1">${key.channelname}</span></td>
             <td height="20" ><span class="STYLE1">
-            <fmt:parseDate value="${key.regTime}" var="date" pattern="yyyy-MM-dd HH:mm:ss" />
-			<fmt:formatDate value="${date}" pattern="yyyy-MM-dd HH:mm:ss" />
+           ${key.accountType}
             </span></td>
             <td height="20" ><span class="STYLE1">
-            <fmt:parseDate value="${key.lastLogintime}" var="date" pattern="yyyy-MM-dd HH:mm:ss" />
+             <fmt:parseDate value="${key.regTime}" var="date" pattern="yyyy-MM-dd HH:mm:ss" />
 			<fmt:formatDate value="${date}" pattern="yyyy-MM-dd HH:mm:ss" />
             </span></td>
-            <td height="20" ><span class="STYLE1">${key.level}</span></td>
-            
+            <c:if test="${userSession.roleName eq 'admin' && param.status eq '0'}">
+            <td height="20" ><span class="STYLE1">
+			<c:if test="${key.status eq '0'}">
+			<font color="red">待审核</font>
+			</c:if>
+			<c:if test="${key.status eq '1'}">
+			<font color="red">审核通过</font>
+			</c:if>
+            </span></td>
+            </c:if>
+             <c:if test="${userSession.roleName ne 'admin'}">
+             <td height="20" ><span class="STYLE1">
+			<c:if test="${key.status eq '0'}">
+			<font color="red">待审核</font>
+			</c:if>
+			<c:if test="${key.status eq '1'}">
+			<font color="red">审核通过</font>
+			</c:if>
+            </span></td>
+             </c:if>
             <td height="20" ><span class="STYLE4">
+            <c:if test="${userSession.roleName eq 'admin' && param.status eq '0'}">
+            &nbsp; &nbsp;
+            <a href="javascript:void(0);" onclick="checkUser('${key.userId}')">审核客户
+            </a>
+            </c:if>
+            <c:if test="${userSession.roleName eq 'super'}">
+            &nbsp; &nbsp;
+            <a href="javascript:void(0);" onclick="checkUser('${key.userId}')">审核客户
+            </a>
+            </c:if>
              <sec:authorize ifAnyGranted="ROLE_sys_user_fenpeirole">
+             &nbsp; &nbsp;
              <img src="${pageContext.servletContext.contextPath }/images/role.png" width="16" height="16" />
             	<a href="javascript:void(0);" onclick="userRole('${key.userId}')">
             	分配角色</a>
@@ -126,7 +201,6 @@ function userRole(id){
             <a href="${pageContext.servletContext.contextPath }/background/user/getById.html?userId=${key.userId}&&type=1">
                                      编辑
             </a>
-            &nbsp; &nbsp;
            </sec:authorize>
            <sec:authorize ifAnyGranted="ROLE_sys_user_delete">
             <img src="${pageContext.servletContext.contextPath }/images/del.gif" width="16" height="16" />
@@ -135,6 +209,7 @@ function userRole(id){
             	</sec:authorize>
             	</span></td>
           </tr>
+          </c:if>
           </c:forEach>
         </table></td>
         <td width="8" background="${pageContext.servletContext.contextPath }/images/tab_15.gif">&nbsp;</td>

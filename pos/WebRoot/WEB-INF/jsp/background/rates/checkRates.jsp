@@ -19,7 +19,7 @@
 				<td height="30"
 					 colspan="2">
 					<div align="center">
-					<font color="blue" size="6" ><b>新增</b></font>
+					<font color="blue" size="6" ><b>结算通道</b></font>
 					</div>
 				</td>
 			</tr>
@@ -31,7 +31,7 @@
 					</td>
 					<td >
 						<div align="left" class="STYLE1"  style="padding-left:10px;">
-						<input style="height: 20px;width: 200px" name="channelname"/>
+						${rates.channelname}
 						</div>
 					</td>
 				</tr>
@@ -62,12 +62,24 @@
 				<tr>	
 					<td height="30"width="20%" >
 						<div align="right" class="STYLE1">
-								结算费用：
+								上班时间结算：
 						</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1"  style="padding-left:10px;">
 						<input style="height: 20px;width: 200px" name="settlementCosts"/>元/笔
+						</div>
+					</td>
+				</tr>
+				<tr>	
+					<td height="30"width="20%" >
+						<div align="right" class="STYLE1" >
+								其他时间结算：
+						</div>
+					</td>
+					<td >
+						<div align="left" class="STYLE1"  style="padding-left:10px;">
+						<input style="height: 20px;width: 200px" name="holidayCosts"/>元/笔
 						</div>
 					</td>
 				</tr>

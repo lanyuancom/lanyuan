@@ -48,7 +48,8 @@
   </td>
   </tr>
   <tr>
-    <td><table class="listtable" width="100%">
+    <td>
+    <table class="listtable" width="100%">
       <tr>
         <td width="8" background="${pageContext.servletContext.contextPath }/images/tab_12.gif">&nbsp;</td>
         <td><table class="ttab" width="100%" cellspacing="1" onmouseover="changeto()"  onmouseout="changeback()">
@@ -57,8 +58,7 @@
  			<td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">支付通道</td>
             <td width="10%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">通道说明</span></td>
             <td width="10%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">交易费率</span></td>
-            <td width="10%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">上班时间结算 </span></td>
-            <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">其他时间结算 </td>
+            <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">结算费用 </td>
              <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">结算上限 </td>
           </tr>
           
@@ -69,7 +69,6 @@
             <td height="20" ><span class="STYLE1">${rates.channelname}</span></td>
             <td height="20" ><span class="STYLE1">${rates.tradingRates}元/笔</span></td>
             <td height="20" ><span class="STYLE1">${rates.settlementCosts}元/笔</span></td>
-            <td height="20" ><span class="STYLE1">${rates.holidayCosts}元/笔</span></td>
             <td height="20" ><span class="STYLE1">${rates.settlementCaps}元/次</span></td>
           </tr>
           </c:forEach>
