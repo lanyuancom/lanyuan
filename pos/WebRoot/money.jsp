@@ -93,9 +93,6 @@
 					<input type="hidden"  name="TransID" value="<%=TransID%>" />
 					<input name='TradeDate' type="hidden" value= "<%=TradeDate%>" />
       <input width="350" type="hidden" name="MerchantID" value="<%=MerchantID%>"/>
-							<input type="hidden" name="accNum"
-								value="1372341732839mES24A72C7N57NH" id="accNum"> <input
-								type="hidden" name="tunnel.id" value="7" id="tunnel_id">
 							<ol>
 								<li>
 									<div for="name">结算客户&nbsp;&nbsp;&nbsp;&nbsp;</div>
@@ -105,7 +102,10 @@
 									</div></li>
 								<li>
 									<div for="email">支付通道&nbsp;&nbsp;&nbsp;&nbsp;</div>
-									<div class="inputClass">宝付通道</div></li>
+									<div class="inputClass">宝付通道
+									<input name="Channelname"
+											id="Channelname" type="hidden" class="text" value="宝付通道">
+									</div></li>
 								<li>
 									<div>
 										付款金额&nbsp;&nbsp;&nbsp;&nbsp;<input name="OrderMoney"

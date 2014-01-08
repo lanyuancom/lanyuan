@@ -1,3 +1,5 @@
+<%@page import="com.lanyuan.entity.User"%>
+<%@page import="com.lanyuan.util.Common"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@page import="java.util.*"%>
@@ -10,6 +12,7 @@
 	String TradeDate = request.getParameter("TradeDate");//下单日期
 	String TransID = request.getParameter("TransID");//商户流水号
 	String OrderMoney = request.getParameter("OrderMoney");//订单金额
+	String oMen = OrderMoney;
 	if (!"".equals(OrderMoney)) 
 	{	Double a;
 		a = Double.parseDouble(OrderMoney)*100; //使用分进行提交
@@ -28,10 +31,12 @@
 	String URL_old="https://paygate.baofoo.com/PayReceive/payindex.aspx";//借贷混合
 	String URL_new="https://paygate.baofoo.com/PayReceive/bankpay.aspx";//借贷分离
 
-	session.setAttribute("OrderMoney",OrderMoney); //设置提交金额的Session
+	session.setAttribute("OrderMoney",oMen); //设置提交金额的Session
+	session.setAttribute("Channelname",request.getParameter("Channelname"));
+	User u = (User)session.getAttribute("userSession");
+	session.setAttribute("userName",u.getUserName());
  %>
  
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
