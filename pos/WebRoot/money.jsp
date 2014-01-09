@@ -51,7 +51,7 @@
 		$("#" + hidenId).hide();
 	}
 	function sub() {
-	    var tradingRates="${userSession.tradingRates}";
+	    var tradingRates="${userInfo.tradingRates}";
 	    if (tradingRates==""||isNaN(parseFloat(tradingRates))) {
 	    	alert("用户的费率:"+tradingRates+"  有误！请联系管理员！！");
 	    	return;
@@ -104,8 +104,8 @@
 								<li>
 									<div for="name">结算客户&nbsp;&nbsp;&nbsp;&nbsp;</div>
 									<div class="inputClass">
-										客户账户&nbsp;&nbsp;<span style="color:red;">${userSession.userName}</span>&nbsp;&nbsp;&nbsp;&nbsp;客户姓名&nbsp;&nbsp;<span
-											style="color:red;">${userSession.userRealname}</span>
+										客户账户&nbsp;&nbsp;<span style="color:red;">${userInfo.userName}</span>&nbsp;&nbsp;&nbsp;&nbsp;客户姓名&nbsp;&nbsp;<span
+											style="color:red;">${userInfo.userRealname}</span>
 									</div></li>
 								<li>
 									<div for="email">支付通道&nbsp;&nbsp;&nbsp;&nbsp;</div>
@@ -113,7 +113,7 @@
 									<input name="Channelname"
 											id="Channelname" type="hidden" class="text" value="${rates.channelname}">
 											<input name="tradingRates"
-											id="tradingRates" type="hidden" class="text" value="${userSession.tradingRates}">
+											id="tradingRates" type="hidden" class="text" value="${userInfo.tradingRates}">
 									</div></li>
 								<li>
 									<div>
