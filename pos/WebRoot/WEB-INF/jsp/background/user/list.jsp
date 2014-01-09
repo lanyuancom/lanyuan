@@ -37,34 +37,6 @@ function userRole(id){
 function checkUser(userId){
 	window.location.href="${pageContext.servletContext.contextPath }/background/user/checkUserStatus.html?userId="+userId;   
 }
-function checkRates(){    
-  var obj=document.getElementsByName('check');  //选择所有name="'test'"的对象，返回数组    
-  //取到对象数组后，我们来循环检测它是不是被选中    
-  var s='';    
-  for(var i=0; i<obj.length; i++){    
-    if(obj[i].checked) s+=obj[i].value+',';  //如果选中，将value添加到变量s中    
-  }    
-  //那么现在来检测s的值就知道选中的复选框的值了    
-  var strs=s.split(","); 
-  if(strs != ""){
-  	if(strs.length > 2){
-  		alert("只能选择一个上客户！");
-  		return ;
-  	}else{
-  		var url = "${pageContext.servletContext.contextPath }/background/user/checkRates.html?userId="+strs[0];
-	 var h_sp1 = 420;
-	 var w_sp1 = 600;
-	//兼容IE，firefox,google.模态窗口居中问题
-	 var iTop2 = (window.screen.availHeight - 20 - h_sp1) / 2;
-	 var iLeft2 = (window.screen.availWidth - 10 - w_sp1) / 2;
-	 var params = 'menubar:no;dialogHeight=' + h_sp1 + 'px;dialogWidth=' + w_sp1 + 'px;dialogLeft=' + iLeft2 + 'px;dialogTop=' + iTop2 + 'px;resizable=yes;scrollbars=0;resizeable=0;center=yes;location:no;status:no;scroll:no'
-	 window.showModalDialog(url, window, params);
-  	}
-  }else{
-  	alert("你还没有选择！");   
-  }
-  
-}    
 </script>
 </head>
 <body>
@@ -108,9 +80,6 @@ function checkRates(){
     <td>
     <div style="padding-left: 10px;padding-bottom: 5px;">
          <input type="button" value="批量删除" class="input_btn_style1" onclick="return deleteAll()"/>&nbsp;&nbsp;
-     </div>
-      <div style="padding-left: 10px;padding-bottom: 5px;">
-         <input type="button" value="添加客户费率" class="input_btn_style1" onclick="return checkRates()"/>&nbsp;&nbsp;
      </div>
     <table class="listtable" width="100%">
       <tr>
