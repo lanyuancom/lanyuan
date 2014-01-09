@@ -132,7 +132,6 @@
 		accountType,
 		pay,
 		mark,
-		status,
 		ratesId,
 		parentNumber )
 		values (#{userName},
@@ -150,7 +149,7 @@
 		#{openBankName},
 		#{bankAccountName}, #{bankAccount}, #{accountType},
 		#{pay},
-		#{mark},#{status},#{ratesId},
+		#{mark},#{ratesId},
 		#{parentNumber})
 	</insert>
 
