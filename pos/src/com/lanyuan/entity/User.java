@@ -70,6 +70,17 @@ public class User implements java.io.Serializable {
 	private String ratesId;
 	
 	private String channelname;
+	
+   private String payMoney;//申请结算的费用－手续费
+	
+	
+	private String workCosts;//上班时间结算费用
+	
+	private String afterWorkCosts;//其他时间结算费用
+	
+	private String tradingRates;//交易费率 
+	
+	private String amountMoney;//账号余额
 	// 一个集合roles，初始容量为0
 	private Set<Roles> roles = new HashSet<Roles>(0);
 
@@ -335,5 +346,45 @@ public class User implements java.io.Serializable {
 
 	public void setChannelname(String channelname) {
 		this.channelname = channelname;
+	}
+
+	public String getPayMoney() {
+		return payMoney;
+	}
+
+	public void setPayMoney(String payMoney) {
+		this.payMoney = payMoney;
+	}
+
+	public String getTradingRates() {
+		return tradingRates;
+	}
+
+	public void setTradingRates(String tradingRates) {
+		this.tradingRates = tradingRates;
+	}
+
+	public String getAmountMoney() {
+		return amountMoney;
+	}
+
+	public void setAmountMoney(String amountMoney) {
+		this.amountMoney = amountMoney;
+	}
+
+	public String getWorkCosts() {
+		return workCosts;
+	}
+
+	public void setWorkCosts(String workCosts) {
+		this.workCosts = workCosts;
+	}
+
+	public String getAfterWorkCosts() {
+		return afterWorkCosts;
+	}
+
+	public void setAfterWorkCosts(String afterWorkCosts) {
+		this.afterWorkCosts = afterWorkCosts;
 	}
 }

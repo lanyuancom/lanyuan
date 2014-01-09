@@ -35,6 +35,8 @@
 		status,
 		ratesId,
 		(select channelname from rates where rates.id=ratesId) channelname,
+		payMoney,workCosts,afterWorkCosts,tradingRates,
+	    amountMoney,
 		parentNumber
 	</sql>
 	<!--resultType="User" 每返回一条结果封装到User里 -->
@@ -63,11 +65,8 @@
 		select
 		u.userName,
 		r.channelname,
-		r.tradingRates,
-		r.settlementCosts,
-		r.holidayCosts,
-		r.settlementCaps,
-		r.updateTime,
+		u.tradingRates,
+	    r.settlementCaps,
 		r.mark
 		from user u,rates r
 		<where>
@@ -133,6 +132,8 @@
 		pay,
 		mark,
 		ratesId,
+		payMoney,workCosts,afterWorkCosts,tradingRates,
+	    amountMoney,
 		parentNumber )
 		values (#{userName},
 		#{userPassword},
@@ -150,6 +151,8 @@
 		#{bankAccountName}, #{bankAccount}, #{accountType},
 		#{pay},
 		#{mark},#{ratesId},
+		#{payMoney},#{workCosts},#{afterWorkCosts},#{tradingRates},
+		#{amountMoney},
 		#{parentNumber})
 	</insert>
 
@@ -247,6 +250,21 @@
 		</if>
 		<if test="ratesId != null and ratesId != ''">
 		ratesId =#{ratesId},
+		</if>
+		<if test="payMoney != null and payMoney != ''">
+		payMoney =#{payMoney},
+		</if>
+		<if test="workCosts != null and workCosts != ''">
+		workCosts =#{workCosts},
+		</if>
+		<if test="afterWorkCosts != null and afterWorkCosts != ''">
+		afterWorkCosts =#{afterWorkCosts},
+		</if>
+		<if test="tradingRates != null and tradingRates != ''">
+		tradingRates =#{tradingRates},
+		</if>
+		<if test="amountMoney != null and amountMoney != ''">
+		amountMoney =#{amountMoney}
 		</if>
 		</set>
 		where userId=#{userId}

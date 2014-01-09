@@ -48,9 +48,11 @@ public class RatesController {
 		return "redirect:query.html";
 	}
 	@RequestMapping(value="money")
-	public String money(Model model,String ratesId){
+	public String money(Model model,String ratesId,HttpServletRequest request){
 		Rates rates = ratesService.getById(ratesId);
 		model.addAttribute("rates", rates);
+		User user = userService.getById(request.getSession().getAttribute("userSessionId").toString());
+		model.addAttribute("userInfo", user);
 		return "money";
 	}
 	@RequestMapping(value="pay")

@@ -1,5 +1,5 @@
 package com.lanyuan.entity;
-import java.sql.Date;
+import java.util.*;
 
 @SuppressWarnings("serial")
 public class Pay implements java.io.Serializable{
@@ -21,7 +21,7 @@ public class Pay implements java.io.Serializable{
 
 	private String bankAccount;
 	
-	private String payMoney;//申请结算的费用－手续费
+	private String payMoney;//申请结算的费用－手续费  //结算应得金额
 	
 	private String settlementCosts;//手续费
 	
@@ -29,7 +29,9 @@ public class Pay implements java.io.Serializable{
 
 	private String payState;//0 表示未结算 1 表示已经结算
 
-	private Date payTime;
+	private Date payTime;//申请结算时间
+	
+	private Date settlementTime;//审核通过的结算时间
 
 	public int getId() {
 		return id;
@@ -109,6 +111,14 @@ public class Pay implements java.io.Serializable{
 
 	public void setCostsMoney(String costsMoney) {
 		this.costsMoney = costsMoney;
+	}
+
+	public Date getSettlementTime() {
+		return settlementTime;
+	}
+
+	public void setSettlementTime(Date settlementTime) {
+		this.settlementTime = settlementTime;
 	}
 
 }

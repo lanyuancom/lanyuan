@@ -2,6 +2,8 @@ package com.lanyuan.log;
 
 import java.net.InetAddress;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Component;
 import com.lanyuan.dao.LogDao;
 import com.lanyuan.entity.Log;
 import com.lanyuan.util.Common;
+import com.lanyuan.util.SysContent;
 
 /**
  * AOP注解方法实现日志管理 利用spring AOP 切面技术记录日志 定义切面类（这个是切面类和切入点整天合在一起的),这种情况是共享切入点情况;
@@ -25,7 +28,7 @@ import com.lanyuan.util.Common;
 public class LogAopAction {
 	@Autowired
 	private LogDao logDao;
-
+	
 	@Around("execution(* com.lanyuan.service.impl.*.* (..))")
 	public Object logAll(ProceedingJoinPoint point) {
 		Object result = null;
@@ -42,8 +45,9 @@ public class LogAopAction {
 			start = System.currentTimeMillis();
 			result = point.proceed();
 			end = System.currentTimeMillis();
+			 HttpServletRequest request = SysContent.getRequest();  
 			// ip
-			ip = InetAddress.getLocalHost().getHostAddress();
+			ip = Common.toIpAddr(request);
 			// 登录名
 			user = Common.getAuthenticatedUsername();
 			// System.out.println("Username:" +user);

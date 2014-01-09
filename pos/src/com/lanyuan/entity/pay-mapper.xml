@@ -13,6 +13,7 @@
 		payState,
 		settlementCosts,
 		costsMoney,
+		settlementTime,
 		payTime
 		
 	</sql>
@@ -47,10 +48,10 @@
 		insert into pay ( userName,
 		bankName, openBankName,payMoney,settlementCosts,
 		costsMoney,
-		bankAccount )
+		bankAccount,settlementTime )
 		values (#{userName},
 		#{bankName}, #{openBankName}, #{payMoney},#{settlementCosts},#{costsMoney}, 
-		#{bankAccount})
+		#{bankAccount},#{settlementTime})
 	</insert>
 
 	<delete id="deleteById" parameterType="String">
@@ -82,6 +83,9 @@
 			</if>
 			<if test="payMoney != null and payMoney != ''">
 				payMoney=#{payMoney},
+			</if>
+			<if test="settlementTime != null and settlementTime != ''">
+				settlementTime=#{settlementTime},
 			</if>
 		</set>
 		where id=#{id}
