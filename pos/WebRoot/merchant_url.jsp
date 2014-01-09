@@ -1,3 +1,4 @@
+<%@page import="com.lanyuan.util.Common"%>
 <%@page import="com.lanyuan.controller.PayMentController"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
@@ -70,22 +71,102 @@ String tableName="payment";
 String url="jdbc:mysql://223.244.227.11/"+dbName+"?user="+userName+"&password="+userPasswd;
 
 Class.forName("com.mysql.jdbc.Driver").newInstance();
-
-Connection connection=DriverManager.getConnection(url);
-
-Statement statement = connection.createStatement();
+Connection connection = null;
+Statement statement = null;
+ try {
+ connection=DriverManager.getConnection(url);
+ statement = connection.createStatement();
 String username=(String)session.getAttribute("userName");
 String Channelname=(String)session.getAttribute("Channelname");
 String sql="INSERT INTO `payment`(orderId,userName,tradingMoney,realMoney,channelname,payState)  VALUES ('"+TransID+"', '"+username+"', '"+OrderMoney+"', '"+realMoney+"','"+Channelname+"', '"+Result+"');";
 statement.executeUpdate(sql);
-
-statement.close();
-
-connection.close();
+   } catch (Exception e) {
+   out.println("<script>alert('平台充值记录异常！请立刻联系理员！');</script>");
+   e.printStackTrace();
+  } finally {
+  try{
+    if (statement != null) {
+     statement.close();
+     statement = null;
+    }
+    if (connection != null) {
+     connection.close();
+     connection = null;
+    }
+   } catch (SQLException e) {
+    e.printStackTrace();
+    }
+  }
+  
+  Connection conn=null;
+  Statement st =null;
+  ResultSet set=null;
+  String amountMoney = null;
+  try {
+			 conn = DriverManager.getConnection(url);
+			 st = conn.createStatement();
+			String sql2 = "SELECT amountMoney,tradingRates,workCosts,afterWorkCosts,payMoney,userId,userName" + " FROM user where userName = '"+userName+"'";
+			 set = st.executeQuery(sql2);
+			
+			    while (set.next()) 
+			    {
+				amountMoney = set.getString("amountMoney");  
+			    }
+			  if(Common.isEmpty(amountMoney)){
+				amountMoney="0";
+			  }
+    } catch (Exception e) {
+   out.println("<script>alert('平台查询用户余额异常！请立刻联系理员！');</script>");
+   e.printStackTrace();
+  } finally {
+   try {
+    if (set != null) {
+     set.close();
+     set = null;
+    }
+    if (st != null) {
+     st.close();
+     st = null;
+    }
+    if (conn != null) {
+     conn.close();
+     conn = null;
+    }
+   } catch (SQLException e) {
+    e.printStackTrace();
+    }
+  }
+Connection updateCom=null;
+  Statement updatestatement =null;
+try {
+		 updateCom=DriverManager.getConnection(url);
+		 updatestatement = updateCom.createStatement();
+		Double men = Double.parseDouble(amountMoney)+Double.parseDouble(realMoney);
+		String updatesql="update user set amountMoney='"+men+"' where userName = '"+userName+"'";
+		updatestatement.executeUpdate(updatesql);
 		//}else{
 		//out.println("<script>alert('实际成交金额与您提交的订单金额不一致，请接收到支付结果后仔细核对实际成交金额，以免造成订单金额处理差错。');</script>");	//实际成交金额与商户提交的订单金额不一致
 		//}
-	}else{
+	
+	  } catch (Exception e) {
+   out.println("<script>alert('平台更新用户余额异常！请立刻联系理员！');</script>");
+   e.printStackTrace();
+  } finally {
+    try {
+    if (updatestatement != null) {
+     updatestatement.close();
+     updatestatement = null;
+    }
+    if (updateCom != null) {
+     updateCom.close();
+     updateCom = null;
+    }
+    
+   } catch (SQLException e) {
+    e.printStackTrace();
+    }
+  }
+  }else{
 		out.println("<script>alert('Md5CheckFail');</script>");//MD5校验失败，订单信息不显示
 		TransID="";
 		lbresultDesc="";
@@ -94,7 +175,6 @@ connection.close();
 		additionalInfo="";
 		SuccTime="";
 		}
-	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

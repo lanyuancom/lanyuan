@@ -51,11 +51,18 @@
 		$("#" + hidenId).hide();
 	}
 	function sub() {
+	    var tradingRates="${userSession.tradingRates}";
+	    if (tradingRates==""||isNaN(parseFloat(tradingRates))) {
+	    	alert("用户的费率:"+tradingRates+"  有误！请联系管理员！！");
+	    	return;
+	    }
 		var amount = document.getElementById("OrderMoney").value;
 		if (amount == "") {
 			alert("请输入支付金额！");
+		}else if (isNaN(parseFloat(amount))){
+			alert("请正确金额！");
 		}else{
-		document.onlinePayForm.submit();
+		  document.onlinePayForm.submit();
 		}
 	}
 </script>
@@ -87,8 +94,8 @@
 						<form id="form1" name="onlinePayForm" method="post"
 							action="${pageContext.servletContext.contextPath }/pay.jsp"
 							novalidate="novalidate">
-							<input width="350" type="hidden" name="Merchant_url"  value="http://www.ttzf.cn/merchant_url.jsp" />
-					<input type="hidden" name="Return_url"  value="http://www.ttzf.cn/return_url.jsp" />
+							<input width="350" type="hidden" name="Merchant_url"  value="http://localhost:8888/pospos/merchant_url.jsp" />
+					<input type="hidden" name="Return_url"  value="http://localhost:8888/pospos/return_url.jsp" />
 					<input type="hidden" name="NoticeType"  value="0" />
 					<input type="hidden"  name="TransID" value="<%=TransID%>" />
 					<input name='TradeDate' type="hidden" value= "<%=TradeDate%>" />
@@ -106,7 +113,7 @@
 									<input name="Channelname"
 											id="Channelname" type="hidden" class="text" value="${rates.channelname}">
 											<input name="tradingRates"
-											id="tradingRates" type="hidden" class="text" value="${rates.tradingRates}">
+											id="tradingRates" type="hidden" class="text" value="${userSession.tradingRates}">
 									</div></li>
 								<li>
 									<div>
