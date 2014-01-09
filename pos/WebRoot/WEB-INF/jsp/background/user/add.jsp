@@ -263,7 +263,7 @@ function validateIdCard(idCard){
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;color: red">
-							<input type="hidden" name="status" value="待审核" />待审核
+							待审核
 						</div>
 					</td>
 				</tr>
