@@ -105,11 +105,12 @@
 	</span></td>
             
             <td height="20" ><span class="STYLE4">
+            <c:if test="${userSession.roleName ne 'admin'||userSession.roleName ne 'super'}">
             <c:if test="${pay.payState eq '0'}"><font color="red">
      <a href="${pageContext.servletContext.contextPath }/background/pay/show.html?payId=${pay.id}">       
             审核
             </a>
-            </font></c:if>
+            </font></c:if></c:if>
            <%--  <img src="${pageContext.servletContext.contextPath }/images/del.gif" width="16" height="16" />
             	<a href="${pageContext.servletContext.contextPath }/background/pay/getById.html?payId=${pay.id}&type=0">
             	显示详细信息</a>
