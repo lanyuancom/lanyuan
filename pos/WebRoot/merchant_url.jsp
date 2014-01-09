@@ -68,7 +68,7 @@ String tableName="payment";
 
 //联结字符串
 
-String url="jdbc:mysql://223.244.227.11/"+dbName+"?user="+userName+"&password="+userPasswd;
+String url="jdbc:mysql://223.244.227.11:3306/"+dbName+"?user="+userName+"&password="+userPasswd;
 
 Class.forName("com.mysql.jdbc.Driver").newInstance();
 Connection connection = null;
