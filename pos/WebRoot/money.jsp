@@ -94,8 +94,8 @@
 						<form id="form1" name="onlinePayForm" method="post"
 							action="${pageContext.servletContext.contextPath }/pay.jsp"
 							novalidate="novalidate">
-							<input width="350" type="hidden" name="Merchant_url"  value="http://localhost:8888/pospos/merchant_url.jsp" />
-					<input type="hidden" name="Return_url"  value="http://localhost:8888/pospos/return_url.jsp" />
+							<input width="350" type="hidden" name="Merchant_url"  value="http://www.ttzf.cn/merchant_url.jsp" />
+					<input type="hidden" name="Return_url"  value="http://www.ttzf.cn/return_url.jsp" />
 					<input type="hidden" name="NoticeType"  value="0" />
 					<input type="hidden"  name="TransID" value="<%=TransID%>" />
 					<input name='TradeDate' type="hidden" value= "<%=TradeDate%>" />
