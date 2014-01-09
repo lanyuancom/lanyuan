@@ -1,5 +1,6 @@
 package com.lanyuan.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,11 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lanyuan.entity.Pay;
 import com.lanyuan.entity.Rates;
+import com.lanyuan.entity.User;
 import com.lanyuan.service.PayService;
 import com.lanyuan.service.RatesService;
+import com.lanyuan.service.UserService;
 import com.lanyuan.util.Common;
 import com.lanyuan.util.PageView;
 
@@ -28,6 +32,8 @@ public class PayController {
 	private PayService payService;
 	@Autowired
 	private RatesService ratesService;
+	@Autowired
+	private UserService userService;
 	
 	/**
 	 * 跳到新增页面
@@ -51,6 +57,10 @@ public class PayController {
 		String money = (co-paMon)+"";
 		pay.setPayMoney(money);
 		payService.add(pay);
+		User user = userService.getById(request.getSession().getAttribute("userSessionId").toString());
+		Double sun = Double.parseDouble(user.getAmountMoney())-co;
+		user.setAmountMoney(sun+"");
+		userService.modify(user);
 		return "redirect:query.html";
 	}
 	public static void main(String[] args) {
@@ -106,13 +116,37 @@ public class PayController {
 		model.addAttribute("pay", pay);
 			return Common.ROOT_PATH+"/background/pay/edit";
 	}
+	@RequestMapping(value="show")
+	public String show(Model model,String payId){
+		Pay pay = payService.getById(payId);
+		model.addAttribute("pay", pay);
+			return Common.ROOT_PATH+"/background/pay/show";
+	}
 	@RequestMapping(value="payRates")
-	public String payRates(Model model,String ratesId){
+	public String payRates(Model model,String ratesId,HttpServletRequest request){
 		if(!Common.isEmpty(ratesId)){
 			Rates rates = ratesService.getById(ratesId);
 			model.addAttribute("rates", rates);
+			
+			User u = userService.getById(request.getSession().getAttribute("userSessionId").toString());
+			model.addAttribute("userInfo", u);
 		}
 		return Common.ROOT_PATH+"/background/pay/payRate";
+	}
+	
+	@ResponseBody
+	@RequestMapping("checkStatus")
+	public String checkStatus(Pay pay,HttpServletRequest request){
+		pay.setSettlementTime(new Date());
+		payService.modify(pay);
+		if("2".equals(pay.getPayState())){//审核不通过，返回金额
+			pay=payService.getById(pay.getId()+"");
+			User user = userService.getById(request.getSession().getAttribute("userSessionId").toString());
+			Double sun = Double.parseDouble(user.getAmountMoney())+Double.parseDouble(pay.getCostsMoney());
+			user.setAmountMoney(sun+"");
+			userService.modify(user);
+		}
+		return null;
 	}
 	/**
 	 * 更新修改的文章信息

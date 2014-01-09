@@ -79,9 +79,9 @@ public class RatesController {
 	@RequestMapping(value="queryChildRates")
 	public String queryChildRates(Model model,User user,String pageNow,HttpServletRequest request){
 		User u = (User)request.getSession().getAttribute("userSession");
-		if(!"super".equals(u.getRoleName())){
-			user.setParentNumber(request.getSession().getAttribute("userSessionId").toString());
-		}else if(!"admin".equals(u.getRoleName())){
+		if("super".equals(u.getRoleName())||"admin".equals(u.getRoleName())){
+		
+		}else{
 			user.setParentNumber(request.getSession().getAttribute("userSessionId").toString());
 		}
 		PageView pageView = null;
