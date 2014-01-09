@@ -83,6 +83,14 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+<filter>  
+    <filter-name>test</filter-name>  
+    <filter-class>com.lanyuan.util.GetContent</filter-class>  
+</filter>  
+<filter-mapping>  
+    <filter-name>test</filter-name>  
+    <url-pattern>/*</url-pattern>  
+</filter-mapping>  
 
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
