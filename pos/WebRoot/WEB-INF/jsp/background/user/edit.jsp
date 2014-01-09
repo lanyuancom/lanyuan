@@ -27,24 +27,16 @@ for(i=0;i<g.length;i++) //遍历循环赋值
                 dataType:'json',
                 success: function(data) {
                		if(data.data=="false"){
-               			b="0";
+               			b="1";
                		}
                 }
 
             });
  	}
-   if(b=="0"){
-   	alert("该手机号已经存在！");
-   	return false; 
-   }else if(b=="1"){
+   if(b=="1"){
    alert("该用户名已经存在！");
    return false; 
    }else{
-    if(!(/^1[3|4|5|8][0-9]\d{8}$/.test(sMobile))){ 
-         alert("非法手机号！"); 
-        document.upUser.userName.focus(); 
-        return false; 
-    }
     var userIdCard = document.upUser.userIdCard.value;
     if(validateIdCard(userIdCard)){
      document.upUser.submit();
@@ -194,7 +186,7 @@ function validateIdCard(idCard){
 				</tr>
 				<tr>
 				<td height="30" width="10%">
-						<div align="right" class="STYLE1" >费率通道：</div>
+						<div align="right" class="STYLE1" >支付通道：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
@@ -217,15 +209,15 @@ function validateIdCard(idCard){
 					</td>
 				</tr>
 				<tr>
-					
 					<td height="30" width="10%">
-						<div align="right" class="STYLE1">QQ：</div>
+						<div align="right" class="STYLE1">费率：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							<input style="height: 20px;width: 200px" name="userQQ"  value="${user.userQQ}"/> <font color="red">*必填</font>
+							<input style="height: 20px;width: 200px" name="tradingRates" value="${user.tradingRates}"/> <font color="red">*必填　如千分之三,填写：0.003</font>
 						</div>
 					</td>
+					
 					
 					<td height="30" width="10%">
 						<div align="right" class="STYLE1">所属支行或分行：</div>
@@ -239,11 +231,12 @@ function validateIdCard(idCard){
 				</tr>
 				<tr>
 					<td height="30" width="10%">
-						<div align="right" class="STYLE1">开通费：</div>
+						<div align="right" class="STYLE1">结算费用：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							<input style="height: 20px;width: 200px" name="pay"  value="${user.pay}"/> <font color="red">*必填</font>
+							上班时间：<input style="height: 20px;width: 80px" name="workCosts" value="${user.workCosts}"/> <font color="red">*必填</font><br/>
+							其他时间：<font color="red">20 元/笔(包括节假日，非上班时间)</font><br/>
 						</div>
 					</td>
 					<td height="30" width="10%">
@@ -254,6 +247,24 @@ function validateIdCard(idCard){
 							<input type="radio" name="accountType" value="个人账号"
 								 <c:if test="${user.accountType eq '个人账号'}">checked="checked"</c:if>/>：个人账号 <input type="radio"
 								name="accountType" value="企业账号" <c:if test="${user.accountType eq '企业账号'}">checked="checked"</c:if>/>：企业账号
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td height="30" width="10%">
+						<div align="right" class="STYLE1">开通费：</div>
+					</td>
+					<td>
+						<div align="left" class="STYLE1" style="padding-left:10px;">
+							<input style="height: 20px;width: 200px" name="pay"  value="${user.pay}"/> <font color="red">*必填</font>
+						</div>
+					</td>
+					<td height="30" width="10%">
+						<div align="right" class="STYLE1">QQ：</div>
+					</td>
+					<td>
+						<div align="left" class="STYLE1" style="padding-left:10px;">
+							<input style="height: 20px;width: 200px" name="userQQ"  value="${user.userQQ}"/> <font color="red">*必填</font>
 						</div>
 					</td>
 				</tr>

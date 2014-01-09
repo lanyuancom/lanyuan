@@ -6,11 +6,30 @@
     <%@include file="../../common/common-css.jsp" %>
     <script type="text/javascript">
     function sub() {
+    var settlementCosts="${rates.settlementCosts}";//结算手续费
+      var amountMoney= "${userInfo.amountMoney}";//余额
+     var sun = parseFloat(amountMoney)-parseFloat(settlementCosts);
+	if (sun > 0) {
 		var amount = document.getElementById("costsMoney").value;
-		if (amount == "") {
-			alert("请输入金额！");
-		}else{
-		document.onlinePayForm.submit();
+		if(amount.indexOf("0.")!=-1){
+		  alert("结算金额为整数！");
+	    	return;
+		}
+		if (amount==""||isNaN(parseFloat(amount))) {
+	    	alert("输入金额:"+amount+"  有误！");
+	    	return;
+	    }else if(parseFloat(amount)-parseFloat(amountMoney)>=0){
+	    	alert("结算金额不能大于账号余额！");
+	    	return;
+	    }else if(parseFloat(amount)-parseFloat(settlementCosts)<=0){
+	    	alert("结算金额不能小于结算手续费！");
+	    	return;
+	    }else{
+	    	document.onlinePayForm.submit();
+	    }
+	  	
+	}else{
+			alert("账号余额不足以结算！");
 		}
 	}
     </script>
@@ -41,8 +60,8 @@
 					</td>
 					<td >
 						<div align="left" class="STYLE1"  style="padding-left:10px;">
-						${userSession.userRealname} 
-						<input type="hidden" name="userName" value="${userSession.userRealname}">
+						${userInfo.userRealname} 
+						<input type="hidden" name="userName" value="${userInfo.userRealname}">
 						</div>
 					</td>
 					<td height="30"width="20%" >
@@ -60,12 +79,12 @@
 				</tr>
 			<tr>	
 			<td height="30" width="20%">
-						<div align="right" class="STYLE1">银行户名：</div>
+						<div align="right" class="STYLE1">账号余额：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.bankAccountName}
-							<input type="hidden" name="openBankName" value="${userSession.bankAccountName}">
+							${userInfo.amountMoney}
+							<input type="hidden" name="amountMoney" id="amountMoney" value="${userInfo.amountMoney}">
 						</div>
 					</td>
 					<td height="30"width="20%" >
@@ -78,18 +97,18 @@
 						<c:if test="${empty rates}">8</c:if>
 						<c:if test="${not empty rates}">${rates.settlementCosts}</c:if>
 						元/笔
-						<input type="hidden" name="settlementCosts" value="${rates.settlementCosts}">
+						<input type="hidden" name="settlementCosts" id="settlementCosts" value="${rates.settlementCosts}">
 						</div>
 					</td>
 				</tr>
 				<tr>	
 				<td height="30" width="20%">
-						<div align="right" class="STYLE1">银行账号：</div>
+						<div align="right" class="STYLE1">银行户名：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.bankAccount}
-							<input type="hidden" name="bankAccount" value="${userSession.bankAccount}">
+							${userInfo.bankAccountName}
+							<input type="hidden" name="openBankName" value="${userInfo.bankAccountName}">
 						</div>
 					</td>
 					<td height="30"width="20%" >
@@ -106,13 +125,14 @@
 					</td>
 				</tr>
 				<tr>	
+				
 				<td height="30" width="20%">
-						<div align="right" class="STYLE1">银行名称：</div>
+						<div align="right" class="STYLE1">银行账号：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.bankName} 
-							<input type="hidden" name="bankName" value="${userSession.bankName}">
+							${userInfo.bankAccount}
+							<input type="hidden" name="bankAccount" value="${userInfo.bankAccount}">
 						</div>
 					</td>
 					<td height="30"width="20%" >
@@ -124,6 +144,17 @@
 						</div>
 					</td>
 				</tr>
+				<tr>
+				<td height="30" width="20%">
+						<div align="right" class="STYLE1">银行名称：</div>
+					</td>
+					<td>
+						<div align="left" class="STYLE1" style="padding-left:10px;">
+							${userInfo.bankName} 
+							<input type="hidden" name="bankName" value="${userInfo.bankName}">
+						</div>
+					</td>
+					</tr>
 				<tr>	
 					<td height="30"width="20%" >
 						<div align="right" class="STYLE1" >
@@ -139,7 +170,7 @@
 				<tr>
 					<td colspan="4" style="padding: 10px">
 						<div align="center">
-			 				<input type="button" value="　保　存　" class="input_btn_style1" onclick="sub();"/>　　　　
+			 				<input type="button" value="　申请结算　" class="input_btn_style1" onclick="sub();"/>　　　　
 			 				<input id="backBt" type="button" value="　返　回　" class="input_btn_style1" onclick="javascript:window.location.href='javascript:history.go(-1)'"/>
 		 				</div>
 					</td>

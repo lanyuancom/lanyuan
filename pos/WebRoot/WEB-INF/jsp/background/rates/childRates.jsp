@@ -67,8 +67,8 @@
             <td height="20" ><span class="STYLE1">${rates.userName}</span></td>
             <td height="20" ><span class="STYLE1">${rates.mark}</span></td>
             <td height="20" ><span class="STYLE1">${rates.channelname}</span></td>
+            <td height="20" ><span class="STYLE1">${rates.tradingRates}</span></td>
             <td height="20" ><span class="STYLE1">${rates.tradingRates}元/笔</span></td>
-            <td height="20" ><span class="STYLE1">${rates.settlementCosts}元/笔</span></td>
             <td height="20" ><span class="STYLE1">${rates.settlementCaps}元/次</span></td>
           </tr>
           </c:forEach>

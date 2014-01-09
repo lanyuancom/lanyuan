@@ -67,12 +67,16 @@
             <td width="3%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" >
               <input id="chose" type="checkbox" name="checkbox" onclick="selectAllCheckBox()" />
             </td>
- 			<td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">用户名</td>
+ 			<td width="7%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">用户名</td>
             <td width="10%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">银行名称</span></td>
             <td width="10%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">开户行（支行）</span></td>
             <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">银行账号</td>
-            <td width="5%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">金额</td>
-            <td width="20%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">时间</td>
+            <td width="5%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">结算金额</td>
+            <td width="6%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">结算手续费</td>
+            <td width="7%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">结算应得金额</td>
+            <td width="11%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">申请结算时间</td>
+            <td width="11%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">结算时间</td>
+            <td width="6%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">状态</td>
             <sec:authorize ifAnyGranted="ROLE_pay_delete">
             <td width="23%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">操作</td>
          	</sec:authorize>
@@ -88,10 +92,24 @@
             <td height="20" ><span class="STYLE1">${pay.bankName}</span></td>
             <td height="20" ><span class="STYLE1">${pay.openBankName}</span></td>
             <td height="20" ><span class="STYLE1">${pay.bankAccount}</span></td>
+            <td height="20" ><span class="STYLE1">${pay.costsMoney}</span></td>
+            <td height="20" ><span class="STYLE1">${pay.settlementCosts}</span></td>
             <td height="20" ><span class="STYLE1">${pay.payMoney}</span></td>
             <td height="20" ><span class="STYLE1"><fmt:formatDate value="${pay.payTime}" pattern="yyyy-MM-dd HH:mm:ss" /></span></td>
-             <sec:authorize ifAnyGranted="ROLE_pay_delete">
+            <td height="20" ><span class="STYLE1"><fmt:formatDate value="${pay.settlementTime}" pattern="yyyy-MM-dd HH:mm:ss" /></span></td>
+            
+            <td height="20" ><span class="STYLE1">
+			<c:if test="${pay.payState eq '0'}"><font color="red">等审核</font></c:if>
+			<c:if test="${pay.payState eq '2'}"><font color="blue">审核不通过</font></c:if>
+			<c:if test="${pay.payState eq '1'}"><font color="blue">已经结算</font></c:if>
+	</span></td>
+            
             <td height="20" ><span class="STYLE4">
+            <c:if test="${pay.payState eq '0'}"><font color="red">
+     <a href="${pageContext.servletContext.contextPath }/background/pay/show.html?payId=${pay.id}">       
+            审核
+            </a>
+            </font></c:if>
            <%--  <img src="${pageContext.servletContext.contextPath }/images/del.gif" width="16" height="16" />
             	<a href="${pageContext.servletContext.contextPath }/background/pay/getById.html?payId=${pay.id}&type=0">
             	显示详细信息</a>
@@ -102,10 +120,11 @@
             </a> --%>
           
             &nbsp; &nbsp;
+             <sec:authorize ifAnyGranted="ROLE_pay_delete">
             <img src="${pageContext.servletContext.contextPath }/images/del.gif" width="16" height="16" />
             	<a href="javascript:void(0);" onclick="deleteId('${pageContext.servletContext.contextPath }/background/pay/deleteById.html?payId=${pay.id}')">
-            	删除</a>
-            	</span></td></sec:authorize>
+            	删除</a></sec:authorize>
+            	</span></td>
           </tr>
           </c:forEach>
         </table></td>

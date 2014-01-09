@@ -46,14 +46,6 @@
 				</tr>
 				<tr>
 					<td height="30" width="10%">
-						<div align="right" class="STYLE1">手机号：</div></td>
-					<td>
-						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.userPhone}
-						</div></td>
-				</tr>
-				<tr>
-					<td height="30" width="10%">
 						<div align="right" class="STYLE1">新密码：</div></td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
