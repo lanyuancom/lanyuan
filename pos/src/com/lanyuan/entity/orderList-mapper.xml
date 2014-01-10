@@ -22,7 +22,7 @@
 		o.userAddress,
 		o.userPhone
 		,p.productName,p.price,u.userName from
-		orderList o,product p,user u
+		orderlist o,product p,user u
 		where
 		o.productId = p.productId
 		and
@@ -40,7 +40,7 @@
 	</select>
 	<!-- 增加用户 -->
 	<insert id="add" parameterType="OrderList">
-		insert into orderList
+		insert into orderlist
 		(
 		orderId,
 		userId,
@@ -64,7 +64,7 @@
 	</insert>
 
 	<delete id="deleteById" parameterType="String">
-		delete from orderList
+		delete from orderlist
 		where
 		orderId=#{orderId}
 	</delete>
@@ -77,7 +77,7 @@
 		o.productSumPrice,
 		o.userAddress,
 		o.userPhone
-		,p.productName,p.price,u.userName from orderList o,product p,user u
+		,p.productName,p.price,u.userName from orderlist o,product p,user u
 		where
 		o.productId = p.productId
 		and
@@ -86,7 +86,7 @@
 		orderId=#{orderId}
 	</select>
 	<update id="update" parameterType="OrderList">
-		UPDATE orderList set
+		UPDATE orderlist set
 		productNum = #{productNum}
 		,productSumPrice = #{productSumPrice}
 		,userAddress = #{userAddress}

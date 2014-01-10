@@ -1,5 +1,7 @@
 package com.lanyuan.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lanyuan.entity.Rates;
 import com.lanyuan.entity.User;
+import com.lanyuan.entity.UserRates;
 import com.lanyuan.service.RatesService;
 import com.lanyuan.service.UserService;
 import com.lanyuan.util.Common;
@@ -49,7 +52,7 @@ public class RatesController {
 	}
 	@RequestMapping(value="money")
 	public String money(Model model,String ratesId,HttpServletRequest request){
-		Rates rates = ratesService.getById(ratesId);
+		UserRates rates = userService.queryUserRatesById(ratesId);
 		model.addAttribute("rates", rates);
 		User user = userService.getById(request.getSession().getAttribute("userSessionId").toString());
 		model.addAttribute("userInfo", user);
@@ -67,14 +70,31 @@ public class RatesController {
 	 * @return
 	 */
 	@RequestMapping(value="query")
-	public String query(Model model,Rates rates,String pageNow){
+	public String query(Model model,UserRates userRates,Rates rates,String pageNow,HttpServletRequest request){
+		User u = (User)request.getSession().getAttribute("userSession");
 		PageView pageView = null;
-		if(Common.isEmpty(pageNow)){
+		if (Common.isEmpty(pageNow)) {
 			pageView = new PageView(1);
-		}else{
+		} else {
 			pageView = new PageView(Integer.parseInt(pageNow));
 		}
-		pageView = ratesService.query(pageView, rates);
+		if("super".equals(u.getRoleName())||"admin".equals(u.getRoleName())){
+			pageView.setRecords(ratesService.queryAll(rates));
+		}else{
+			userRates.setUserName(u.getUserName());
+			pageView.setRecords(userService.queryAllUserRates(userRates));
+			List<Rates> rs =ratesService.queryAll(new Rates());
+			List list = pageView.getRecords();
+			for (Object object : list) {
+				UserRates ur = (UserRates)object;
+				for (Rates r : rs) {
+					if(ur.getChannelname().equals(r.getChannelname())){
+						ur.setMark(r.getMark());
+					}
+				}
+			}
+		}
+
 		model.addAttribute("pageView", pageView);
 		return Common.ROOT_PATH+"/background/rates/list";
 	}

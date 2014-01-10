@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.lanyuan.dao.UserDao;
 import com.lanyuan.entity.Roles;
 import com.lanyuan.entity.User;
+import com.lanyuan.entity.UserRates;
 import com.lanyuan.service.UserService;
 import com.lanyuan.util.PageView;
 
@@ -62,5 +63,20 @@ public class UserServiceImpl implements UserService {
 
 	public PageView queryChildRates(PageView pageView, User user) {
 		return userDao.queryChildRates(pageView, user);
+	}
+
+	public void saveUserRates(UserRates userRates) {
+		 userDao.saveUserRates(userRates);
+	}
+	public PageView queryUserRates(PageView pageView,UserRates userRates){
+		return userDao.queryUserRates(pageView, userRates);
+	}
+
+	public UserRates queryUserRatesById(String userRatesId) {
+		return userDao.queryUserRatesById(userRatesId);
+	}
+
+	public List<UserRates> queryAllUserRates(UserRates userRates) {
+		return userDao.queryAllUserRates(userRates);
 	}
 }

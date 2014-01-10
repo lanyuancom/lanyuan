@@ -34,8 +34,8 @@
 		mark,
 		status,
 		ratesId,
-		(select channelname from rates where rates.id=ratesId) channelname,
-		payMoney,workCosts,afterWorkCosts,tradingRates,
+		(select channelname from userrates where userrates.id=ratesId) channelname,
+		payMoney,workCosts,afterWorkCosts,tradingRates,settlementCaps,
 	    amountMoney,
 		parentNumber
 	</sql>
@@ -66,7 +66,7 @@
 		u.userName,
 		r.channelname,
 		u.tradingRates,
-	    r.settlementCaps,
+	    u.settlementCaps,
 		r.mark
 		from user u,rates r
 		<where>
@@ -132,7 +132,7 @@
 		pay,
 		mark,
 		ratesId,
-		payMoney,workCosts,afterWorkCosts,tradingRates,
+		payMoney,workCosts,afterWorkCosts,tradingRates,settlementCaps,
 	    amountMoney,
 		parentNumber )
 		values (#{userName},
@@ -151,7 +151,7 @@
 		#{bankAccountName}, #{bankAccount}, #{accountType},
 		#{pay},
 		#{mark},#{ratesId},
-		#{payMoney},#{workCosts},#{afterWorkCosts},#{tradingRates},
+		#{payMoney},#{workCosts},#{afterWorkCosts},#{tradingRates},#{settlementCaps},
 		#{amountMoney},
 		#{parentNumber})
 	</insert>
@@ -262,6 +262,9 @@
 		</if>
 		<if test="tradingRates != null and tradingRates != ''">
 		tradingRates =#{tradingRates},
+		</if>
+		<if test="settlementCaps != null and settlementCaps != ''">
+		settlementCaps =#{settlementCaps},
 		</if>
 		<if test="amountMoney != null and amountMoney != ''">
 		amountMoney =#{amountMoney}

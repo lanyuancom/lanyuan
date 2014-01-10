@@ -21,6 +21,10 @@ public class Pay implements java.io.Serializable{
 
 	private String bankAccount;
 	
+	private String countMoney;//账号金额
+	
+	private String remainMoney;//剩余的金额
+	
 	private String payMoney;//申请结算的费用－手续费  //结算应得金额
 	
 	private String settlementCosts;//手续费
@@ -119,6 +123,22 @@ public class Pay implements java.io.Serializable{
 
 	public void setSettlementTime(Date settlementTime) {
 		this.settlementTime = settlementTime;
+	}
+
+	public String getCountMoney() {
+		return countMoney;
+	}
+
+	public void setCountMoney(String countMoney) {
+		this.countMoney = countMoney;
+	}
+
+	public String getRemainMoney() {
+		return remainMoney;
+	}
+
+	public void setRemainMoney(String remainMoney) {
+		this.remainMoney = remainMoney;
 	}
 
 }

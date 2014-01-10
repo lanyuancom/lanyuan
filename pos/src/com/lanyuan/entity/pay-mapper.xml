@@ -9,6 +9,8 @@
 		bankName,
 		openBankName,
 		bankAccount,
+		countMoney,
+		remainMoney,
 		payMoney,
 		payState,
 		settlementCosts,
@@ -47,11 +49,11 @@
 	<insert id="add" parameterType="Pay">
 		insert into pay ( userName,
 		bankName, openBankName,payMoney,settlementCosts,
-		costsMoney,
-		bankAccount,settlementTime )
+		costsMoney,countMoney,remainMoney,
+		bankAccount)
 		values (#{userName},
 		#{bankName}, #{openBankName}, #{payMoney},#{settlementCosts},#{costsMoney}, 
-		#{bankAccount},#{settlementTime})
+		#{countMoney},#{remainMoney},#{bankAccount})
 	</insert>
 
 	<delete id="deleteById" parameterType="String">

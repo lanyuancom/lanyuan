@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.lanyuan.dao.LogDao;
 import com.lanyuan.entity.Log;
+import com.lanyuan.entity.User;
 import com.lanyuan.util.Common;
 import com.lanyuan.util.SysContent;
 
@@ -49,7 +50,8 @@ public class LogAopAction {
 			// ip
 			ip = Common.toIpAddr(request);
 			// 登录名
-			user = Common.getAuthenticatedUsername();
+			User u =(User)request.getSession().getAttribute("userSession");
+			user = u.getUserName();
 			// System.out.println("Username:" +user);
 		} catch (Throwable e) {
 			// e.printStackTrace();

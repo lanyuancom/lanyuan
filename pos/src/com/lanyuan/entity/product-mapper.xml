@@ -9,7 +9,7 @@
 	<select id="query" resultType="Product" parameterType="java.util.HashMap">
 		SELECT
 		pb.productBrandName,
-		(select productBrandName from productBrand
+		(select productBrandName from productbrand
 		where productBrandId =
 		pb.parentId) as bigBrandName,
 		pb.parentId,
@@ -24,7 +24,7 @@
 		pt.productProduce
 
 		FROM
-		product pt,productBrand pb
+		product pt,productbrand pb
 		WHERE pt.productBrandId = pb.productBrandId
 
 		<if test="t.productName != null and t.productName != ''">
@@ -81,7 +81,7 @@
 	<select id="queryAll" parameterType="String" resultType="Product">
 		SELECT
 		pb.productBrandName,
-		(select productBrandName from productBrand
+		(select productBrandName from productbrand
 		where productBrandId =
 		pb.parentId) as bigBrandName,
 		pb.parentId,
@@ -96,7 +96,7 @@
 		pt.productProduce
 
 		FROM
-		product pt,productBrand pb
+		product pt,productbrand pb
 		WHERE pt.productBrandId = pb.productBrandId
 	</select>
 	<select id="getById" parameterType="String" resultType="Product">

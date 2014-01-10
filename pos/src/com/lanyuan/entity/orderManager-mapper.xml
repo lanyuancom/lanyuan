@@ -12,7 +12,7 @@
 		o.userId,
 		o.orderSunPrice,
 		o.orderTime,
-		o.orderState,timeState,u.userName from orderManager o,user u
+		o.orderState,timeState,u.userName from ordermanager o,user u
 		where
 		o.userId = u.userId
 			<if test="t.userName != null and t.userName != ''">
@@ -25,7 +25,7 @@
 	</select>
 	<!-- 增加用户 -->
 	<insert id="add" parameterType="OrderManager">
-		insert into orderManager
+		insert into ordermanager
 		(
 		orderId,
 		userId,
@@ -41,7 +41,7 @@
 	</insert>
 
 	<delete id="deleteById" parameterType="String">
-		delete from orderManager
+		delete from ordermanager
 		where
 		orderId=#{orderId}
 	</delete>
@@ -53,14 +53,14 @@
 		o.orderTime,
 		timeState,
 		o.orderState
-		,u.userName from orderManager o,user u
+		,u.userName from ordermanager o,user u
 		where
 		o.userId = u.userId
 		and
 		o.orderId= #{orderId}
 	</select>
 	<update id="update" parameterType="OrderManager">
-		UPDATE orderManager set
+		UPDATE ordermanager set
 				orderState = #{orderState}
 		WHERE
 		orderId = #{orderId}

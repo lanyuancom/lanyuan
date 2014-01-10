@@ -80,6 +80,8 @@ public class User implements java.io.Serializable {
 	
 	private String tradingRates;//交易费率 
 	
+	private String settlementCaps;//结算上限
+	
 	private String amountMoney;//账号余额
 	// 一个集合roles，初始容量为0
 	private Set<Roles> roles = new HashSet<Roles>(0);
@@ -386,5 +388,13 @@ public class User implements java.io.Serializable {
 
 	public void setAfterWorkCosts(String afterWorkCosts) {
 		this.afterWorkCosts = afterWorkCosts;
+	}
+
+	public String getSettlementCaps() {
+		return settlementCaps;
+	}
+
+	public void setSettlementCaps(String settlementCaps) {
+		this.settlementCaps = settlementCaps;
 	}
 }

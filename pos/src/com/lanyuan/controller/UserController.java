@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.lanyuan.entity.Rates;
 import com.lanyuan.entity.Roles;
 import com.lanyuan.entity.User;
+import com.lanyuan.entity.UserRates;
 import com.lanyuan.entity.UserRoles;
 import com.lanyuan.service.RatesService;
 import com.lanyuan.service.RolesService;
@@ -22,6 +23,7 @@ import com.lanyuan.service.UserService;
 import com.lanyuan.util.Common;
 import com.lanyuan.util.Md5Tool;
 import com.lanyuan.util.PageView;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 
 /**
  * 
@@ -104,10 +106,12 @@ public class UserController {
 	 */
 	@RequestMapping("add")
 	public String add(Model model, User user) {
+		UserRates rates =  userService.queryUserRatesById(user.getRatesId());
 		String card = user.getUserIdCard();
 		int s = card.length()-6;
 		card=card.substring(s, card.length());
 		user.setUserPassword(Md5Tool.getMd5(card));
+		user.setChannelname(rates.getChannelname());
 		userService.add(user);
 		List<Roles> r= rolesService.queryAll(new Roles());
 		for (Roles roles : r) {//新增用户默认为普通用户
@@ -119,6 +123,13 @@ public class UserController {
 				rolesService.saveUserRole(userRoles);
 			}
 		}
+		UserRates userRates = new UserRates();
+		userRates.setUserName(user.getUserName());
+		userRates.setChannelname(rates.getChannelname());
+		userRates.setTradingRates(user.getTradingRates());
+		userRates.setSettlementCosts(user.getWorkCosts());
+		userRates.setSettlementCaps(rates.getSettlementCaps());
+		userService.saveUserRates(userRates);
 		return "redirect:query.html";
 	}
 	@ResponseBody
@@ -146,7 +157,11 @@ public class UserController {
 		userService.modify(user);
 		return null;
 	}
-	
+	@RequestMapping("saveUserRates")
+	public String saveRates(UserRates userRates){
+		userService.saveUserRates(userRates);
+		return "redirect:queryUserRates.html";
+	}
 	/**
 	 * 跑到新增界面
 	 * 
@@ -154,9 +169,18 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("addUI")
-	public String addUI(Model model) {
-		List<Rates> rates = ratesService.queryAll(new Rates());
-		model.addAttribute("rates", rates);
+	public String addUI(Model model,HttpServletRequest request) {
+		User u = (User)request.getSession().getAttribute("userSession");
+		if("super".equals(u.getRoleName())||"admin".equals(u.getRoleName())){
+			UserRates userRates=new UserRates();
+			List<UserRates> rates=userService.queryAllUserRates(userRates);
+			model.addAttribute("rates", rates);
+		}else{
+			UserRates userRates=new UserRates();
+			userRates.setUserName(u.getUserName());
+			List<UserRates> rates=userService.queryAllUserRates(userRates);
+			model.addAttribute("rates", rates);
+		}
 		return Common.ROOT_PATH+"/background/user/add";
 	}
 
@@ -172,7 +196,58 @@ public class UserController {
 		userService.delete(userId);
 		return "redirect:query.html";
 	}
-
+	@RequestMapping("queryUserRates")
+	public String queryUserRates(String pageNow,Model model, UserRates userRates,HttpServletRequest request) {
+		User u = (User)request.getSession().getAttribute("userSession");
+		if("super".equals(u.getRoleName())||"admin".equals(u.getRoleName())){
+		}else{
+			userRates.setParentNumber(u.getUserId()+"");
+		}
+		PageView pageView = null;
+		if (Common.isEmpty(pageNow)) {
+			pageView = new PageView(1);
+		} else {
+			pageView = new PageView(Integer.parseInt(pageNow));
+		}
+		pageView = userService.queryUserRates(pageView, userRates);
+		model.addAttribute("pageView", pageView);
+		return Common.ROOT_PATH+"/background/rates/childRates";
+	}
+	@RequestMapping("saveUserRates")
+	public String saveUserRates(UserRates userRates) {
+		userService.saveUserRates(userRates);
+		return "redirect:userRates.html";
+	}
+	@RequestMapping("checkRates")
+	public String checkRates(Model model,String id,HttpServletRequest request) {
+		User u = (User)request.getSession().getAttribute("userSession");
+		if("super".equals(u.getRoleName())||"admin".equals(u.getRoleName())){
+			List<Rates> rates = ratesService.queryAll(new Rates());
+			model.addAttribute("rates", rates);
+		}else{
+			UserRates userRates=new UserRates();
+			userRates.setUserName(u.getUserName());
+			List<UserRates> rates=userService.queryAllUserRates(userRates);
+			model.addAttribute("rates", rates);
+		}
+		UserRates userRates=userService.queryUserRatesById(id);
+		model.addAttribute("userName", userRates.getUserName());
+		return Common.ROOT_PATH+"/background/rates/checkRates";
+	}
+	@ResponseBody
+	@RequestMapping("checkRatesName")
+	public Map<String, String> checkRatesName(PageView pageView,UserRates userRates){
+		PageView p=this.userService.queryUserRates(pageView,userRates);
+		Map<String, String> map = new HashMap<String, String>();
+		if (p.getRecords() == null) {
+			map.put("data", "false");
+		}else if (p.getRecords() != null && p.getRecords().size()!=0) {
+			map.put("data", "false");
+		}else{
+			map.put("data", "true");
+		}
+		return map;
+	}
 	/**
 	 * 修改界面
 	 * 
@@ -181,16 +256,21 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("getById")
-	public String getById(Model model, String userId) {
+	public String getById(Model model, String userId,HttpServletRequest request) {
 		User user = userService.getById(userId);
 		model.addAttribute("user", user);
-		List<Rates> rates = ratesService.queryAll(new Rates());
+		User u = (User)request.getSession().getAttribute("userSession");
+		UserRates userRates=new UserRates();
+		userRates.setUserName(u.getUserName());
+		List<UserRates> rates=userService.queryAllUserRates(userRates);
 		model.addAttribute("rates", rates);
-			return Common.ROOT_PATH+"/background/user/edit";
+		return Common.ROOT_PATH+"/background/user/edit";
 	}
 	@RequestMapping("show")
-	public String show() {
-			return Common.ROOT_PATH+"/background/user/show";
+	public String show(Model model,HttpServletRequest request) {
+		User u = userService.getById(request.getSession().getAttribute("userSessionId").toString());
+		model.addAttribute("userInfo", u);
+		return Common.ROOT_PATH+"/background/user/show";
 	}
 	/**
 	 * 更新类型

@@ -12,6 +12,7 @@ import com.lanyuan.dao.UserDao;
 import com.lanyuan.entity.Rates;
 import com.lanyuan.entity.Roles;
 import com.lanyuan.entity.User;
+import com.lanyuan.entity.UserRates;
 import com.lanyuan.util.PageView;
 
 
@@ -46,4 +47,24 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao
 		pageView.setRecords(lists);
 		return pageView;
 	}
+
+	public void saveUserRates(UserRates userRates) {
+		getSqlSession().insert("userrates.add",userRates);
+	}
+
+	public PageView queryUserRates(PageView pageView,UserRates userRates) {
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		map.put("paging", pageView);
+		map.put("t", userRates);
+		List<UserRates> lists = getSqlSession().selectList("userrates.queryUserRates",map);
+		pageView.setRecords(lists);
+		return pageView;
+	}
+	public UserRates queryUserRatesById(String userRatesId){
+		return (UserRates)getSqlSession().selectOne("userrates.getById", userRatesId);
+	}
+	public List<UserRates> queryAllUserRates(UserRates userRates){
+		return getSqlSession().selectList("userrates.queryAll", userRates);
+	}
+	
 }

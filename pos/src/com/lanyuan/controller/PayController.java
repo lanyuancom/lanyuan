@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.lanyuan.entity.Pay;
 import com.lanyuan.entity.Rates;
 import com.lanyuan.entity.User;
+import com.lanyuan.entity.UserRates;
 import com.lanyuan.service.PayService;
 import com.lanyuan.service.RatesService;
 import com.lanyuan.service.UserService;
@@ -52,15 +53,22 @@ public class PayController {
 	 */
 	@RequestMapping(value="add")
 	public String add(Model model,Pay pay,HttpServletRequest request){
-		Double co = Double.parseDouble(pay.getCostsMoney());
-		Double paMon = Double.parseDouble(pay.getSettlementCosts());
-		String money = (co-paMon)+"";
-		pay.setPayMoney(money);
-		payService.add(pay);
-		User user = userService.getById(request.getSession().getAttribute("userSessionId").toString());
-		Double sun = Double.parseDouble(user.getAmountMoney())-co;
-		user.setAmountMoney(sun+"");
-		userService.modify(user);
+		try {
+			Double co = Double.parseDouble(pay.getCostsMoney());
+			Double paMon = Double.parseDouble(pay.getSettlementCosts());
+			String money = (co - paMon) + "";
+			pay.setPayMoney(money);
+			Double countMeny = Double.parseDouble(pay.getCountMoney());//余额－结算金额
+			String remainMoney = (countMeny - co) + "";
+			pay.setRemainMoney(remainMoney);
+			payService.add(pay);
+			User user = userService.getById(request.getSession().getAttribute("userSessionId").toString());
+			Double sun = Double.parseDouble(user.getAmountMoney()) - co;
+			user.setAmountMoney(sun + "");
+			userService.modify(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "redirect:query.html";
 	}
 	public static void main(String[] args) {
@@ -76,7 +84,13 @@ public class PayController {
 	 * @return
 	 */
 	@RequestMapping(value="query")
-	public String query(Model model,Pay pay,String pageNow){
+	public String query(Model model,Pay pay,String pageNow,HttpServletRequest request){
+		User u = (User)request.getSession().getAttribute("userSession");
+		if("super".equals(u.getRoleName())||"admin".equals(u.getRoleName())){
+		
+		}else{
+			pay.setUserName(u.getUserName());
+		}
 		PageView pageView = null;
 		if(Common.isEmpty(pageNow)){
 			pageView = new PageView(1);
@@ -125,9 +139,8 @@ public class PayController {
 	@RequestMapping(value="payRates")
 	public String payRates(Model model,String ratesId,HttpServletRequest request){
 		if(!Common.isEmpty(ratesId)){
-			Rates rates = ratesService.getById(ratesId);
+			UserRates rates = userService.queryUserRatesById(ratesId);
 			model.addAttribute("rates", rates);
-			
 			User u = userService.getById(request.getSession().getAttribute("userSessionId").toString());
 			model.addAttribute("userInfo", u);
 		}

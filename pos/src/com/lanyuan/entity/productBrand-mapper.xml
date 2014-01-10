@@ -15,7 +15,7 @@
 		productBrandName,
 		parentId
 		FROM
-		productBrand
+		productbrand
 		<where>
 			<if test="t.productBrandName != null and t.productBrandName != ''">
 				productBrandName LIKE '%$t.productBrandName$%'
@@ -29,12 +29,12 @@
 	<select id="queryAll" resultType="ProductBrand">
 		select
 		<include refid="selectId" />
-		from productBrand
+		from productbrand
 	</select>
 	<select id="findTopBrand" resultType="ProductBrand">
 		select
 		<include refid="selectId" />
-		from productBrand where parentId=0
+		from productbrand where parentId=0
 	</select>
 	
 	<!-- 增加用户 -->
@@ -47,21 +47,21 @@
 	</insert>
 
 	<delete id="deleteById" parameterType="String">
-		delete from productBrand
+		delete from productbrand
 		where
 		productBrandId=#{productBrandId}
 	</delete>
 	<select id="getById" parameterType="String" resultType="ProductBrand">
 		select
 		<include refid="selectId" />
-		from productBrand where productBrandId=#{productBrandId}
+		from productbrand where productBrandId=#{productBrandId}
 	</select>
 	 <select id="findByParentId" parameterType="String" resultType="ProductBrand">
-		select * from productBrand WHERE parentId = #{parentId}
+		select * from productbrand WHERE parentId = #{parentId}
   </select>
   
 	<update id="update" parameterType="ProductBrand">
-		UPDATE productBrand set
+		UPDATE productbrand set
 		productBrandName= #{productBrandName},
 		parentId = #{parentId}
 		WHERE
