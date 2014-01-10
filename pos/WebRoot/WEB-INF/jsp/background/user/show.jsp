@@ -8,9 +8,7 @@
   
   <body>
   <div style="height: 100%;overflow-y: auto;">
-<br/>
-<br/>  
-		<table class="ttab" height="100" width="70%" border="0"
+		<table class="ttab" height="90%" width="90%" border="0"
 				cellpadding="0" cellspacing="1" align="center">
 				<tr>
 					<td height="30" colspan="4">
