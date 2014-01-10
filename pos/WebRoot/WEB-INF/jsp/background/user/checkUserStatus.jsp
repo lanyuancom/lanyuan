@@ -174,7 +174,13 @@
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;color: red">
-							<input type="hidden" name="status" value="0" />待审核
+						<c:if test="${userInfo.status eq '0'}">待审核
+						<input type="hidden" name="status" value="${userInfo.status}" />
+						</c:if>
+							<c:if test="${userInfo.status eq '1'}">审核通过
+						<input type="hidden" name="status" value="${userInfo.status}" />
+						</c:if>
+							
 						</div>
 					</td>
 				</tr>

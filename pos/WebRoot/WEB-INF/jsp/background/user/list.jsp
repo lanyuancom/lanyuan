@@ -70,7 +70,10 @@ function checkUser(userId){
 				用户名：<input type="text" name="userName" value="${param.userName}" style="height: 20px"/>　　
 				<input type="submit" value="开始查询" class="input_btn_style1"/>&nbsp;&nbsp;
 				<input type="reset" value="重置" class="input_btn_style1"/>
-				<input type="hidden" value="${param.status}" class="input_btn_style1" name="status"/>
+				<c:if test="${userSession.roleName eq 'admin' || userSession.roleName eq 'super'}">
+				<input type="hidden" value="${param.statusFlag}" class="input_btn_style1" name="statusFlag"/>
+				</c:if>
+				
 			</div>
 		</fieldset>
 	</div>
@@ -96,13 +99,7 @@ function checkUser(userId){
             
             <td width="15%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">账号类型</td>
             <td width="15%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">注册时间</td>
-            
-            <c:if test="${userSession.roleName eq 'admin' && param.status eq '0'}">
             <td width="5%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">状态</td>
-            </c:if>
-            <c:if test="${userSession.roleName ne 'admin'}">
-            <td width="5%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">状态</td>
-            </c:if>
             <td width="30%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">基本操作</td>
           </tr>
           
@@ -124,37 +121,20 @@ function checkUser(userId){
              <fmt:parseDate value="${key.regTime}" var="date" pattern="yyyy-MM-dd HH:mm:ss" />
 			<fmt:formatDate value="${date}" pattern="yyyy-MM-dd HH:mm:ss" />
             </span></td>
-            <c:if test="${userSession.roleName eq 'admin' && param.status eq '0'}">
             <td height="20" ><span class="STYLE1">
 			<c:if test="${key.status eq '0'}">
 			<font color="red">待审核</font>
 			</c:if>
 			<c:if test="${key.status eq '1'}">
-			<font color="red">审核通过</font>
+			<font color="blue">审核通过</font>
 			</c:if>
             </span></td>
-            </c:if>
-             <c:if test="${userSession.roleName ne 'admin'}">
-             <td height="20" ><span class="STYLE1">
-			<c:if test="${key.status eq '0'}">
-			<font color="red">待审核</font>
-			</c:if>
-			<c:if test="${key.status eq '1'}">
-			<font color="red">审核通过</font>
-			</c:if>
-            </span></td>
-             </c:if>
             <td height="20" ><span class="STYLE4">
-            <c:if test="${userSession.roleName eq 'admin' && param.status eq '0'}">
+             <sec:authorize ifAnyGranted="ROLE_sys_user_shenhe">
             &nbsp; &nbsp;
             <a href="javascript:void(0);" onclick="checkUser('${key.userId}')">审核客户
             </a>
-            </c:if>
-            <c:if test="${userSession.roleName eq 'super'}">
-            &nbsp; &nbsp;
-            <a href="javascript:void(0);" onclick="checkUser('${key.userId}')">审核客户
-            </a>
-            </c:if>
+            </sec:authorize>
              <sec:authorize ifAnyGranted="ROLE_sys_user_fenpeirole">
              &nbsp; &nbsp;
              <img src="${pageContext.servletContext.contextPath }/images/role.png" width="16" height="16" />

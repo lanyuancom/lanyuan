@@ -54,9 +54,9 @@
   </tr>
   <tr>
     <td>
-    <div style="padding-left: 10px;padding-bottom: 5px;">
+    <!-- <div style="padding-left: 10px;padding-bottom: 5px;">
          <input type="button" value="申请结算" class="input_btn_style1" onclick="return benefit()"/>&nbsp;&nbsp;
-     </div>
+     </div> -->
     <table class="listtable" width="100%">
       <tr>
         <td width="8" background="${pageContext.servletContext.contextPath }/images/tab_12.gif">&nbsp;</td>

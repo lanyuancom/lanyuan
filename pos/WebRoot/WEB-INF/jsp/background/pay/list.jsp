@@ -77,7 +77,8 @@
             <td width="11%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">申请结算时间</td>
             <td width="11%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">结算时间</td>
             <td width="6%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">状态</td>
-            <sec:authorize ifAnyGranted="ROLE_pay_delete">
+           
+             <sec:authorize ifAnyGranted="ROLE_pay_shenhe,ROLE_pay_delete">
             <td width="23%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">操作</td>
          	</sec:authorize>
           </tr>
@@ -100,17 +101,22 @@
             
             <td height="20" ><span class="STYLE1">
 			<c:if test="${pay.payState eq '0'}"><font color="red">等审核</font></c:if>
-			<c:if test="${pay.payState eq '2'}"><font color="blue">审核不通过</font></c:if>
+			<c:if test="${pay.payState eq '2'}"><font color="#EE00EE">审核不通过</font></c:if>
 			<c:if test="${pay.payState eq '1'}"><font color="blue">已经结算</font></c:if>
 	</span></td>
             
+             <sec:authorize ifAnyGranted="ROLE_pay_shenhe,ROLE_pay_delete">
             <td height="20" ><span class="STYLE4">
-            <c:if test="${userSession.roleName ne 'admin'||userSession.roleName ne 'super'}">
+             <sec:authorize ifAnyGranted="ROLE_pay_shenhe">
             <c:if test="${pay.payState eq '0'}"><font color="red">
      <a href="${pageContext.servletContext.contextPath }/background/pay/show.html?payId=${pay.id}">       
             审核
             </a>
-            </font></c:if></c:if>
+            </font></c:if>
+            <c:if test="${pay.payState eq '1'}"><font color="blue">
+            审核通过
+            </font></c:if>
+            </sec:authorize>
            <%--  <img src="${pageContext.servletContext.contextPath }/images/del.gif" width="16" height="16" />
             	<a href="${pageContext.servletContext.contextPath }/background/pay/getById.html?payId=${pay.id}&type=0">
             	显示详细信息</a>
@@ -126,6 +132,7 @@
             	<a href="javascript:void(0);" onclick="deleteId('${pageContext.servletContext.contextPath }/background/pay/deleteById.html?payId=${pay.id}')">
             	删除</a></sec:authorize>
             	</span></td>
+            	</sec:authorize>
           </tr>
           </c:forEach>
         </table></td>

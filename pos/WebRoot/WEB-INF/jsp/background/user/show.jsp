@@ -10,7 +10,7 @@
   <div style="height: 100%;overflow-y: auto;">
 <br/>
 <br/>  
-		<table class="ttab" height="100" width="90%" border="0"
+		<table class="ttab" height="100" width="70%" border="0"
 				cellpadding="0" cellspacing="1" align="center">
 				<tr>
 					<td height="30" colspan="4">
@@ -20,134 +20,134 @@
 					</td>
 				</tr>
 				<tr>
-					<td height="30" width="10%">
+					<td height="30" width="15%">
 						<div align="right" class="STYLE1">用户名：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.userName}
+							${userInfo.userName}
 						</div>
 					</td>
-					<td height="30" width="10%">
+					<td height="30" width="15%">
 						<div align="right" class="STYLE1">银行户名：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.bankAccountName}
+							${userInfo.bankAccountName}
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<td height="30" width="10%">
-						<div align="right" class="STYLE1">密码：</div>
+					<td height="30" width="15%">
+						<div align="right" class="STYLE1">账号余额：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1"
-							style="padding-left:10px;color: red;">*默认密码为身份证后6位 </div>
+							style="padding-left:10px;color: red;">${userInfo.amountMoney} </div>
 					</td>
-					<td height="30" width="10%">
+					<td height="30" width="15%">
 						<div align="right" class="STYLE1">银行账号：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.bankAccount}
+							${userInfo.bankAccount}
 						</div>
 					</td>
 				</tr>
 				<tr>
 				
-				<td height="30" width="10%">
+				<td height="30" width="15%">
 						<div align="right" class="STYLE1">真实姓名：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.userRealname} 
+							${userInfo.userRealname} 
 						</div>
 					</td>
-					<td height="30" width="10%">
+					<td height="30" width="15%">
 						<div align="right" class="STYLE1">银行名称：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.bankName} 
+							${userInfo.bankName} 
 						</div>
 					</td>
 				</tr>
 				<tr>
 					
-					<td height="30" width="10%">
+					<td height="30" width="15%">
 						<div align="right" class="STYLE1">身份证：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1"
 							style="padding-left:10px;color: red;">
-								${userSession.userIdCard} 
+								${userInfo.userIdCard} 
 						</div>
 					</td>
 					
-					<td height="30" width="10%">
+					<td height="30" width="15%">
 						<div align="right" class="STYLE1">开户所在省：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.province} 
+							${userInfo.province} 
 						</div>
 					</td>
 				</tr>
 				<tr>
-				<td height="30" width="10%">
+				<td height="30" width="15%">
 						<div align="right" class="STYLE1">费率通道：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-						${userSession.channelname} 
+						${userInfo.channelname} &nbsp; &nbsp;
 						</div>
 					</td>
 					
-					<td height="30" width="10%">
+					<td height="30" width="15%">
 						<div align="right" class="STYLE1">开户所在市：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.city} 
+							${userInfo.city} 
 						</div>
 					</td>
 				</tr>
 				<tr>
 					
-					<td height="30" width="10%">
+					<td height="30" width="15%">
 						<div align="right" class="STYLE1">QQ：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.userQQ}
+							${userInfo.userQQ}
 						</div>
 					</td>
 					
-					<td height="30" width="10%">
+					<td height="30" width="15%">
 						<div align="right" class="STYLE1">所属支行或分行：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.subbranchBank}
+							${userInfo.subbranchBank}
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<td height="30" width="10%">
+					<td height="30" width="15%">
 						<div align="right" class="STYLE1">开通费：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userSession.pay}
+							${userInfo.pay}
 						</div>
 					</td>
-					<td height="30" width="10%">
+					<td height="30" width="15%">
 						<div align="right" class="STYLE1">账号类型：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-						${userSession.accountType}
+						${userInfo.accountType}
 						</div>
 					</td>
 				</tr>

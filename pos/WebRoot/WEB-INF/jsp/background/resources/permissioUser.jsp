@@ -28,6 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 idFieldName :'fid',
                 parentIDFieldName :'pfid',
                 checkbox: true,
+                autoCheckboxEven:false,
                 onSelect: onSelect
 
             });
