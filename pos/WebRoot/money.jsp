@@ -51,7 +51,7 @@
 		$("#" + hidenId).hide();
 	}
 	function sub() {
-	    var tradingRates="${userInfo.tradingRates}";
+	    var tradingRates="${rates.tradingRates}";
 	    if (tradingRates==""||isNaN(parseFloat(tradingRates))) {
 	    	alert("用户的费率:"+tradingRates+"  有误！请联系管理员！！");
 	    	return;
@@ -113,7 +113,7 @@
 									<input name="Channelname"
 											id="Channelname" type="hidden" class="text" value="${rates.channelname}">
 											<input name="tradingRates"
-											id="tradingRates" type="hidden" class="text" value="${userInfo.tradingRates}">
+											id="tradingRates" type="hidden" class="text" value="${rates.tradingRates}">
 									</div></li>
 								<li>
 									<div>
