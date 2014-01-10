@@ -46,9 +46,10 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("query")
-	public String query(Model model, User user, String pageNow,HttpServletRequest request) {
+	public String query(Model model, User user,String statusFlag, String pageNow,HttpServletRequest request) {
 		User u = (User)request.getSession().getAttribute("userSession");
-		if(!"super".equals(u.getRoleName())||!"admin".equals(u.getRoleName())){
+		if("super".equals(u.getRoleName())||"admin".equals(u.getRoleName())){
+			user.setStatus(statusFlag);
 			PageView pageView = null;
 			if (Common.isEmpty(pageNow)) {
 				pageView = new PageView(1);
@@ -60,8 +61,7 @@ public class UserController {
 			return Common.ROOT_PATH+"/background/user/list";
 		}else{
 			//非管理员
-			if(user != null && "0".equals(user.getStatus())){
-				if(!"super".equals(u.getRoleName())&&!"admin".equals(u.getRoleName())){
+			if(user != null && "0".equals(statusFlag)||statusFlag==null){
 					user.setParentNumber(request.getSession().getAttribute("userSessionId").toString());
 					PageView pageView = null;
 					if (Common.isEmpty(pageNow)) {
@@ -73,8 +73,8 @@ public class UserController {
 					pageView = userService.query(pageView, user);
 					model.addAttribute("pageView", pageView);
 					return Common.ROOT_PATH+"/background/user/list";
-				}
 			}
+			model.addAttribute("userInfo", u);
 			return Common.ROOT_PATH+"/background/user/show";
 		}
 	}
@@ -109,6 +109,16 @@ public class UserController {
 		card=card.substring(s, card.length());
 		user.setUserPassword(Md5Tool.getMd5(card));
 		userService.add(user);
+		List<Roles> r= rolesService.queryAll(new Roles());
+		for (Roles roles : r) {//新增用户默认为普通用户
+			if("simple".equals(roles.getRoleKey())){
+				User u =  userService.querySingleUser(user.getUserName());
+				UserRoles userRoles = new UserRoles();
+				userRoles.setUserId(u.getUserId());
+				userRoles.setRoleId(roles.getId());
+				rolesService.saveUserRole(userRoles);
+			}
+		}
 		return "redirect:query.html";
 	}
 	@ResponseBody
