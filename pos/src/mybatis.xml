@@ -22,5 +22,7 @@
 		<typeAlias type="com.lanyuan.entity.Rates" alias="Rates"/>
 		<typeAlias type="com.lanyuan.entity.Pay" alias="Pay"/>
 		<typeAlias type="com.lanyuan.entity.PayMent" alias="PayMent"/>
+		
+		<typeAlias type="com.lanyuan.entity.UserRates" alias="UserRates"/>
 	</typeAliases>
 </configuration>
