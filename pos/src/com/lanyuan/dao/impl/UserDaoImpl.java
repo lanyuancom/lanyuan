@@ -66,5 +66,9 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao
 	public List<UserRates> queryAllUserRates(UserRates userRates){
 		return getSqlSession().selectList("userrates.queryAll", userRates);
 	}
+
+	public void updateUserRates(UserRates userRates) {
+		getSqlSession().update("userrates.update",userRates);
+	}
 	
 }

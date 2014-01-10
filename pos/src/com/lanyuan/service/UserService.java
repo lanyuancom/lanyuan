@@ -20,4 +20,5 @@ public interface UserService extends BaseDao<User>{
 	public PageView queryUserRates(PageView pageView,UserRates userRates);
 	public UserRates queryUserRatesById(String userRatesId);
 	public List<UserRates> queryAllUserRates(UserRates userRates);
+	public void updateUserRates(UserRates userRates);
 }

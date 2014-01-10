@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lanyuan.entity.PayMent;
 import com.lanyuan.entity.Rates;
+import com.lanyuan.entity.User;
 import com.lanyuan.service.PayMentService;
 import com.lanyuan.service.RatesService;
 import com.lanyuan.util.Common;
@@ -58,12 +59,18 @@ public class PayMentController {
 	 * @return
 	 */
 	@RequestMapping(value="query")
-	public String query(Model model,PayMent payMent,String pageNow){
+	public String query(Model model,PayMent payMent,String pageNow,HttpServletRequest request){
+		User u = (User)request.getSession().getAttribute("userSession");
 		PageView pageView = null;
 		if(Common.isEmpty(pageNow)){
 			pageView = new PageView(1);
 		}else{
 			pageView = new PageView(Integer.parseInt(pageNow));
+		}
+		if("super".equals(u.getRoleName())||"admin".equals(u.getRoleName())){
+			
+		}else{
+			payMent.setUserName(u.getUserName());
 		}
 		pageView = payMentService.query(pageView, payMent);
 		model.addAttribute("pageView", pageView);

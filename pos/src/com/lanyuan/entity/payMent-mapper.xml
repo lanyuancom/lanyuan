@@ -21,7 +21,7 @@
 		from payment
 		<where>
 			<if test="t.userName != null and t.userName != ''">
-				userName like '%${t.userName}%'
+				userName = #{t.userName}
 			</if>
 			<if test="t.payState != null and t.payState != ''">
 				and payState = #{t.payState}
@@ -46,7 +46,7 @@
 		orderId, tradingMoney,channelname,payState
 		realMoney )
 		values (#{userName},
-		#{orderId}, #{tradingMoney}, #{channelname}, #{payState}
+		#{orderId}, #{tradingMoney}, #{channelname}, #{payState},
 		#{realMoney})
 	</insert>
 	<delete id="deleteById" parameterType="String">
@@ -77,7 +77,7 @@
 				payState=#{payState},
 			</if>
 			<if test="channelname != null and channelname != ''">
-				channelname=#{channelname},
+				channelname=#{channelname}
 			</if>
 		</set>
 		where id=#{id}

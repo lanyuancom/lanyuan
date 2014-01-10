@@ -213,11 +213,6 @@ public class UserController {
 		model.addAttribute("pageView", pageView);
 		return Common.ROOT_PATH+"/background/rates/childRates";
 	}
-	@RequestMapping("saveUserRates")
-	public String saveUserRates(UserRates userRates) {
-		userService.saveUserRates(userRates);
-		return "redirect:userRates.html";
-	}
 	@RequestMapping("checkRates")
 	public String checkRates(Model model,String id,HttpServletRequest request) {
 		User u = (User)request.getSession().getAttribute("userSession");
@@ -286,6 +281,20 @@ public class UserController {
 		rolesService.saveUserRole(userRoles);
 		return "redirect:query.html";
 	}
+	
+	@RequestMapping("edituserrates")
+	public String edituserrates(Model model, String ratesId) {
+		UserRates ur=userService.queryUserRatesById(ratesId);
+		model.addAttribute("rates", ur);
+		return Common.ROOT_PATH+"/background/rates/edituserrates";
+	}
+	
+	@RequestMapping("updateUserRates")
+	public String updateUserRates(Model model, UserRates userRates) {
+		userService.updateUserRates(userRates);
+		return "redirect:queryUserRates.html";
+	}
+	
 	@ResponseBody
 	@RequestMapping("updatePass")
 	public String updatePass(Model model, User user) {

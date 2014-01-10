@@ -79,4 +79,8 @@ public class UserServiceImpl implements UserService {
 	public List<UserRates> queryAllUserRates(UserRates userRates) {
 		return userDao.queryAllUserRates(userRates);
 	}
+
+	public void updateUserRates(UserRates userRates) {
+		userDao.updateUserRates(userRates);
+	}
 }
