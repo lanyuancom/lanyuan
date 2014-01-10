@@ -55,9 +55,11 @@
   </tr>
   <tr>
     <td>
+    <sec:authorize ifAnyGranted="ROLE_rates_delete">
      <div style="padding-left: 10px;padding-bottom: 5px;">
          <input type="button" value="批量删除" class="input_btn_style1" onclick="return deleteAll()"/>&nbsp;&nbsp;
      </div>
+     </sec:authorize>
     <table class="listtable" width="100%">
       <tr>
         <td width="8" background="${pageContext.servletContext.contextPath }/images/tab_12.gif">&nbsp;</td>

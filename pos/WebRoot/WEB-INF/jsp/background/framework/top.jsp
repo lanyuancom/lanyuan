@@ -117,7 +117,7 @@ demo.onmouseout=function() {MyMar=setInterval(MarqueeLeft,speed);}
           </tr>
         </table></td>
         <td width="200"><img src="${pageContext.servletContext.contextPath }/images/user.gif" width="10" height="10" /> <span class="STYLE1">欢迎您:
-        ${userSession.userName}  角色:管理员</span></td>
+        ${userSession.userName} </span></td>
       </tr>
     </table></td>
   </tr>

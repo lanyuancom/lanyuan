@@ -16,6 +16,7 @@
                 dataType:'json',
                 success: function(data) {
                		alert("处理成功！！");
+               		window.location.href="${pageContext.servletContext.contextPath }/background/user/query.html";
                 }
 
             });
@@ -180,7 +181,9 @@
 							<c:if test="${userInfo.status eq '1'}">审核通过
 						<input type="hidden" name="status" value="${userInfo.status}" />
 						</c:if>
-							
+							<c:if test="${userInfo.status eq '2'}">审核不通过
+						<input type="hidden" name="status" value="${userInfo.status}" />
+						</c:if>
 						</div>
 					</td>
 				</tr>
@@ -189,7 +192,7 @@
 						<div align="center">
 							<input type="button" value="　同　意　" class="input_btn_style1"
 								onclick="checkUser('1');" />&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<input type="button" value="　不同意　" class="input_btn_style1"
-								onclick="checkUser('0');" />
+								onclick="checkUser('2');" />
 						</div>
 					</td>
 				</tr>

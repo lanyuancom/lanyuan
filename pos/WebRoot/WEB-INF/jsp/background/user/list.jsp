@@ -70,10 +70,6 @@ function checkUser(userId){
 				用户名：<input type="text" name="userName" value="${param.userName}" style="height: 20px"/>　　
 				<input type="submit" value="开始查询" class="input_btn_style1"/>&nbsp;&nbsp;
 				<input type="reset" value="重置" class="input_btn_style1"/>
-				<c:if test="${userSession.roleName eq 'admin' || userSession.roleName eq 'super'}">
-				<input type="hidden" value="${param.statusFlag}" class="input_btn_style1" name="statusFlag"/>
-				</c:if>
-				
 			</div>
 		</fieldset>
 	</div>
@@ -81,10 +77,11 @@ function checkUser(userId){
   </tr>
   <tr>
     <td>
+    <sec:authorize ifAnyGranted="ROLE_sys_user_delete">
     <div style="padding-left: 10px;padding-bottom: 5px;">
          <input type="button" value="批量删除" class="input_btn_style1" onclick="return deleteAll()"/>&nbsp;&nbsp;
      </div>
-    <table class="listtable" width="100%">
+</sec:authorize>    <table class="listtable" width="100%">
       <tr>
         <td width="8" background="${pageContext.servletContext.contextPath }/images/tab_12.gif">&nbsp;</td>
         <td><table class="ttab" width="100%" cellspacing="1" onmouseover="changeto()"  onmouseout="changeback()">
@@ -100,7 +97,9 @@ function checkUser(userId){
             <td width="15%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">账号类型</td>
             <td width="15%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">注册时间</td>
             <td width="5%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">状态</td>
+            <sec:authorize ifAnyGranted="ROLE_sys_user_edit,ROLE_sys_user_delete,ROLE_sys_user_shenhe">
             <td width="30%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">基本操作</td>
+          	</sec:authorize>
           </tr>
           
           <c:forEach var="key" items="${pageView.records}">
@@ -125,16 +124,22 @@ function checkUser(userId){
 			<c:if test="${key.status eq '0'}">
 			<font color="red">待审核</font>
 			</c:if>
+			<c:if test="${key.status eq '2'}">
+			<font color="blue">审核不通过</font>
+			</c:if>
 			<c:if test="${key.status eq '1'}">
 			<font color="blue">审核通过</font>
 			</c:if>
             </span></td>
+             <sec:authorize ifAnyGranted="ROLE_sys_user_edit,ROLE_sys_user_delete,ROLE_sys_user_shenhe">
             <td height="20" ><span class="STYLE4">
+            <c:if test="${key.status eq '0' || key.status eq '2'}">
              <sec:authorize ifAnyGranted="ROLE_sys_user_shenhe">
             &nbsp; &nbsp;
             <a href="javascript:void(0);" onclick="checkUser('${key.userId}')">审核客户
             </a>
             </sec:authorize>
+            </c:if>
              <sec:authorize ifAnyGranted="ROLE_sys_user_fenpeirole">
              &nbsp; &nbsp;
              <img src="${pageContext.servletContext.contextPath }/images/role.png" width="16" height="16" />
@@ -157,6 +162,7 @@ function checkUser(userId){
             	删除</a>
             	</sec:authorize>
             	</span></td>
+            	</sec:authorize>
           </tr>
           </c:if>
           </c:forEach>

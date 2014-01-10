@@ -18,9 +18,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <center style="color: white;font-weight: 800;font-size: 30px;" >尊贵的：<span style="color: yellow;font-weight: 800;">${userSession.userName}${admin.superName}</span>　　您好！    欢迎进入天天支付结算系统:</center>
 <div style="color: white;font-size: 20px;">
 你的身份是: <span style="color: yellow;">
- <c:if test="${userSession.level eq '0'}">超级管理员</c:if> 
-  <c:if test="${userSession.level eq '1'}"> 管理员</c:if>
-  <c:if test="${userSession.level eq '2'}"> 普通用户</c:if>
+ <c:if test="${userSession.roleName eq 'super'}">超级管理员</c:if> 
+  <c:if test="${userSession.roleName eq 'admin'}"> 管理员</c:if>
+  <c:if test="${userSession.roleName ne 'super' && userSession.roleName ne 'admin'}"> 普通用户</c:if>
   </span>
 　　现在的时间是:<span class="STYLE7"><b><SPAN id=clock style="color: yellow;"></SPAN></b>
  <SCRIPT type=text/javascript>

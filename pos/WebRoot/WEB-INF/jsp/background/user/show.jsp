@@ -96,11 +96,11 @@
 				</tr>
 				<tr>
 				<td height="30" width="15%">
-						<div align="right" class="STYLE1">费率通道：</div>
+						<div align="right" class="STYLE1">费率：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-						${userInfo.channelname} &nbsp; &nbsp;
+						${userInfo.tradingRates} &nbsp; &nbsp;
 						</div>
 					</td>
 					

@@ -57,7 +57,7 @@
 				<tr>
 					<td colspan="4" style="padding: 10px">
 						<div align="center">
-							<input type="button" value="　保　存　" class="input_btn_style1" onclick="upass();"/> <input
+							<input type="button" value="　确认修改　" class="input_btn_style1" onclick="upass();"/> <input
 								id="backBt" type="button" value="　返　回　" class="input_btn_style1"
 								onclick="javascript:window.location.href='javascript:history.go(-1)'" />
 						</div></td>

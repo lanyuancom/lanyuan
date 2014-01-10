@@ -84,7 +84,7 @@
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
 							${userInfo.amountMoney}
-							<input type="hidden" name="amountMoney" id="amountMoney" value="${userInfo.amountMoney}">
+							<input type="hidden" name="countMoney" id="amountMoney" value="${userInfo.amountMoney}">
 						</div>
 					</td>
 					<td height="30"width="20%" >
