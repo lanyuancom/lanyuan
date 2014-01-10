@@ -73,11 +73,12 @@ String url="jdbc:mysql://223.244.227.11:3306/"+dbName+"?user="+userName+"&passwo
 Class.forName("com.mysql.jdbc.Driver").newInstance();
 Connection connection = null;
 Statement statement = null;
+
+String username=(String)session.getAttribute("userName");
+String Channelname=(String)session.getAttribute("Channelname");
  try {
  connection=DriverManager.getConnection(url);
  statement = connection.createStatement();
-String username=(String)session.getAttribute("userName");
-String Channelname=(String)session.getAttribute("Channelname");
 String sql="INSERT INTO `payment`(orderId,userName,tradingMoney,realMoney,channelname,payState)  VALUES ('"+TransID+"', '"+username+"', '"+OrderMoney+"', '"+realMoney+"','"+Channelname+"', '"+Result+"');";
 statement.executeUpdate(sql);
    } catch (Exception e) {
@@ -105,7 +106,7 @@ statement.executeUpdate(sql);
   try {
 			 conn = DriverManager.getConnection(url);
 			 st = conn.createStatement();
-			String sql2 = "SELECT amountMoney,tradingRates,workCosts,afterWorkCosts,payMoney,userId,userName" + " FROM user where userName = '"+userName+"'";
+			String sql2 = "SELECT amountMoney,tradingRates,workCosts,afterWorkCosts,payMoney,userId,userName" + " FROM user where userName = '"+username+"'";
 			 set = st.executeQuery(sql2);
 			
 			    while (set.next()) 
@@ -142,7 +143,7 @@ try {
 		 updateCom=DriverManager.getConnection(url);
 		 updatestatement = updateCom.createStatement();
 		Double men = Double.parseDouble(amountMoney)+Double.parseDouble(realMoney);
-		String updatesql="update user set amountMoney='"+men+"' where userName = '"+userName+"'";
+		String updatesql="update user set amountMoney='"+men+"' where userName = '"+username+"'";
 		updatestatement.executeUpdate(updatesql);
 		//}else{
 		//out.println("<script>alert('实际成交金额与您提交的订单金额不一致，请接收到支付结果后仔细核对实际成交金额，以免造成订单金额处理差错。');</script>");	//实际成交金额与商户提交的订单金额不一致
@@ -231,7 +232,7 @@ function closewin() {
 			<td class="text_12" bordercolor="#ffffff" align="right" width="150" height="20">
 				提交的金额：</td>
 			<td class="text_12" bordercolor="#ffffff" align="left">
-			<%=b%>
+			<%=OrderMoney%>
 				</td>
 		</tr>		
 			<td class="text_12" bordercolor="#ffffff" align="right" width="150" height="20">
@@ -247,7 +248,7 @@ function closewin() {
 			<%=SuccTime%>
 				</td>
 		</tr>
-		<tr><td>
+		<tr><td colspan="2">
 		<input type="button"  value="关闭窗口" onclick="closewin();"/>
 		</td></tr>		
 	</table> 
