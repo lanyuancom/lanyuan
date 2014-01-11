@@ -1,5 +1,6 @@
 package com.lanyuan.util;
 
+import java.math.BigDecimal;
 import java.security.MessageDigest;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -32,7 +33,15 @@ public class Md5Tool {
 		return str;
 	}
 	public static void main(String[] args) {
-		System.err.println(Md5Tool.getMd5("123456"));
+		Double a = 99.7;
+		Double b = Double.parseDouble("90");
+		System.out.println(Md5Tool.sub(a, b));
+		
 		
 	}
+	public static double sub(double v1,double v2){
+        BigDecimal b1 = new BigDecimal(Double.toString(v1));
+        BigDecimal b2 = new BigDecimal(Double.toString(v2));
+        return b1.subtract(b2).doubleValue();
+    } 
 }
