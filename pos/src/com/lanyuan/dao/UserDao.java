@@ -19,14 +19,6 @@ public interface UserDao extends BaseDao<User>{
 	
 	public User login(User user);
 	
-	/**
-	 * 下级用户的费率列表
-	 * @param pageView
-	 * @param user
-	 * @return
-	 */
-	public PageView queryChildRates(PageView pageView,User user) ;
-	
 	public void saveUserRates(UserRates userRates);
 	
 	public PageView queryUserRates(PageView pageView,UserRates userRates);

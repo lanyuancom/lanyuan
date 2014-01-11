@@ -1,6 +1,5 @@
 package com.lanyuan.controller;
 
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,10 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.lanyuan.entity.Rates;
-import com.lanyuan.entity.User;
 import com.lanyuan.entity.UserRates;
-import com.lanyuan.service.RatesService;
+import com.lanyuan.entity.User;
+import com.lanyuan.service.UserRatesService;
 import com.lanyuan.service.UserService;
 import com.lanyuan.util.Common;
 import com.lanyuan.util.PageView;
@@ -24,9 +22,9 @@ import com.lanyuan.util.PageView;
  */
 @Controller
 @RequestMapping(value="/background/rates/")
-public class RatesController {
+public class UserRatesController {
 	@Autowired
-	private RatesService ratesService;
+	private UserRatesService userRatesService;
 	@Autowired
 	private UserService userService;
 	
@@ -46,8 +44,8 @@ public class RatesController {
 	 * @return
 	 */
 	@RequestMapping(value="add")
-	public String add(Model model,Rates rates,HttpServletRequest request){
-		ratesService.add(rates);
+	public String add(Model model,UserRates rates,HttpServletRequest request){
+		userRatesService.add(rates);
 		return "redirect:query.html";
 	}
 	@RequestMapping(value="money")
@@ -70,7 +68,7 @@ public class RatesController {
 	 * @return
 	 */
 	@RequestMapping(value="query")
-	public String query(Model model,UserRates userRates,Rates rates,String pageNow,HttpServletRequest request){
+	public String query(Model model,UserRates userRates,String pageNow,HttpServletRequest request){
 		User u = (User)request.getSession().getAttribute("userSession");
 		PageView pageView = null;
 		if (Common.isEmpty(pageNow)) {
@@ -79,42 +77,13 @@ public class RatesController {
 			pageView = new PageView(Integer.parseInt(pageNow));
 		}
 		if("super".equals(u.getRoleName())||"admin".equals(u.getRoleName())){
-			pageView.setRecords(ratesService.queryAll(rates));
+			pageView=userRatesService.query(pageView, userRates);
 		}else{
 			userRates.setUserName(u.getUserName());
-			pageView.setRecords(userService.queryAllUserRates(userRates));
-			List<Rates> rs =ratesService.queryAll(new Rates());
-			List list = pageView.getRecords();
-			for (Object object : list) {
-				UserRates ur = (UserRates)object;
-				for (Rates r : rs) {
-					if(ur.getChannelname().equals(r.getChannelname())){
-						ur.setMark(r.getMark());
-					}
-				}
-			}
+			pageView=userRatesService.queryChildUserNotNull(pageView, userRates);
 		}
-
 		model.addAttribute("pageView", pageView);
 		return Common.ROOT_PATH+"/background/rates/list";
-	}
-	@RequestMapping(value="queryChildRates")
-	public String queryChildRates(Model model,User user,String pageNow,HttpServletRequest request){
-		User u = (User)request.getSession().getAttribute("userSession");
-		if("super".equals(u.getRoleName())||"admin".equals(u.getRoleName())){
-		
-		}else{
-			user.setParentNumber(request.getSession().getAttribute("userSessionId").toString());
-		}
-		PageView pageView = null;
-		if(Common.isEmpty(pageNow)){
-			pageView = new PageView(1);
-		}else{
-			pageView = new PageView(Integer.parseInt(pageNow));
-		}
-		pageView = userService.queryChildRates(pageView, user);
-		model.addAttribute("pageView", pageView);
-		return Common.ROOT_PATH+"/background/rates/childRates";
 	}
 	
 	/**
@@ -125,7 +94,7 @@ public class RatesController {
 	 */
 	@RequestMapping(value="deleteById")
 	public String deleteById(Model model,String ratesId){
-		ratesService.delete(ratesId);
+		userRatesService.delete(ratesId);
 		return "redirect:query.html";
 	}
 	
@@ -138,7 +107,7 @@ public class RatesController {
 	 */
 	@RequestMapping(value="getById")
 	public String getById(Model model,String ratesId,int type){
-		Rates rates = ratesService.getById(ratesId);
+		UserRates rates = userRatesService.getById(ratesId);
 		model.addAttribute("rates", rates);
 		if(type == 1){
 			return Common.ROOT_PATH+"/background/rates/edit";
@@ -154,15 +123,15 @@ public class RatesController {
 	 * @return
 	 */
 	@RequestMapping(value="update")
-	public String updateRates(Model model,Rates rates){
-		ratesService.modify(rates);
+	public String updateUserRates(Model model,UserRates rates){
+		userRatesService.modify(rates);
 		return "redirect:query.html";
 	}
 	
 	@RequestMapping(value="deleteAll")
 	public String deleteAll(String[] check,Model model){
 		for(String id : check){
-			ratesService.delete(id);
+			userRatesService.delete(id);
 		}
 		return "redirect:query.html";
 	}

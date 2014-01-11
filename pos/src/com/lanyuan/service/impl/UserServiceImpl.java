@@ -64,11 +64,6 @@ public class UserServiceImpl implements UserService {
 	public List<User> queryAll(User t) {
 		return null;
 	}
-
-	public PageView queryChildRates(PageView pageView, User user) {
-		return userDao.queryChildRates(pageView, user);
-	}
-
 	public void saveUserRates(UserRates userRates) {
 		 userDao.saveUserRates(userRates);
 	}
@@ -87,4 +82,5 @@ public class UserServiceImpl implements UserService {
 	public void updateUserRates(UserRates userRates) {
 		userDao.updateUserRates(userRates);
 	}
+
 }

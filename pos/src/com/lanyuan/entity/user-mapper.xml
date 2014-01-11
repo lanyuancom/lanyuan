@@ -60,43 +60,6 @@
 		</where>
 	</select>
 	
-	<!--resultType="User" 每返回一条结果封装到User里 -->
-	<select id="queryChildRates" resultType="Rates" parameterType="java.util.HashMap">
-		select
-		u.userName,
-		r.channelname,
-		u.tradingRates,
-	    u.settlementCaps,
-		r.mark
-		from user u,rates r
-		<where>
-		u.ratesId = r.id
-			<if test="t.userName != null and t.userName != ''">
-				and u.userName like '%${t.userName}%'
-				</if>
-			<if test="t.userNickname != null and t.userNickname != ''">
-				and u.userNickname like '%${t.userNickname}%'
-			</if>
-			<if test="t.parentNumber != null and t.parentNumber != ''">
-				and u.parentNumber = #{t.parentNumber}
-			</if>
-		</where>
-	</select>
-	<select id="countChild" parameterType="User" resultType="int">
-		select count(0) from user u,rates r
-		<where>
-			u.ratesId = r.id
-			<if test="t.userName != null and t.userName != ''">
-				and u.userName like '%${t.userName}%'
-				</if>
-			<if test="t.userNickname != null and t.userNickname != ''">
-				and u.userNickname like '%${t.userNickname}%'
-			</if>
-			<if test="t.parentNumber != null and t.parentNumber != ''">
-				and u.parentNumber = #{t.parentNumber}
-			</if>
-		</where>
-	</select>
 	<!-- 总记录数 -->
 	<select id="count" parameterType="User" resultType="int">
 		select count(0) from user

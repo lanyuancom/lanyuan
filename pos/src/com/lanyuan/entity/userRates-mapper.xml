@@ -10,41 +10,52 @@
 		settlementCosts,
 		userName,
 		settlementCaps,
+		mark,
 		updateTime
 	</sql>
 	<!--resultType="userRates" 每返回一条结果封装到userRates里 -->
 	<select id="query" resultType="UserRates" parameterType="java.util.HashMap">
 		select
-		id,
-		channelname,
-		tradingRates,
-		settlementCosts,
-		userName,
-		settlementCaps,
-		updateTime
+		<include refid="selectId" />
+		from userrates
+		<where>
+		userName is null or userName = ''
+			<if test="t.channelname != null and t.channelname != ''">
+				and channelname=#{t.channelname}
+				</if>
+				<if test="t.userName != null and t.userName != ''">
+				and userName=#{t.userName}
+				</if>
+		</where>
+	</select>
+	<select id="queryChildUserNotNull" resultType="UserRates" parameterType="java.util.HashMap">
+		select
+		<include refid="selectId" />
 		from userrates
 		<where>
 			<if test="t.channelname != null and t.channelname != ''">
 				channelname=#{t.channelname}
 				</if>
 				<if test="t.userName != null and t.userName != ''">
-				and userName=#{userName},
+				and userName=#{t.userName}
 				</if>
 		</where>
 	</select>
+	<select id="queryUserNull" resultType="UserRates" parameterType="UserRates">
+		select
+		<include refid="selectId" />
+		from userrates
+		where
+		userName is null or userName = ''
+	</select>
 	<select id="queryUserRates" resultType="UserRates" parameterType="java.util.HashMap">
 		select
-		id,
-		channelname,
-		tradingRates,
-		settlementCosts,
-		userName,
-		settlementCaps,
-		updateTime
+		<include refid="selectId" />
 		from userrates
 		<where>
+		userName is not null and userName != ''
 			<if test="t.channelname != null and t.channelname != ''">
-				channelname=#{t.channelname}
+				and channelname=#{t.channelname}
 				</if>
 				<if test="t.parentNumber != null and t.parentNumber != ''">
 				and userName in (select u.userName from user u where u.parentNumber = #{t.parentNumber})
@@ -53,13 +64,13 @@
 	</select>
 	<select id="queryAll" resultType="UserRates" parameterType="UserRates">
 		select
-		count(distinct channelname),
 		id,
 		channelname,
 		tradingRates,
 		settlementCosts,
 		userName,
 		settlementCaps,
+		mark,
 		updateTime
 		from userrates
 		<where>
@@ -67,7 +78,6 @@
 				userName=#{userName}
 				</if>
 		</where>
-		group by channelname
 	</select>
 	
 	<!-- 总记录数 -->
@@ -85,10 +95,10 @@
 	<!-- 增加用户 -->
 	<insert id="add" parameterType="UserRates">
 		insert into userrates ( channelname,userName,
-		tradingRates, settlementCosts,
+		tradingRates, settlementCosts,mark,
 		settlementCaps)
 		values (#{channelname},#{userName},
-		#{tradingRates}, #{settlementCosts},#{settlementCaps})
+		#{tradingRates}, #{settlementCosts},#{mark},#{settlementCaps})
 	</insert>
 
 	<delete id="deleteById" parameterType="String">
@@ -116,7 +126,10 @@
 				userName=#{userName},
 			</if>
 			<if test="settlementCaps != null and settlementCaps != ''">
-				settlementCaps=#{settlementCaps}
+				settlementCaps=#{settlementCaps},
+			</if>
+			<if test="mark != null and mark != ''">
+				mark=#{mark}
 			</if>
 		</set>
 		where id=#{id}

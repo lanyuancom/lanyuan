@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.lanyuan.base.impl.BaseDaoImpl;
 import com.lanyuan.dao.UserDao;
-import com.lanyuan.entity.Rates;
 import com.lanyuan.entity.Roles;
 import com.lanyuan.entity.User;
 import com.lanyuan.entity.UserRates;
@@ -39,15 +38,6 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao
 		 return (User)getSqlSession().selectOne("user.login", user);
 	}
 	
-	public PageView queryChildRates(PageView pageView,User user) {
-		Map<Object, Object> map = new HashMap<Object, Object>();
-		map.put("paging", pageView);
-		map.put("t", user);
-		List<Rates> lists = getSqlSession().selectList("user.queryChildRates",map);
-		pageView.setRecords(lists);
-		return pageView;
-	}
-
 	public void saveUserRates(UserRates userRates) {
 		getSqlSession().insert("userrates.add",userRates);
 	}
@@ -60,6 +50,7 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao
 		pageView.setRecords(lists);
 		return pageView;
 	}
+	
 	public UserRates queryUserRatesById(String userRatesId){
 		return (UserRates)getSqlSession().selectOne("userrates.getById", userRatesId);
 	}

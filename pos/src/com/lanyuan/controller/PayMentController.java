@@ -10,10 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lanyuan.entity.PayMent;
-import com.lanyuan.entity.Rates;
 import com.lanyuan.entity.User;
 import com.lanyuan.service.PayMentService;
-import com.lanyuan.service.RatesService;
 import com.lanyuan.util.Common;
 import com.lanyuan.util.PageView;
 
@@ -27,8 +25,6 @@ import com.lanyuan.util.PageView;
 public class PayMentController {
 	@Autowired
 	private PayMentService payMentService;
-	@Autowired
-	private RatesService ratesService;
 	
 	/**
 	 * 跳到新增页面
@@ -104,14 +100,6 @@ public class PayMentController {
 		PayMent payMent = payMentService.getById(payMentId);
 		model.addAttribute("payMent", payMent);
 			return Common.ROOT_PATH+"/background/payMent/edit";
-	}
-	@RequestMapping(value="payMentRates")
-	public String payMentRates(Model model,String ratesId){
-		if(!Common.isEmpty(ratesId)){
-			Rates rates = ratesService.getById(ratesId);
-			model.addAttribute("rates", rates);
-		}
-		return Common.ROOT_PATH+"/background/payMent/payMentRate";
 	}
 	/**
 	 * 更新修改的文章信息

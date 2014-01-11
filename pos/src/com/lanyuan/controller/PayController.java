@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lanyuan.entity.Pay;
-import com.lanyuan.entity.Rates;
 import com.lanyuan.entity.User;
 import com.lanyuan.entity.UserRates;
 import com.lanyuan.service.PayService;
-import com.lanyuan.service.RatesService;
 import com.lanyuan.service.UserService;
 import com.lanyuan.util.Common;
 import com.lanyuan.util.PageView;
@@ -31,8 +29,6 @@ import com.lanyuan.util.PageView;
 public class PayController {
 	@Autowired
 	private PayService payService;
-	@Autowired
-	private RatesService ratesService;
 	@Autowired
 	private UserService userService;
 	

@@ -12,18 +12,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.lanyuan.entity.Rates;
 import com.lanyuan.entity.Roles;
 import com.lanyuan.entity.User;
 import com.lanyuan.entity.UserRates;
 import com.lanyuan.entity.UserRoles;
-import com.lanyuan.service.RatesService;
 import com.lanyuan.service.RolesService;
+import com.lanyuan.service.UserRatesService;
 import com.lanyuan.service.UserService;
 import com.lanyuan.util.Common;
 import com.lanyuan.util.Md5Tool;
 import com.lanyuan.util.PageView;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 
 /**
  * 
@@ -41,44 +39,34 @@ public class UserController {
 	@Autowired
 	private RolesService rolesService;
 	@Autowired
-	private RatesService ratesService;
+	private UserRatesService userRatesService;
 	/**
 	 * @param model
 	 * 存放返回界面的model
 	 * @return
 	 */
 	@RequestMapping("query")
-	public String query(Model model, User user,String statusFlag, String pageNow,HttpServletRequest request) {
+	public String query(Model model, User user, String pageNow,HttpServletRequest request) {
 		User u = (User)request.getSession().getAttribute("userSession");
+		PageView pageView = null;
+		if (Common.isEmpty(pageNow)) {
+			pageView = new PageView(1);
+		} else {
+			pageView = new PageView(Integer.parseInt(pageNow));
+		}
+		user.setStatus(null);
 		if("super".equals(u.getRoleName())||"admin".equals(u.getRoleName())){
-			user.setStatus(statusFlag);
-			PageView pageView = null;
-			if (Common.isEmpty(pageNow)) {
-				pageView = new PageView(1);
-			} else {
-				pageView = new PageView(Integer.parseInt(pageNow));
-			}
 			pageView = userService.query(pageView, user);
 			model.addAttribute("pageView", pageView);
-			return Common.ROOT_PATH+"/background/user/list";
 		}else{
 			//非管理员
-			if(user != null && "0".equals(statusFlag)||statusFlag==null){
-					user.setParentNumber(request.getSession().getAttribute("userSessionId").toString());
-					PageView pageView = null;
-					if (Common.isEmpty(pageNow)) {
-						pageView = new PageView(1);
-					} else {
-						pageView = new PageView(Integer.parseInt(pageNow));
-					}
-					user.setStatus(null);
-					pageView = userService.query(pageView, user);
-					model.addAttribute("pageView", pageView);
-					return Common.ROOT_PATH+"/background/user/list";
+			if(user != null){
+				user.setParentNumber(request.getSession().getAttribute("userSessionId").toString());
+				pageView = userService.query(pageView, user);
 			}
-			model.addAttribute("userInfo", u);
-			return Common.ROOT_PATH+"/background/user/show";
 		}
+		model.addAttribute("pageView", pageView);
+		return Common.ROOT_PATH+"/background/user/list";
 	}
 	
 	@RequestMapping("edit")
@@ -105,13 +93,11 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("add")
-	public String add(Model model, User user) {
-		UserRates rates =  userService.queryUserRatesById(user.getRatesId());
+	public String add(Model model, User user,HttpServletRequest request) {
 		String card = user.getUserIdCard();
 		int s = card.length()-6;
 		card=card.substring(s, card.length());
 		user.setUserPassword(Md5Tool.getMd5(card));
-		user.setChannelname(rates.getChannelname());
 		userService.add(user);
 		List<Roles> r= rolesService.queryAll(new Roles());
 		for (Roles roles : r) {//新增用户默认为普通用户
@@ -124,11 +110,14 @@ public class UserController {
 			}
 		}
 		UserRates userRates = new UserRates();
-		userRates.setUserName(user.getUserName());
+		UserRates rates =  userService.queryUserRatesById(user.getRatesId());
+		user.setChannelname(rates.getChannelname());
 		userRates.setChannelname(rates.getChannelname());
+		userRates.setSettlementCaps(rates.getSettlementCaps());
+		userRates.setUserName(user.getUserName());
 		userRates.setTradingRates(user.getTradingRates());
 		userRates.setSettlementCosts(user.getWorkCosts());
-		userRates.setSettlementCaps(rates.getSettlementCaps());
+		userRates.setMark(rates.getMark());
 		userService.saveUserRates(userRates);
 		return "redirect:query.html";
 	}
@@ -173,7 +162,7 @@ public class UserController {
 		User u = (User)request.getSession().getAttribute("userSession");
 		if("super".equals(u.getRoleName())||"admin".equals(u.getRoleName())){
 			UserRates userRates=new UserRates();
-			List<UserRates> rates=userService.queryAllUserRates(userRates);
+			List<UserRates> rates=userRatesService.queryUserNull(userRates);
 			model.addAttribute("rates", rates);
 		}else{
 			UserRates userRates=new UserRates();
@@ -217,7 +206,8 @@ public class UserController {
 	public String checkRates(Model model,String id,HttpServletRequest request) {
 		User u = (User)request.getSession().getAttribute("userSession");
 		if("super".equals(u.getRoleName())||"admin".equals(u.getRoleName())){
-			List<Rates> rates = ratesService.queryAll(new Rates());
+			UserRates userRates=new UserRates();
+			List<UserRates> rates=userService.queryAllUserRates(userRates);
 			model.addAttribute("rates", rates);
 		}else{
 			UserRates userRates=new UserRates();
@@ -255,10 +245,16 @@ public class UserController {
 		User user = userService.getById(userId);
 		model.addAttribute("user", user);
 		User u = (User)request.getSession().getAttribute("userSession");
-		UserRates userRates=new UserRates();
-		userRates.setUserName(u.getUserName());
-		List<UserRates> rates=userService.queryAllUserRates(userRates);
-		model.addAttribute("rates", rates);
+		if("super".equals(u.getRoleName())||"admin".equals(u.getRoleName())){
+			UserRates userRates=new UserRates();
+			List<UserRates> rates=userRatesService.queryUserNull(userRates);
+			model.addAttribute("rates", rates);
+		}else{
+			UserRates userRates=new UserRates();
+			userRates.setUserName(u.getUserName());
+			List<UserRates> rates=userService.queryAllUserRates(userRates);
+			model.addAttribute("rates", rates);
+		}
 		return Common.ROOT_PATH+"/background/user/edit";
 	}
 	@RequestMapping("show")
