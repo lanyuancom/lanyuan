@@ -53,13 +53,21 @@
 	</select>
 	<select id="queryAll" resultType="UserRates" parameterType="UserRates">
 		select
-		<include refid="selectId" />
+		count(distinct channelname),
+		id,
+		channelname,
+		tradingRates,
+		settlementCosts,
+		userName,
+		settlementCaps,
+		updateTime
 		from userrates
 		<where>
 				<if test="userName != null and userName != ''">
 				userName=#{userName}
 				</if>
 		</where>
+		group by channelname
 	</select>
 	
 	<!-- 总记录数 -->
