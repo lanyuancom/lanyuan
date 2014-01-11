@@ -18,7 +18,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td height="30" width="15%">
+					<td height="30" >
 						<div align="right" class="STYLE1">用户名：</div>
 					</td>
 					<td>
@@ -26,7 +26,7 @@
 							${userInfo.userName}
 						</div>
 					</td>
-					<td height="30" width="15%">
+					<td height="30" >
 						<div align="right" class="STYLE1">银行户名：</div>
 					</td>
 					<td>
@@ -36,14 +36,14 @@
 					</td>
 				</tr>
 				<tr>
-					<td height="30" width="15%">
+					<td height="30" >
 						<div align="right" class="STYLE1">账号余额：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1"
 							style="padding-left:10px;color: red;">${userInfo.amountMoney} </div>
 					</td>
-					<td height="30" width="15%">
+					<td height="30" >
 						<div align="right" class="STYLE1">银行账号：</div>
 					</td>
 					<td>
@@ -54,7 +54,7 @@
 				</tr>
 				<tr>
 				
-				<td height="30" width="15%">
+				<td height="30" >
 						<div align="right" class="STYLE1">真实姓名：</div>
 					</td>
 					<td>
@@ -62,7 +62,7 @@
 							${userInfo.userRealname} 
 						</div>
 					</td>
-					<td height="30" width="15%">
+					<td height="30" >
 						<div align="right" class="STYLE1">银行名称：</div>
 					</td>
 					<td>
@@ -73,7 +73,7 @@
 				</tr>
 				<tr>
 					
-					<td height="30" width="15%">
+					<td height="30" >
 						<div align="right" class="STYLE1">身份证：</div>
 					</td>
 					<td>
@@ -83,7 +83,7 @@
 						</div>
 					</td>
 					
-					<td height="30" width="15%">
+					<td height="30" >
 						<div align="right" class="STYLE1">开户所在省：</div>
 					</td>
 					<td>
@@ -93,16 +93,15 @@
 					</td>
 				</tr>
 				<tr>
-				<td height="30" width="15%">
-						<div align="right" class="STYLE1">费率：</div>
+				<td height="30" >
+						<div align="right" class="STYLE1">开通费：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-						${userInfo.tradingRates} &nbsp; &nbsp;
+							${userInfo.pay}
 						</div>
 					</td>
-					
-					<td height="30" width="15%">
+					<td height="30" >
 						<div align="right" class="STYLE1">开户所在市：</div>
 					</td>
 					<td>
@@ -113,7 +112,7 @@
 				</tr>
 				<tr>
 					
-					<td height="30" width="15%">
+					<td height="30" >
 						<div align="right" class="STYLE1">QQ：</div>
 					</td>
 					<td>
@@ -122,7 +121,7 @@
 						</div>
 					</td>
 					
-					<td height="30" width="15%">
+					<td height="30" >
 						<div align="right" class="STYLE1">所属支行或分行：</div>
 					</td>
 					<td>
@@ -132,20 +131,19 @@
 					</td>
 				</tr>
 				<tr>
-					<td height="30" width="15%">
-						<div align="right" class="STYLE1">开通费：</div>
-					</td>
-					<td>
-						<div align="left" class="STYLE1" style="padding-left:10px;">
-							${userInfo.pay}
-						</div>
-					</td>
-					<td height="30" width="15%">
+					
+					<td height="30">
 						<div align="right" class="STYLE1">账号类型：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
 						${userInfo.accountType}
+						</div>
+					</td>
+					<td height="30" >
+					</td>
+					<td>
+						<div align="left" class="STYLE1" style="padding-left:10px;">
 						</div>
 					</td>
 				</tr>

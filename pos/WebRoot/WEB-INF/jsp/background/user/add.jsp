@@ -208,11 +208,11 @@ function validateIdCard(idCard){
 				</tr>
 				<tr>
 					<td height="30" width="10%">
-						<div align="right" class="STYLE1">费率：</div>
+						<div align="right" class="STYLE1">开通费：</div>
 					</td>
 					<td>
 						<div align="left" class="STYLE1" style="padding-left:10px;">
-							<input style="height: 20px;width: 200px" name="tradingRates" /> <font color="red">*必填　如千分之三,填写：0.003</font>
+							<input style="height: 20px;width: 200px" name="pay" /> <font color="red">*必填</font>
 						</div>
 					</td>
 					
@@ -228,12 +228,11 @@ function validateIdCard(idCard){
 				</tr>
 				<tr>
 					<td height="30" width="10%">
-						<div align="right" class="STYLE1">结算费用：</div>
+						<div align="right" class="STYLE1">用户状态：</div>
 					</td>
 					<td>
-						<div align="left" class="STYLE1" style="padding-left:10px;">
-							上班时间：<input style="height: 20px;width: 80px" name="workCosts" /> <font color="red">*必填</font><br/>
-							其他时间：<font color="red">20 元/笔(包括节假日，非上班时间)</font>
+						<div align="left" class="STYLE1" style="padding-left:10px;color: red">
+							待审核
 						</div>
 					</td>
 					<td height="30" width="10%">
@@ -250,14 +249,7 @@ function validateIdCard(idCard){
 					</td>
 				</tr>
 				<tr>
-				<td height="30" width="10%">
-						<div align="right" class="STYLE1">开通费：</div>
-					</td>
-					<td>
-						<div align="left" class="STYLE1" style="padding-left:10px;">
-							<input style="height: 20px;width: 200px" name="pay" /> <font color="red">*必填</font>
-						</div>
-					</td>
+				
 					<td height="30" width="10%">
 						<div align="right" class="STYLE1">QQ：</div>
 					</td>
@@ -267,16 +259,6 @@ function validateIdCard(idCard){
 						</div>
 					</td>
 					
-				</tr>
-				<tr>
-				<td height="30" width="10%">
-						<div align="right" class="STYLE1">用户状态：</div>
-					</td>
-					<td>
-						<div align="left" class="STYLE1" style="padding-left:10px;color: red">
-							待审核
-						</div>
-					</td>
 				</tr>
 				<tr>
 					<td colspan="4" style="padding: 10px">
