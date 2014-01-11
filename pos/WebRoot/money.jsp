@@ -47,6 +47,8 @@
 	-->
 <script type="text/javascript">
 	function showTabs(showId, hidenId) {
+	$("#zf-btk_"+showId).css("background","#FFAEB9");
+	$("#zf-btk_"+hidenId).css("background","#CCCCCC");
 		$("#" + showId).show();
 		$("#" + hidenId).hide();
 	}
@@ -71,15 +73,10 @@
 <body>
 	<div class="main">
 
-		<div class="fbg">
-			<div class="header_resize">
-				<div class="menu_nav"></div>
-				<div>
-					<h1>
-						<small style="color: red;">在线收银台</small>
-					</h1>
+		<div class="fbg" style="height: 100px;">
+				<div style="color: red;font-size: 30px;padding-top: 30px;">
+						在线收银台
 				</div>
-				<div class="clr"></div>
 			</div>
 		</div>
 
@@ -138,10 +135,10 @@
 										<div class="zf-bt">
 											<div class="zf-btk">
 												<a class="con" onclick="javascript:showTabs('cxk','xyk')"
-													id="one1">储蓄卡</a>
+													id="zf-btk_cxk">储蓄卡</a>
 											</div>
 											<div class="zf-btk">
-												<a onclick="javascript:showTabs('xyk','cxk')" id="one2"
+												<a onclick="javascript:showTabs('xyk','cxk')"  id="zf-btk_xyk"
 													class="">信用卡</a>
 											</div>
 										</div>
