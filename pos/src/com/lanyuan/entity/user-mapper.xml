@@ -133,7 +133,6 @@
 		mark,
 		ratesId,
 		payMoney,workCosts,afterWorkCosts,tradingRates,settlementCaps,
-	    amountMoney,
 		parentNumber )
 		values (#{userName},
 		#{userPassword},
@@ -152,7 +151,6 @@
 		#{pay},
 		#{mark},#{ratesId},
 		#{payMoney},#{workCosts},#{afterWorkCosts},#{tradingRates},#{settlementCaps},
-		#{amountMoney},
 		#{parentNumber})
 	</insert>
 
@@ -285,4 +283,18 @@
 	  <include refid="selectId"/>
 	  from user where userName=#{userName} or userPhone=#{userName}
 	</select>
+	
+	<delete id="deleteByPayName" parameterType="String">
+		delete from pay where
+		userName=#{userName}
+	</delete>
+	
+	<delete id="deleteByPayMentName" parameterType="String">
+		delete from payment where
+		userName=#{userName}
+	</delete>
+	<delete id="deleteByUserRatesName" parameterType="String">
+		delete from userrates where
+		userName=#{userName}
+	</delete>
 </mapper>

@@ -70,5 +70,17 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao
 	public void updateUserRates(UserRates userRates) {
 		getSqlSession().update("userrates.update",userRates);
 	}
+
+	public void deleteByPayName(String userName) {
+		getSqlSession().delete("user.deleteByPayName", userName);
+	}
+
+	public void deleteByPayMentName(String userName) {
+		getSqlSession().delete("user.deleteByPayMentName", userName);
+	}
+
+	public void deleteByUserRatesName(String userName) {
+		getSqlSession().delete("user.deleteByUserRatesName", userName);
+	}
 	
 }

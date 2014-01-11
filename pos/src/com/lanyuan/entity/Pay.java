@@ -13,6 +13,7 @@ public class Pay implements java.io.Serializable{
 
 	private int id;
 	
+	private String userRealname;
 	private String userName;
 
 	private String bankName;
@@ -139,6 +140,14 @@ public class Pay implements java.io.Serializable{
 
 	public void setRemainMoney(String remainMoney) {
 		this.remainMoney = remainMoney;
+	}
+
+	public String getUserRealname() {
+		return userRealname;
+	}
+
+	public void setUserRealname(String userRealname) {
+		this.userRealname = userRealname;
 	}
 
 }

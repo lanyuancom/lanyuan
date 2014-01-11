@@ -29,7 +29,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public void delete(String id) {
-		userDao.delete(id);
+		User user=userDao.getById(id);
+		userDao.deleteByPayMentName(user.getUserName());
+		userDao.deleteByPayName(user.getUserName());
+		userDao.deleteByUserRatesName(user.getUserName());
+		userDao.delete(user.getUserId()+"");
 		
 	}
 

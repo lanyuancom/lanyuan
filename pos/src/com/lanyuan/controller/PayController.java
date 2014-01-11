@@ -56,14 +56,14 @@ public class PayController {
 		try {
 			Double co = Double.parseDouble(pay.getCostsMoney());
 			Double paMon = Double.parseDouble(pay.getSettlementCosts());
-			String money = (co - paMon) + "";
+			String money = Common.sub(co, paMon) + "";
 			pay.setPayMoney(money);
 			Double countMeny = Double.parseDouble(pay.getCountMoney());//余额－结算金额
-			String remainMoney = (countMeny - co) + "";
+			String remainMoney =  Common.sub(countMeny,co) + "";
 			pay.setRemainMoney(remainMoney);
 			payService.add(pay);
 			User user = userService.getById(request.getSession().getAttribute("userSessionId").toString());
-			Double sun = Double.parseDouble(user.getAmountMoney()) - co;
+			Double sun = Common.sub(Double.parseDouble(user.getAmountMoney()),co);
 			user.setAmountMoney(sun + "");
 			userService.modify(user);
 		} catch (Exception e) {

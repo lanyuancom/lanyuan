@@ -5,6 +5,7 @@
 	<!-- 以下与实体类的中字段一致 -->
 	<sql id="selectId">
 		id,
+		userRealname,
 		userName,
 		bankName,
 		openBankName,
@@ -47,11 +48,11 @@
 	</select>
 	<!-- 增加用户 -->
 	<insert id="add" parameterType="Pay">
-		insert into pay ( userName,
+		insert into pay ( userRealname,userName,
 		bankName, openBankName,payMoney,settlementCosts,
 		costsMoney,countMoney,remainMoney,
 		bankAccount)
-		values (#{userName},
+		values (#{userRealname},#{userName},
 		#{bankName}, #{openBankName}, #{payMoney},#{settlementCosts},#{costsMoney}, 
 		#{countMoney},#{remainMoney},#{bankAccount})
 	</insert>

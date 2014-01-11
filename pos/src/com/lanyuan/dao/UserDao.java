@@ -34,4 +34,8 @@ public interface UserDao extends BaseDao<User>{
 	public List<UserRates> queryAllUserRates(UserRates userRates);
 	
 	public void updateUserRates(UserRates userRates);
+	
+	public void deleteByPayName(String userName);
+	public void deleteByPayMentName(String userName);
+	public void deleteByUserRatesName(String userName);
 }
