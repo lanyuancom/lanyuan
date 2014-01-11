@@ -63,6 +63,7 @@
               <input id="chose" type="checkbox" name="checkbox" onclick="selectAllCheckBox()" />
             </td>
  			<td width="7%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">用户名</td>
+ 			<td width="7%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">客户真实名</td>
             <td width="10%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">银行名称</span></td>
             <td width="10%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif" ><span class="STYLE1">开户行（支行）</span></td>
             <td width="8%" height="22" background="${pageContext.servletContext.contextPath }/images/bg.gif"  class="STYLE1">银行账号</td>
@@ -85,6 +86,7 @@
             </td>
             
             <td height="20" ><span class="STYLE1">${pay.userName}</span></td>
+            <td height="20" ><span class="STYLE1">${pay.userRealname}</span></td>
             <td height="20" ><span class="STYLE1">${pay.bankName}</span></td>
             <td height="20" ><span class="STYLE1">${pay.openBankName}</span></td>
             <td height="20" ><span class="STYLE1">${pay.bankAccount}</span></td>

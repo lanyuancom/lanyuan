@@ -61,7 +61,9 @@
 					<td >
 						<div align="left" class="STYLE1"  style="padding-left:10px;">
 						${userInfo.userRealname} 
-						<input type="hidden" name="userName" value="${userInfo.userRealname}">
+						
+						<input type="hidden" name="userRealname" value="${userInfo.userRealname}">
+						<input type="hidden" name="userName" value="${userInfo.userName}">
 						</div>
 					</td>
 					<td height="30"width="20%" >
