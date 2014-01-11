@@ -45,7 +45,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		String tradingRates=(String)session.getAttribute("tradingRates");
 		Double tr = Double.parseDouble(tradingRates);
-		String realMoney = (a-a*tr)+"";//交易成功金额　－　交易成功金额*费率
+		
+		String realMoney = Common.sub(a, Common.mul(a, tr))+"";//交易成功金额　－　交易成功金额*费率
 //驱动程序名
 
 String driverName="com.mysql.jdbc.Driver";
@@ -142,7 +143,7 @@ Connection updateCom=null;
 try {
 		 updateCom=DriverManager.getConnection(url);
 		 updatestatement = updateCom.createStatement();
-		Double men = Double.parseDouble(amountMoney)+Double.parseDouble(realMoney);
+		Double men = Common.add(Double.parseDouble(amountMoney), Double.parseDouble(realMoney));
 		String updatesql="update user set amountMoney='"+men+"' where userName = '"+username+"'";
 		updatestatement.executeUpdate(updatesql);
 		//}else{
