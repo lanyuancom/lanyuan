@@ -27,7 +27,7 @@ public class LogAopAction {
 	private LogDao logDao;
 
 	@Around("execution(* com.lanyuan.service.impl.*.* (..))")
-	public Object logAll(ProceedingJoinPoint point) {
+	public Object logAll(ProceedingJoinPoint point) throws Throwable{
 		Object result = null;
 		// 执行方法名
 		String methodName = point.getSignature().getName();
@@ -49,6 +49,7 @@ public class LogAopAction {
 			// System.out.println("Username:" +user);
 		} catch (Throwable e) {
 			// e.printStackTrace();
+			throw e;
 		}
 		String name = null;
 		// 操作范围
